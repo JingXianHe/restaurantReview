@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  TitleButton.h
 //  PetDairy
 //
 //  Created by Tommy on 2015-05-03.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
-
+@interface TitleButton : UIButton
+@property(nonatomic, copy)NSString *title;
 @end
-
