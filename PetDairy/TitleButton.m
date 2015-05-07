@@ -7,7 +7,7 @@
 //
 
 #import "TitleButton.h"
-
+#import "Header.h"
 @implementation TitleButton
 
 - (id)initWithFrame:(CGRect)frame

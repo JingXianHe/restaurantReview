@@ -11,31 +11,32 @@
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="MainController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                        <viewControllerLayoutGuide type="top" id="Afr-JP-0Hs"/>
+                        <viewControllerLayoutGuide type="bottom" id="EkW-07-kpy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleAspectFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sidebar_bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="fec-yC-hFh">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="fec-yC-hFh" secondAttribute="trailing" constant="-16" id="ZGb-2Y-fMC"/>
-                            <constraint firstItem="fec-yC-hFh" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="g0P-Yt-fJg"/>
-                            <constraint firstItem="fec-yC-hFh" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="o53-S1-Ngb"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="fec-yC-hFh" secondAttribute="bottom" id="wcg-qC-tkf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fec-yC-hFh" secondAttribute="trailing" constant="-16" id="0tY-P5-RCw"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="fec-yC-hFh" secondAttribute="bottom" id="5zX-IW-1ln"/>
+                            <constraint firstItem="fec-yC-hFh" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="ALY-xH-XVb"/>
+                            <constraint firstItem="fec-yC-hFh" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="hsW-Eu-X9x"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="140" y="136.99999999999997"/>
         </scene>
     </scenes>
     <resources>

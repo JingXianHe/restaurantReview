@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B1649BF91AF8DDA100B5EC0C /* RightMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1649BF71AF8DDA100B5EC0C /* RightMenuController.m */; };
+		B1649BFA1AF8DDA100B5EC0C /* RightMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1649BF81AF8DDA100B5EC0C /* RightMenuController.xib */; };
+		B18134461AFB019900635DFC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18134441AFB019900635DFC /* Bolts.framework */; };
+		B18134471AFB019900635DFC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18134451AFB019900635DFC /* Parse.framework */; };
+		B18DF9B11AF891F900D3071F /* LeftMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B18DF9B01AF891F900D3071F /* LeftMenu.m */; };
 		B19FB02C1AF61A97004B0E34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B19FB02B1AF61A97004B0E34 /* main.m */; };
 		B19FB02F1AF61A97004B0E34 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B19FB02E1AF61A97004B0E34 /* AppDelegate.m */; };
 		B19FB0321AF61A97004B0E34 /* PetDairy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B19FB0301AF61A97004B0E34 /* PetDairy.xcdatamodeld */; };
@@ -35,6 +40,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B1649BF61AF8DDA100B5EC0C /* RightMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightMenuController.h; sourceTree = "<group>"; };
+		B1649BF71AF8DDA100B5EC0C /* RightMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightMenuController.m; sourceTree = "<group>"; };
+		B1649BF81AF8DDA100B5EC0C /* RightMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightMenuController.xib; sourceTree = "<group>"; };
+		B18134441AFB019900635DFC /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		B18134451AFB019900635DFC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		B18DF9AF1AF891F900D3071F /* LeftMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenu.h; sourceTree = "<group>"; };
+		B18DF9B01AF891F900D3071F /* LeftMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenu.m; sourceTree = "<group>"; };
 		B19FB0261AF61A97004B0E34 /* PetDairy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetDairy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B19FB02A1AF61A97004B0E34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B19FB02B1AF61A97004B0E34 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -56,13 +68,13 @@
 		B19FB0601AF64F50004B0E34 /* HTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTableViewController.m; sourceTree = "<group>"; };
 		B19FB0631AF6519C004B0E34 /* TitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleButton.h; sourceTree = "<group>"; };
 		B19FB0641AF6519C004B0E34 /* TitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleButton.m; sourceTree = "<group>"; };
-		B19FB0661AF65299004B0E34 /* PetDairy.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PetDairy.pch; sourceTree = "<group>"; };
 		B19FB0681AF653C9004B0E34 /* UIBarButtonItem+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Extension.h"; sourceTree = "<group>"; };
 		B19FB0691AF653C9004B0E34 /* UIBarButtonItem+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Extension.m"; sourceTree = "<group>"; };
 		B19FB06A1AF653C9004B0E34 /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		B19FB06B1AF653C9004B0E34 /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
 		B19FB06C1AF653C9004B0E34 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		B19FB06D1AF653C9004B0E34 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		B19FB0711AF65561004B0E34 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +82,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B18134471AFB019900635DFC /* Parse.framework in Frameworks */,
+				B18134461AFB019900635DFC /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +97,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B1649BEF1AF8CCA700B5EC0C /* MiddleController */ = {
+			isa = PBXGroup;
+			children = (
+				B19FB05A1AF64D13004B0E34 /* ProfileController */,
+			);
+			name = MiddleController;
+			sourceTree = "<group>";
+		};
+		B1649BF01AF8CCBE00B5EC0C /* RightController */ = {
+			isa = PBXGroup;
+			children = (
+				B1649BF61AF8DDA100B5EC0C /* RightMenuController.h */,
+				B1649BF71AF8DDA100B5EC0C /* RightMenuController.m */,
+				B1649BF81AF8DDA100B5EC0C /* RightMenuController.xib */,
+			);
+			name = RightController;
+			sourceTree = "<group>";
+		};
+		B18134431AFB017E00635DFC /* frameWork */ = {
+			isa = PBXGroup;
+			children = (
+				B18134441AFB019900635DFC /* Bolts.framework */,
+				B18134451AFB019900635DFC /* Parse.framework */,
+			);
+			name = frameWork;
+			sourceTree = "<group>";
+		};
+		B18DF9AE1AF8913F00D3071F /* leftMenuView */ = {
+			isa = PBXGroup;
+			children = (
+				B18DF9AF1AF891F900D3071F /* LeftMenu.h */,
+				B18DF9B01AF891F900D3071F /* LeftMenu.m */,
+			);
+			name = leftMenuView;
+			sourceTree = "<group>";
+		};
 		B19FB01D1AF61A97004B0E34 = {
 			isa = PBXGroup;
 			children = (
@@ -117,7 +167,7 @@
 				B19FB02A1AF61A97004B0E34 /* Info.plist */,
 				B19FB0551AF64996004B0E34 /* sidebar_bg@2x.jpg */,
 				B19FB02B1AF61A97004B0E34 /* main.m */,
-				B19FB0661AF65299004B0E34 /* PetDairy.pch */,
+				B19FB0711AF65561004B0E34 /* Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -153,9 +203,8 @@
 		B19FB0531AF61AA9004B0E34 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				B18134431AFB017E00635DFC /* frameWork */,
 				B19FB0671AF653B0004B0E34 /* lib */,
-				B19FB05E1AF64F18004B0E34 /* HTableViewController */,
-				B19FB05A1AF64D13004B0E34 /* ProfileController */,
 				B19FB0541AF61AC6004B0E34 /* HomeController */,
 				B19FB02D1AF61A97004B0E34 /* AppDelegate.h */,
 				B19FB02E1AF61A97004B0E34 /* AppDelegate.m */,
@@ -166,6 +215,9 @@
 		B19FB0541AF61AC6004B0E34 /* HomeController */ = {
 			isa = PBXGroup;
 			children = (
+				B1649BF01AF8CCBE00B5EC0C /* RightController */,
+				B1649BEF1AF8CCA700B5EC0C /* MiddleController */,
+				B18DF9AE1AF8913F00D3071F /* leftMenuView */,
 				B19FB0571AF64B16004B0E34 /* MainController.h */,
 				B19FB0581AF64B16004B0E34 /* MainController.m */,
 			);
@@ -175,9 +227,12 @@
 		B19FB05A1AF64D13004B0E34 /* ProfileController */ = {
 			isa = PBXGroup;
 			children = (
+				B19FB05E1AF64F18004B0E34 /* HTableViewController */,
 				B19FB0621AF6517A004B0E34 /* TitleView */,
 				B19FB05B1AF64D48004B0E34 /* ProfileController.h */,
 				B19FB05C1AF64D48004B0E34 /* ProfileController.m */,
+				B19FB05F1AF64F50004B0E34 /* HTableViewController.h */,
+				B19FB0601AF64F50004B0E34 /* HTableViewController.m */,
 			);
 			name = ProfileController;
 			sourceTree = "<group>";
@@ -185,8 +240,6 @@
 		B19FB05E1AF64F18004B0E34 /* HTableViewController */ = {
 			isa = PBXGroup;
 			children = (
-				B19FB05F1AF64F50004B0E34 /* HTableViewController.h */,
-				B19FB0601AF64F50004B0E34 /* HTableViewController.m */,
 			);
 			name = HTableViewController;
 			sourceTree = "<group>";
@@ -293,6 +346,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1649BFA1AF8DDA100B5EC0C /* RightMenuController.xib in Resources */,
 				B19FB0561AF64996004B0E34 /* sidebar_bg@2x.jpg in Resources */,
 				B19FB0381AF61A97004B0E34 /* Main.storyboard in Resources */,
 				B19FB03D1AF61A97004B0E34 /* LaunchScreen.xib in Resources */,
@@ -321,6 +375,8 @@
 				B19FB02F1AF61A97004B0E34 /* AppDelegate.m in Sources */,
 				B19FB06E1AF653C9004B0E34 /* UIBarButtonItem+Extension.m in Sources */,
 				B19FB0321AF61A97004B0E34 /* PetDairy.xcdatamodeld in Sources */,
+				B1649BF91AF8DDA100B5EC0C /* RightMenuController.m in Sources */,
+				B18DF9B11AF891F900D3071F /* LeftMenu.m in Sources */,
 				B19FB06F1AF653C9004B0E34 /* UIImage+Extension.m in Sources */,
 				B19FB0611AF64F50004B0E34 /* HTableViewController.m in Sources */,
 				B19FB02C1AF61A97004B0E34 /* main.m in Sources */,
@@ -445,8 +501,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PetDairy",
+				);
 				INFOPLIST_FILE = PetDairy/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -456,8 +516,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PetDairy",
+				);
 				INFOPLIST_FILE = PetDairy/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -516,6 +580,7 @@
 				B19FB04E1AF61A97004B0E34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B19FB04F1AF61A97004B0E34 /* Build configuration list for PBXNativeTarget "PetDairyTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +589,7 @@
 				B19FB0511AF61A97004B0E34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
