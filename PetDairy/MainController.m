@@ -13,6 +13,7 @@
 #import "Header.h"
 #import "LeftMenu.h"
 #import "RightMenuController.h"
+#import <Parse/Parse.h>
 
 #define HMNavShowAnimDuration 0.25
 #define HMCoverTag 100
@@ -203,6 +204,7 @@
     rightMenuVc.view.x = self.RightMenuX;
     rightMenuVc.view.width = self.view.width - self.RightMenuX;
     rightMenuVc.view.height = self.view.height;
+    rightMenuVc.xOffet = self.RightMenuX;
     [self.view insertSubview:rightMenuVc.view atIndex:1];
     self.rightMenuVc = rightMenuVc;
 }

@@ -5,7 +5,7 @@
 //  Created by Tommy on 2015-05-03.
 //  Copyright (c) 2015 H. All rights reserved.
 //
-
+#import <Parse/Parse.h>
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
@@ -16,7 +16,10 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    // Initialize Parse.
+    [Parse setApplicationId:@"hIgEa7ez5eGE23CjeqjwiA9DS0yi4fUe4RkGwEg7"
+                  clientKey:@"MRSVLoGJzcYSTjOVpgqTmRbzxqAKqN5iQ8WeUBch"];
     return YES;
 }
 

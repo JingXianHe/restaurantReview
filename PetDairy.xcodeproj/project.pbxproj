@@ -11,6 +11,19 @@
 		B1649BFA1AF8DDA100B5EC0C /* RightMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1649BF81AF8DDA100B5EC0C /* RightMenuController.xib */; };
 		B18134461AFB019900635DFC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18134441AFB019900635DFC /* Bolts.framework */; };
 		B18134471AFB019900635DFC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18134451AFB019900635DFC /* Parse.framework */; };
+		B18134491AFB024200635DFC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18134481AFB024200635DFC /* AudioToolbox.framework */; };
+		B181344B1AFB025300635DFC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B181344A1AFB025300635DFC /* CFNetwork.framework */; };
+		B181344D1AFB026900635DFC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B181344C1AFB026900635DFC /* CoreGraphics.framework */; };
+		B181344F1AFB028C00635DFC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B181344E1AFB028C00635DFC /* CoreLocation.framework */; };
+		B18134511AFB02A300635DFC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18134501AFB02A300635DFC /* MobileCoreServices.framework */; };
+		B18134531AFB02BE00635DFC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18134521AFB02BE00635DFC /* QuartzCore.framework */; };
+		B18134551AFB02CA00635DFC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18134541AFB02CA00635DFC /* Security.framework */; };
+		B18134571AFB02D500635DFC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18134561AFB02D500635DFC /* StoreKit.framework */; };
+		B18134591AFB02E500635DFC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18134581AFB02E500635DFC /* SystemConfiguration.framework */; };
+		B181345B1AFB031900635DFC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B181345A1AFB031900635DFC /* libz.dylib */; };
+		B181345D1AFB033E00635DFC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B181345C1AFB033E00635DFC /* libsqlite3.dylib */; };
+		B18134671AFBA91200635DFC /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18134651AFBA91200635DFC /* PostViewController.m */; };
+		B18134681AFBA91200635DFC /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B18134661AFBA91200635DFC /* PostViewController.xib */; };
 		B18DF9B11AF891F900D3071F /* LeftMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B18DF9B01AF891F900D3071F /* LeftMenu.m */; };
 		B19FB02C1AF61A97004B0E34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B19FB02B1AF61A97004B0E34 /* main.m */; };
 		B19FB02F1AF61A97004B0E34 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B19FB02E1AF61A97004B0E34 /* AppDelegate.m */; };
@@ -45,6 +58,20 @@
 		B1649BF81AF8DDA100B5EC0C /* RightMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightMenuController.xib; sourceTree = "<group>"; };
 		B18134441AFB019900635DFC /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		B18134451AFB019900635DFC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		B18134481AFB024200635DFC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		B181344A1AFB025300635DFC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		B181344C1AFB026900635DFC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B181344E1AFB028C00635DFC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B18134501AFB02A300635DFC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		B18134521AFB02BE00635DFC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B18134541AFB02CA00635DFC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B18134561AFB02D500635DFC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		B18134581AFB02E500635DFC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		B181345A1AFB031900635DFC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		B181345C1AFB033E00635DFC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		B18134641AFBA91200635DFC /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
+		B18134651AFBA91200635DFC /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
+		B18134661AFBA91200635DFC /* PostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostViewController.xib; sourceTree = "<group>"; };
 		B18DF9AF1AF891F900D3071F /* LeftMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenu.h; sourceTree = "<group>"; };
 		B18DF9B01AF891F900D3071F /* LeftMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenu.m; sourceTree = "<group>"; };
 		B19FB0261AF61A97004B0E34 /* PetDairy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetDairy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +109,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B181345D1AFB033E00635DFC /* libsqlite3.dylib in Frameworks */,
+				B181345B1AFB031900635DFC /* libz.dylib in Frameworks */,
+				B18134591AFB02E500635DFC /* SystemConfiguration.framework in Frameworks */,
+				B18134571AFB02D500635DFC /* StoreKit.framework in Frameworks */,
+				B18134551AFB02CA00635DFC /* Security.framework in Frameworks */,
+				B18134531AFB02BE00635DFC /* QuartzCore.framework in Frameworks */,
+				B18134511AFB02A300635DFC /* MobileCoreServices.framework in Frameworks */,
+				B181344F1AFB028C00635DFC /* CoreLocation.framework in Frameworks */,
+				B181344D1AFB026900635DFC /* CoreGraphics.framework in Frameworks */,
+				B181344B1AFB025300635DFC /* CFNetwork.framework in Frameworks */,
+				B18134491AFB024200635DFC /* AudioToolbox.framework in Frameworks */,
 				B18134471AFB019900635DFC /* Parse.framework in Frameworks */,
 				B18134461AFB019900635DFC /* Bolts.framework in Frameworks */,
 			);
@@ -124,6 +162,16 @@
 			name = frameWork;
 			sourceTree = "<group>";
 		};
+		B181345E1AFB9D4600635DFC /* global */ = {
+			isa = PBXGroup;
+			children = (
+				B18134641AFBA91200635DFC /* PostViewController.h */,
+				B18134651AFBA91200635DFC /* PostViewController.m */,
+				B18134661AFBA91200635DFC /* PostViewController.xib */,
+			);
+			name = global;
+			sourceTree = "<group>";
+		};
 		B18DF9AE1AF8913F00D3071F /* leftMenuView */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +184,17 @@
 		B19FB01D1AF61A97004B0E34 = {
 			isa = PBXGroup;
 			children = (
+				B181345C1AFB033E00635DFC /* libsqlite3.dylib */,
+				B181345A1AFB031900635DFC /* libz.dylib */,
+				B18134581AFB02E500635DFC /* SystemConfiguration.framework */,
+				B18134561AFB02D500635DFC /* StoreKit.framework */,
+				B18134541AFB02CA00635DFC /* Security.framework */,
+				B18134521AFB02BE00635DFC /* QuartzCore.framework */,
+				B18134501AFB02A300635DFC /* MobileCoreServices.framework */,
+				B181344E1AFB028C00635DFC /* CoreLocation.framework */,
+				B181344C1AFB026900635DFC /* CoreGraphics.framework */,
+				B181344A1AFB025300635DFC /* CFNetwork.framework */,
+				B18134481AFB024200635DFC /* AudioToolbox.framework */,
 				B19FB0281AF61A97004B0E34 /* PetDairy */,
 				B19FB0451AF61A97004B0E34 /* PetDairyTests */,
 				B19FB0271AF61A97004B0E34 /* Products */,
@@ -203,6 +262,7 @@
 		B19FB0531AF61AA9004B0E34 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				B181345E1AFB9D4600635DFC /* global */,
 				B18134431AFB017E00635DFC /* frameWork */,
 				B19FB0671AF653B0004B0E34 /* lib */,
 				B19FB0541AF61AC6004B0E34 /* HomeController */,
@@ -348,6 +408,7 @@
 			files = (
 				B1649BFA1AF8DDA100B5EC0C /* RightMenuController.xib in Resources */,
 				B19FB0561AF64996004B0E34 /* sidebar_bg@2x.jpg in Resources */,
+				B18134681AFBA91200635DFC /* PostViewController.xib in Resources */,
 				B19FB0381AF61A97004B0E34 /* Main.storyboard in Resources */,
 				B19FB03D1AF61A97004B0E34 /* LaunchScreen.xib in Resources */,
 				B19FB03A1AF61A97004B0E34 /* Images.xcassets in Resources */,
@@ -370,6 +431,7 @@
 			files = (
 				B19FB0701AF653C9004B0E34 /* UIView+Extension.m in Sources */,
 				B19FB0591AF64B16004B0E34 /* MainController.m in Sources */,
+				B18134671AFBA91200635DFC /* PostViewController.m in Sources */,
 				B19FB0651AF6519C004B0E34 /* TitleButton.m in Sources */,
 				B19FB05D1AF64D48004B0E34 /* ProfileController.m in Sources */,
 				B19FB02F1AF61A97004B0E34 /* AppDelegate.m in Sources */,

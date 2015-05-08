@@ -7,11 +7,18 @@
 //
 
 #import "RightMenuController.h"
+#import "PostViewController.h"
+#import "Header.h"
+
 
 @interface RightMenuController ()
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
 @property (weak, nonatomic) IBOutlet UILabel *masterName;
 @property (weak, nonatomic) IBOutlet UILabel *petName;
+@property (weak, nonatomic) IBOutlet UIButton *postButton;
+@property(strong,nonatomic)PostViewController *postViewController;
+- (IBAction)post:(id)sender;
+
 
 @end
 
@@ -20,6 +27,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.postButton.layer.cornerRadius = 23;
+    
+}
+
+-(PostViewController *)postViewController{
+    if (!_postViewController) {
+        PostViewController *post = [[PostViewController alloc]init];
+        
+        //post.view.width = [UIScreen mainScreen].bounds.size.width;
+        //post.view.height = [UIScreen mainScreen].bounds.size.height;
+
+        _postViewController = post;
+    }
+    return _postViewController;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,4 +63,13 @@
 }
 
 
+- (IBAction)post:(id)sender {
+
+            self.postViewController.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:self.postViewController.view];
+    
+
+   
+    
+}
 @end
