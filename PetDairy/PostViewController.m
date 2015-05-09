@@ -7,9 +7,10 @@
 //
 
 #import "PostViewController.h"
-
+#import "RightMenuController.h"
 @interface PostViewController ()
 - (IBAction)cancel;
+- (IBAction)commit;
 
 
 @end
@@ -43,6 +44,11 @@
 
 - (IBAction)cancel {
 
+    [self.view removeFromSuperview];
+}
+
+- (IBAction)commit {
+    self.rightMenuController.postContentBtn.titleLabel.text = self.textContent.text;
     [self.view removeFromSuperview];
 }
 @end

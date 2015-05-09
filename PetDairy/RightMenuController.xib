@@ -10,7 +10,9 @@
                 <outlet property="iconView" destination="ZqM-8p-cqu" id="oO5-f2-Blx"/>
                 <outlet property="masterName" destination="Zeb-F6-xeV" id="KDJ-wC-TWc"/>
                 <outlet property="petName" destination="iWc-56-cct" id="jpu-We-bxf"/>
+                <outlet property="photoCollections" destination="Ffg-Vc-KAc" id="fvI-uq-ZBN"/>
                 <outlet property="postButton" destination="QBS-OV-0rJ" id="pKj-q5-9mC"/>
+                <outlet property="postContentBtn" destination="QBS-OV-0rJ" id="cEz-zC-bGY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -78,8 +80,9 @@
                                 </mask>
                             </variation>
                         </view>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ffg-Vc-KAc">
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffg-Vc-KAc" customClass="PhotoesView">
                             <rect key="frame" x="0.0" y="140" width="320" height="80"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="80" id="0VP-KV-HWm"/>
                             </constraints>
@@ -87,41 +90,73 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UkW-3i-nXq" userLabel="ToolBar">
                             <rect key="frame" x="0.0" y="220" width="320" height="30"/>
                             <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Hv-Wg-a4f" userLabel="seperator">
+                                    <rect key="frame" x="107" y="0.0" width="1" height="30"/>
+                                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="1" id="R7Z-34-u2O"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AqI-2U-Sdn" userLabel="seperatorRight">
+                                    <rect key="frame" x="212" y="0.0" width="1" height="30"/>
+                                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="1" id="mHM-is-TDm"/>
+                                    </constraints>
+                                </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2R9-zj-mBc" userLabel="RightButton">
                                     <rect key="frame" x="213" y="0.0" width="107" height="30"/>
-                                    <state key="normal" title="Button">
+                                    <state key="normal" title="发送">
+                                        <color key="titleColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <state key="highlighted">
+                                        <color key="titleColor" red="0.91898517219999998" green="0.215958447" blue="0.134421707" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JdB-YF-gjL" userLabel="LeftButton">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JdB-YF-gjL" userLabel="LeftButton">
                                     <rect key="frame" x="0.0" y="0.0" width="107" height="30"/>
-                                    <state key="normal" title="Button">
+                                    <state key="normal" image="compose_camerabutton_background_os7">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <state key="highlighted" image="compose_camerabutton_background_highlighted_os7"/>
+                                    <connections>
+                                        <action selector="camera" destination="-1" eventType="touchUpInside" id="phj-o0-Sgr"/>
+                                    </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lZy-pB-bdW" userLabel="MiddleB">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lZy-pB-bdW" userLabel="MiddleB">
                                     <rect key="frame" x="107" y="0.0" width="106" height="30"/>
-                                    <state key="normal" title="Button">
+                                    <state key="normal" image="compose_toolbar_picture_os7">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <state key="highlighted" image="compose_toolbar_picture_highlighted_os7"/>
+                                    <connections>
+                                        <action selector="pickPhoto" destination="-1" eventType="touchUpInside" id="PWd-ax-6vH"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstAttribute="bottom" secondItem="7Hv-Wg-a4f" secondAttribute="bottom" id="6EA-9V-ORg"/>
                                 <constraint firstItem="lZy-pB-bdW" firstAttribute="leading" secondItem="JdB-YF-gjL" secondAttribute="trailing" id="6UR-2B-Ddr"/>
+                                <constraint firstItem="7Hv-Wg-a4f" firstAttribute="leading" secondItem="JdB-YF-gjL" secondAttribute="trailing" id="7a9-0k-K5g"/>
                                 <constraint firstItem="lZy-pB-bdW" firstAttribute="leading" secondItem="JdB-YF-gjL" secondAttribute="trailing" id="AJ0-68-E49"/>
                                 <constraint firstItem="2R9-zj-mBc" firstAttribute="width" secondItem="JdB-YF-gjL" secondAttribute="width" id="C5R-Fa-FFA"/>
                                 <constraint firstItem="2R9-zj-mBc" firstAttribute="leading" secondItem="lZy-pB-bdW" secondAttribute="trailing" id="DNd-Ey-8wH"/>
                                 <constraint firstItem="2R9-zj-mBc" firstAttribute="leading" secondItem="JdB-YF-gjL" secondAttribute="trailing" id="FVZ-xS-W82"/>
+                                <constraint firstAttribute="bottom" secondItem="AqI-2U-Sdn" secondAttribute="bottom" id="GCt-Hq-5Lp"/>
                                 <constraint firstItem="2R9-zj-mBc" firstAttribute="width" secondItem="JdB-YF-gjL" secondAttribute="width" id="Gol-6b-PMl"/>
                                 <constraint firstItem="lZy-pB-bdW" firstAttribute="top" secondItem="UkW-3i-nXq" secondAttribute="top" id="Jcy-wg-25T"/>
+                                <constraint firstItem="7Hv-Wg-a4f" firstAttribute="top" secondItem="UkW-3i-nXq" secondAttribute="top" id="PA9-2m-MRn"/>
                                 <constraint firstItem="JdB-YF-gjL" firstAttribute="top" secondItem="UkW-3i-nXq" secondAttribute="top" id="PaN-1e-Xp8"/>
+                                <constraint firstItem="AqI-2U-Sdn" firstAttribute="top" secondItem="UkW-3i-nXq" secondAttribute="top" id="VV2-0A-rZT"/>
                                 <constraint firstAttribute="bottom" secondItem="2R9-zj-mBc" secondAttribute="bottom" id="Wpv-K2-cnq"/>
                                 <constraint firstAttribute="bottom" secondItem="lZy-pB-bdW" secondAttribute="bottom" id="cXg-rt-Cxh"/>
                                 <constraint firstItem="2R9-zj-mBc" firstAttribute="top" secondItem="UkW-3i-nXq" secondAttribute="top" id="d6B-EN-3vv"/>
                                 <constraint firstAttribute="trailing" secondItem="2R9-zj-mBc" secondAttribute="trailing" id="eHT-ng-OQQ"/>
                                 <constraint firstItem="JdB-YF-gjL" firstAttribute="leading" secondItem="UkW-3i-nXq" secondAttribute="leading" id="jS5-ca-p4l"/>
                                 <constraint firstAttribute="bottom" secondItem="JdB-YF-gjL" secondAttribute="bottom" id="rY7-Kx-mvM"/>
+                                <constraint firstItem="2R9-zj-mBc" firstAttribute="leading" secondItem="AqI-2U-Sdn" secondAttribute="trailing" id="uto-FQ-gsD"/>
                                 <constraint firstItem="2R9-zj-mBc" firstAttribute="width" secondItem="lZy-pB-bdW" secondAttribute="width" id="vgv-as-ARb"/>
                             </constraints>
                             <variation key="default">
@@ -279,6 +314,10 @@
         </view>
     </objects>
     <resources>
+        <image name="compose_camerabutton_background_highlighted_os7" width="24" height="24"/>
+        <image name="compose_camerabutton_background_os7" width="24" height="24"/>
+        <image name="compose_toolbar_picture_highlighted_os7" width="24" height="24"/>
+        <image name="compose_toolbar_picture_os7" width="24" height="24"/>
         <image name="default_avatar" width="70" height="70"/>
     </resources>
 </document>

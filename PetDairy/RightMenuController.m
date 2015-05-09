@@ -11,13 +11,16 @@
 #import "Header.h"
 
 
-@interface RightMenuController ()
+@interface RightMenuController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
 @property (weak, nonatomic) IBOutlet UILabel *masterName;
 @property (weak, nonatomic) IBOutlet UILabel *petName;
 @property (weak, nonatomic) IBOutlet UIButton *postButton;
 @property(strong,nonatomic)PostViewController *postViewController;
 - (IBAction)post:(id)sender;
+- (IBAction)camera;
+- (IBAction)pickPhoto;
+@property (weak, nonatomic) IBOutlet UIScrollView *photoCollections;
 
 
 @end
@@ -31,13 +34,10 @@
     
 }
 
+
 -(PostViewController *)postViewController{
     if (!_postViewController) {
         PostViewController *post = [[PostViewController alloc]init];
-        
-        //post.view.width = [UIScreen mainScreen].bounds.size.width;
-        //post.view.height = [UIScreen mainScreen].bounds.size.height;
-
         _postViewController = post;
     }
     return _postViewController;
@@ -67,9 +67,42 @@
 
             self.postViewController.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:self.postViewController.view];
-    
+    self.postViewController.rightMenuController = self;
+    if (![self.postContentBtn.titleLabel.text isEqualToString:@"想写点什么...."]) {
+        self.postViewController.textContent.text = self.postContentBtn.titleLabel.text;
+    }
 
-   
+}
+
+- (IBAction)camera {
     
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) return;
+    
+    UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
+    ipc.sourceType = UIImagePickerControllerSourceTypeCamera;
+    ipc.delegate = self;
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:ipc animated:YES completion:nil];
+
+}
+
+- (IBAction)pickPhoto {
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) return;
+    
+    UIImagePickerController *ipc = [[UIImagePickerController alloc] init];
+    ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    ipc.delegate = self;
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:ipc animated:YES completion:nil];
+}
+#pragma mark - UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+    // 1.取出选中的图片
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    UIImageView *item = [[UIImageView alloc]initWithImage:image];
+    
+    // 2.添加图片到相册中
+    [self.photoCollections addSubview:item];
 }
 @end

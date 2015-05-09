@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B16189821AFC5FB400FE6CF4 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B16189811AFC5FB400FE6CF4 /* PostViewController.m */; };
+		B16189861AFD001C00FE6CF4 /* PhotoesView.m in Sources */ = {isa = PBXBuildFile; fileRef = B16189851AFD001C00FE6CF4 /* PhotoesView.m */; };
 		B1649BF91AF8DDA100B5EC0C /* RightMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1649BF71AF8DDA100B5EC0C /* RightMenuController.m */; };
 		B1649BFA1AF8DDA100B5EC0C /* RightMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1649BF81AF8DDA100B5EC0C /* RightMenuController.xib */; };
 		B18134461AFB019900635DFC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18134441AFB019900635DFC /* Bolts.framework */; };
@@ -22,7 +24,6 @@
 		B18134591AFB02E500635DFC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18134581AFB02E500635DFC /* SystemConfiguration.framework */; };
 		B181345B1AFB031900635DFC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B181345A1AFB031900635DFC /* libz.dylib */; };
 		B181345D1AFB033E00635DFC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B181345C1AFB033E00635DFC /* libsqlite3.dylib */; };
-		B18134671AFBA91200635DFC /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B18134651AFBA91200635DFC /* PostViewController.m */; };
 		B18134681AFBA91200635DFC /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B18134661AFBA91200635DFC /* PostViewController.xib */; };
 		B18DF9B11AF891F900D3071F /* LeftMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B18DF9B01AF891F900D3071F /* LeftMenu.m */; };
 		B19FB02C1AF61A97004B0E34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B19FB02B1AF61A97004B0E34 /* main.m */; };
@@ -53,6 +54,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B16189801AFC5FB400FE6CF4 /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
+		B16189811AFC5FB400FE6CF4 /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
+		B16189841AFD001C00FE6CF4 /* PhotoesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoesView.h; sourceTree = "<group>"; };
+		B16189851AFD001C00FE6CF4 /* PhotoesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoesView.m; sourceTree = "<group>"; };
 		B1649BF61AF8DDA100B5EC0C /* RightMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightMenuController.h; sourceTree = "<group>"; };
 		B1649BF71AF8DDA100B5EC0C /* RightMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightMenuController.m; sourceTree = "<group>"; };
 		B1649BF81AF8DDA100B5EC0C /* RightMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightMenuController.xib; sourceTree = "<group>"; };
@@ -69,8 +74,6 @@
 		B18134581AFB02E500635DFC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B181345A1AFB031900635DFC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		B181345C1AFB033E00635DFC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		B18134641AFBA91200635DFC /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
-		B18134651AFBA91200635DFC /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
 		B18134661AFBA91200635DFC /* PostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostViewController.xib; sourceTree = "<group>"; };
 		B18DF9AF1AF891F900D3071F /* LeftMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenu.h; sourceTree = "<group>"; };
 		B18DF9B01AF891F900D3071F /* LeftMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenu.m; sourceTree = "<group>"; };
@@ -135,6 +138,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B16189831AFCFFD100FE6CF4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B16189841AFD001C00FE6CF4 /* PhotoesView.h */,
+				B16189851AFD001C00FE6CF4 /* PhotoesView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		B1649BEF1AF8CCA700B5EC0C /* MiddleController */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +158,7 @@
 		B1649BF01AF8CCBE00B5EC0C /* RightController */ = {
 			isa = PBXGroup;
 			children = (
+				B16189831AFCFFD100FE6CF4 /* View */,
 				B1649BF61AF8DDA100B5EC0C /* RightMenuController.h */,
 				B1649BF71AF8DDA100B5EC0C /* RightMenuController.m */,
 				B1649BF81AF8DDA100B5EC0C /* RightMenuController.xib */,
@@ -165,8 +178,8 @@
 		B181345E1AFB9D4600635DFC /* global */ = {
 			isa = PBXGroup;
 			children = (
-				B18134641AFBA91200635DFC /* PostViewController.h */,
-				B18134651AFBA91200635DFC /* PostViewController.m */,
+				B16189801AFC5FB400FE6CF4 /* PostViewController.h */,
+				B16189811AFC5FB400FE6CF4 /* PostViewController.m */,
 				B18134661AFBA91200635DFC /* PostViewController.xib */,
 			);
 			name = global;
@@ -431,7 +444,7 @@
 			files = (
 				B19FB0701AF653C9004B0E34 /* UIView+Extension.m in Sources */,
 				B19FB0591AF64B16004B0E34 /* MainController.m in Sources */,
-				B18134671AFBA91200635DFC /* PostViewController.m in Sources */,
+				B16189821AFC5FB400FE6CF4 /* PostViewController.m in Sources */,
 				B19FB0651AF6519C004B0E34 /* TitleButton.m in Sources */,
 				B19FB05D1AF64D48004B0E34 /* ProfileController.m in Sources */,
 				B19FB02F1AF61A97004B0E34 /* AppDelegate.m in Sources */,
@@ -442,6 +455,7 @@
 				B19FB06F1AF653C9004B0E34 /* UIImage+Extension.m in Sources */,
 				B19FB0611AF64F50004B0E34 /* HTableViewController.m in Sources */,
 				B19FB02C1AF61A97004B0E34 /* main.m in Sources */,
+				B16189861AFD001C00FE6CF4 /* PhotoesView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
