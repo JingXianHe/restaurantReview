@@ -28,6 +28,7 @@
 /**
  *  正在显示的导航控制器
  */
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic, weak) UINavigationController *showingNavigationController;
 @property(nonatomic, assign)int LeftMenuW;
 @property(nonatomic, assign)int LeftMenuH;
@@ -42,6 +43,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIVisualEffect *blurEffect;
+    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+
+    
+    UIVisualEffectView *visualEffectView;
+    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    
+    visualEffectView.frame = self.imageView.bounds;
+    [self.imageView addSubview:visualEffectView];
     if (FourInch) {
         self.LeftMenuW = 150;
         self.LeftMenuH = 400;
@@ -67,7 +77,7 @@
 
 -(void)setupAllChildVcs{
     // 1.新闻控制器
-    HTableViewController *profile = [[HTableViewController alloc] init];
+    RightMenuController *profile = [[RightMenuController alloc] init];
     [self setupVc:profile title:@"新闻"];
 }
 
@@ -80,7 +90,7 @@
 - (void)setupVc:(UIViewController *)vc title:(NSString *)title
 {
     // 1.设置背景色
-    vc.view.backgroundColor = [UIColor redColor];
+    vc.view.backgroundColor = [UIColor whiteColor];
     
     // 2.设置标题
     TitleButton *titleView = [[TitleButton alloc] init];

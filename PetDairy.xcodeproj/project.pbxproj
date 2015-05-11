@@ -10,7 +10,10 @@
 		B16189821AFC5FB400FE6CF4 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B16189811AFC5FB400FE6CF4 /* PostViewController.m */; };
 		B16189861AFD001C00FE6CF4 /* PhotoesView.m in Sources */ = {isa = PBXBuildFile; fileRef = B16189851AFD001C00FE6CF4 /* PhotoesView.m */; };
 		B1649BF91AF8DDA100B5EC0C /* RightMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1649BF71AF8DDA100B5EC0C /* RightMenuController.m */; };
-		B1649BFA1AF8DDA100B5EC0C /* RightMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1649BF81AF8DDA100B5EC0C /* RightMenuController.xib */; };
+		B16EF2701B00347400D4F05E /* pickc540c.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B16EF26F1B00347400D4F05E /* pickc540c.jpg */; };
+		B16EF2721B003BC200D4F05E /* afriCan-groundnut-stew.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B16EF2711B003BC100D4F05E /* afriCan-groundnut-stew.jpg */; };
+		B16EF2741B005EA200D4F05E /* bush-food-brown-lrg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B16EF2731B005EA200D4F05E /* bush-food-brown-lrg.jpg */; };
+		B16EF2751B006F5300D4F05E /* RightMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B16EF2771B006F5300D4F05E /* RightMenuController.xib */; };
 		B18134461AFB019900635DFC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18134441AFB019900635DFC /* Bolts.framework */; };
 		B18134471AFB019900635DFC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18134451AFB019900635DFC /* Parse.framework */; };
 		B18134491AFB024200635DFC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18134481AFB024200635DFC /* AudioToolbox.framework */; };
@@ -60,7 +63,10 @@
 		B16189851AFD001C00FE6CF4 /* PhotoesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoesView.m; sourceTree = "<group>"; };
 		B1649BF61AF8DDA100B5EC0C /* RightMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightMenuController.h; sourceTree = "<group>"; };
 		B1649BF71AF8DDA100B5EC0C /* RightMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightMenuController.m; sourceTree = "<group>"; };
-		B1649BF81AF8DDA100B5EC0C /* RightMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightMenuController.xib; sourceTree = "<group>"; };
+		B16EF26F1B00347400D4F05E /* pickc540c.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pickc540c.jpg; sourceTree = "<group>"; };
+		B16EF2711B003BC100D4F05E /* afriCan-groundnut-stew.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "afriCan-groundnut-stew.jpg"; sourceTree = "<group>"; };
+		B16EF2731B005EA200D4F05E /* bush-food-brown-lrg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bush-food-brown-lrg.jpg"; sourceTree = "<group>"; };
+		B16EF2761B006F5300D4F05E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RightMenuController.xib; sourceTree = "<group>"; };
 		B18134441AFB019900635DFC /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		B18134451AFB019900635DFC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		B18134481AFB024200635DFC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -161,7 +167,7 @@
 				B16189831AFCFFD100FE6CF4 /* View */,
 				B1649BF61AF8DDA100B5EC0C /* RightMenuController.h */,
 				B1649BF71AF8DDA100B5EC0C /* RightMenuController.m */,
-				B1649BF81AF8DDA100B5EC0C /* RightMenuController.xib */,
+				B16EF2771B006F5300D4F05E /* RightMenuController.xib */,
 			);
 			name = RightController;
 			sourceTree = "<group>";
@@ -236,8 +242,11 @@
 		B19FB0291AF61A97004B0E34 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B16EF2731B005EA200D4F05E /* bush-food-brown-lrg.jpg */,
+				B16EF2711B003BC100D4F05E /* afriCan-groundnut-stew.jpg */,
 				B19FB02A1AF61A97004B0E34 /* Info.plist */,
 				B19FB0551AF64996004B0E34 /* sidebar_bg@2x.jpg */,
+				B16EF26F1B00347400D4F05E /* pickc540c.jpg */,
 				B19FB02B1AF61A97004B0E34 /* main.m */,
 				B19FB0711AF65561004B0E34 /* Header.h */,
 			);
@@ -419,10 +428,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1649BFA1AF8DDA100B5EC0C /* RightMenuController.xib in Resources */,
+				B16EF2721B003BC200D4F05E /* afriCan-groundnut-stew.jpg in Resources */,
+				B16EF2751B006F5300D4F05E /* RightMenuController.xib in Resources */,
 				B19FB0561AF64996004B0E34 /* sidebar_bg@2x.jpg in Resources */,
 				B18134681AFBA91200635DFC /* PostViewController.xib in Resources */,
 				B19FB0381AF61A97004B0E34 /* Main.storyboard in Resources */,
+				B16EF2741B005EA200D4F05E /* bush-food-brown-lrg.jpg in Resources */,
+				B16EF2701B00347400D4F05E /* pickc540c.jpg in Resources */,
 				B19FB03D1AF61A97004B0E34 /* LaunchScreen.xib in Resources */,
 				B19FB03A1AF61A97004B0E34 /* Images.xcassets in Resources */,
 			);
@@ -478,6 +490,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		B16EF2771B006F5300D4F05E /* RightMenuController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B16EF2761B006F5300D4F05E /* en */,
+			);
+			name = RightMenuController.xib;
+			sourceTree = "<group>";
+		};
 		B19FB0361AF61A97004B0E34 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sidebar_bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="fec-yC-hFh">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bush-food-brown-lrg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="fec-yC-hFh">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                         </subviews>
@@ -33,13 +33,16 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="imageView" destination="fec-yC-hFh" id="16t-7I-Ntk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="136.99999999999997"/>
+            <point key="canvasLocation" x="140" y="136"/>
         </scene>
     </scenes>
     <resources>
-        <image name="sidebar_bg.jpg" width="320" height="568"/>
+        <image name="bush-food-brown-lrg.jpg" width="492" height="355"/>
     </resources>
 </document>
