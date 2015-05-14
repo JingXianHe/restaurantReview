@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="M2b-lr-8Oz" userLabel="BackgroundView" customClass="ScrollViewInnerBtn">
+            <rect key="frame" x="0.0" y="0.0" width="272" height="248"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xzc-5j-B5Q">
+                    <rect key="frame" x="0.0" y="0.0" width="272" height="248"/>
+                </imageView>
+                <button hidden="YES" opaque="NO" alpha="0.59999999999999964" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ruy-YL-DZC">
+                    <rect key="frame" x="0.0" y="0.0" width="272" height="248"/>
+                    <color key="backgroundColor" red="0.81072624360000001" green="0.81072624360000001" blue="0.81072624360000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" image="icon_order_unrefundable">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="deletePic:" destination="M2b-lr-8Oz" eventType="touchUpInside" id="VfN-XE-fW2"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Xzc-5j-B5Q" firstAttribute="top" secondItem="M2b-lr-8Oz" secondAttribute="top" id="3PS-e7-A56"/>
+                <constraint firstAttribute="bottom" secondItem="ruy-YL-DZC" secondAttribute="bottom" id="DYx-KW-PpP"/>
+                <constraint firstItem="ruy-YL-DZC" firstAttribute="top" secondItem="M2b-lr-8Oz" secondAttribute="top" id="JlW-07-J82"/>
+                <constraint firstItem="Xzc-5j-B5Q" firstAttribute="leading" secondItem="M2b-lr-8Oz" secondAttribute="leading" id="Nce-Ub-tyS"/>
+                <constraint firstAttribute="trailing" secondItem="Xzc-5j-B5Q" secondAttribute="trailing" id="Qxb-RJ-9Hu"/>
+                <constraint firstAttribute="trailing" secondItem="ruy-YL-DZC" secondAttribute="trailing" id="Wdc-bP-EXe"/>
+                <constraint firstItem="ruy-YL-DZC" firstAttribute="leading" secondItem="M2b-lr-8Oz" secondAttribute="leading" id="e5B-jD-PqS"/>
+                <constraint firstAttribute="bottom" secondItem="Xzc-5j-B5Q" secondAttribute="bottom" id="mio-Zb-6zr"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="CoverButton" destination="ruy-YL-DZC" id="aGd-Ua-wnX"/>
+                <outlet property="InnerPhoto" destination="Xzc-5j-B5Q" id="n57-CD-yod"/>
+                <outlet property="coverButton" destination="ruy-YL-DZC" id="vj9-lp-EDS"/>
+            </connections>
+            <point key="canvasLocation" x="237" y="284"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_order_unrefundable" width="17" height="17"/>
+    </resources>
+</document>

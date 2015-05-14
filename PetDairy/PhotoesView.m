@@ -7,6 +7,7 @@
 //
 
 #import "PhotoesView.h"
+#import "ScrollViewInnerBtn.h"
 
 @implementation PhotoesView
 
@@ -18,22 +19,21 @@
 }
 */
 
+
 -(void)layoutSubviews{
 
     
     int index = 0;
     CGFloat imageH = self.frame.size.height;
     for (id item in self.subviews) {
-        if (index !=0) {
-            UIImageView *btn = (UIImageView *)item;
-        btn.frame = CGRectMake((index-1)*imageH, 0, imageH, imageH);
-        
-        }
+        if ([item isKindOfClass:[ScrollViewInnerBtn class]]) {
+            ScrollViewInnerBtn *btn = (ScrollViewInnerBtn *)item;
+        btn.frame = CGRectMake(index*imageH, 0, imageH, imageH);
         index++;
+        }
 
     }
+    self.contentSize = CGSizeMake(imageH*index, imageH);
 
-    self.contentSize = CGSizeMake(imageH*(index-1), imageH);
-    
 }
 @end

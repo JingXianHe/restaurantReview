@@ -90,7 +90,7 @@
 - (void)setupVc:(UIViewController *)vc title:(NSString *)title
 {
     // 1.设置背景色
-    vc.view.backgroundColor = [UIColor whiteColor];
+    //vc.view.backgroundColor = [UIColor whiteColor];
     
     // 2.设置标题
     TitleButton *titleView = [[TitleButton alloc] init];

@@ -8,19 +8,33 @@
 
 #import "RightMenuController.h"
 #import "PostViewController.h"
+#import "ScrollViewInnerBtn.h"
 #import "Header.h"
+#import "PhotoesView.h"
+#import "commentView.h"
 
 
-@interface RightMenuController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface RightMenuController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, ScrollViewInnerBtnDelegate>
+
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
 @property (weak, nonatomic) IBOutlet UILabel *masterName;
 @property (weak, nonatomic) IBOutlet UILabel *petName;
 @property (weak, nonatomic) IBOutlet UIButton *postButton;
+@property (weak, nonatomic) IBOutlet UIButton *deleteBtn;
 @property(strong,nonatomic)PostViewController *postViewController;
+@property (weak, nonatomic) IBOutlet UIView *commentServiceView;
+@property (weak, nonatomic) IBOutlet UIView *commentTrafficView;
+@property (weak, nonatomic) IBOutlet UIView *commentTasteView;
+//for delete photoes
+@property(strong, nonatomic)NSMutableArray *innerViews;
+
 - (IBAction)post:(id)sender;
 - (IBAction)camera;
 - (IBAction)pickPhoto;
-@property (weak, nonatomic) IBOutlet UIScrollView *photoCollections;
+- (IBAction)deletePics:(id)sender;
+
+
+@property (weak, nonatomic) IBOutlet PhotoesView *photoCollections;
 
 
 @end
@@ -31,7 +45,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.postButton.layer.cornerRadius = 23;
-    
+    commentView *commentServiceView = [[[NSBundle mainBundle] loadNibNamed:@"newCommentView" owner:nil options:nil] lastObject];
+    [self.commentServiceView addSubview:commentServiceView];
+    commentServiceView.frame = self.commentServiceView.bounds;
+    commentView *cmtTrafficView = [[[NSBundle mainBundle] loadNibNamed:@"newCommentView" owner:nil options:nil] lastObject];
+    [self.commentTrafficView addSubview:cmtTrafficView];
+    cmtTrafficView.frame = self.commentTrafficView.bounds;
+    cmtTrafficView.TitleLabel.text = @"环境：";
+    commentView *cmtTasteView = [[[NSBundle mainBundle] loadNibNamed:@"newCommentView" owner:nil options:nil] lastObject];
+    [self.commentTasteView addSubview:cmtTasteView];
+    cmtTasteView.frame = self.commentTasteView.bounds;
+    cmtTasteView.TitleLabel.text = @"味道：";
+    //set up blur background image
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pickc540c.jpg"]];
 }
 
 
@@ -47,6 +73,15 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma for innerScrollView Image Collection
+
+-(NSMutableArray *)innerViews{
+    if (!_innerViews) {
+        _innerViews = [[NSMutableArray alloc]init];
+    }
+    return _innerViews;
+}
+
 
 - (void)didShow
 {
@@ -92,7 +127,28 @@
     ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     ipc.delegate = self;
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:ipc animated:YES completion:nil];
+
 }
+
+- (IBAction)deletePics:(id)sender {
+
+    UIButton *btn = (UIButton *)sender;
+    if ([btn.titleLabel.text isEqualToString:@"删除图片"]) {
+        for (ScrollViewInnerBtn *btnn in self.innerViews) {
+            btnn.coverButton.hidden = NO;
+        }
+        [btn setTitle:@"完成删除" forState:UIControlStateNormal];
+        
+    }else{
+        for (ScrollViewInnerBtn *btnn in self.innerViews) {
+            btnn.coverButton.hidden = YES;
+        }
+        [btn setTitle:@"删除图片" forState:UIControlStateNormal];
+
+    }
+
+}
+
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
@@ -100,9 +156,37 @@
     
     // 1.取出选中的图片
     UIImage *image = info[UIImagePickerControllerOriginalImage];
-    UIImageView *item = [[UIImageView alloc]initWithImage:image];
+    ScrollViewInnerBtn *view = [[[NSBundle mainBundle] loadNibNamed:@"scrollViewInnerButton" owner:nil options:nil] lastObject];
+    view.InnerPhoto.image = image;
+    view.delegate = self;
     
     // 2.添加图片到相册中
-    [self.photoCollections addSubview:item];
+    [self.photoCollections addSubview:view];
+    
+    //3.Add to delete arrays
+    [self.innerViews addObject:view];
+    
+    //4.check delete arrays status to disable or enable delete btn
+    if (self.innerViews.count !=0) {
+        self.deleteBtn.enabled = YES;
+    }
 }
+#pragma delegate for scrollView Inner CoverButton
+-(void)ScrollViewInnerBtnDeletePic:(ScrollViewInnerBtn *)btn{
+    [self.innerViews removeObject:btn];
+    if (self.innerViews.count ==0) {
+        [self.deleteBtn setTitle:@"删除图片" forState:UIControlStateNormal];
+        self.deleteBtn.enabled = NO;
+    }
+    
+}
+//#pragma oberver method
+//-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+//    if ([keyPath isEqualToString:@"innerViews"]) {
+//        NSLog(@"aa");
+//    }
+//}
+//-(void)dealloc{
+//    [self removeObserver:self forKeyPath:@"innerViews"];
+//}
 @end

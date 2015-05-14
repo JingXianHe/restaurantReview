@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class ScrollViewInnerBtn;
 @interface PhotoesView : UIScrollView
 
 @end
