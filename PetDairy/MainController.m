@@ -97,12 +97,16 @@
     titleView.title = title;
     vc.navigationItem.titleView = titleView;
     
+    
+    
     // 3.设置左右按钮
     vc.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"top_navigation_menuicon" target:self action:@selector(leftMenuClick)];
     vc.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"top_navigation_infoicon" target:self action:@selector(rightMenuClick)];
     
+    
     // 4.包装一个导航控制器
     ProfileController *nav = [[ProfileController alloc] initWithRootViewController:vc];
+    nav.navigationBar.backgroundColor = [UIColor whiteColor];
     // 让newsNav成为self（MainViewController）的子控制器，能保证：self在，newsNav就在
     // 如果两个控制器互为父子关系，那么它们的view也应该互为父子关系
     [self addChildViewController:nav];

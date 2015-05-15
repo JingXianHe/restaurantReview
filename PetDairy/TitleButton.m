@@ -16,7 +16,7 @@
     if (self) {
         self.userInteractionEnabled = NO;
         [self setImage:[UIImage imageNamed:@"navbar_netease"] forState:UIControlStateNormal];
-        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self setTitleColor:[UIColor brownColor] forState:UIControlStateNormal];
         self.titleLabel.font = [UIFont boldSystemFontOfSize:22];
         self.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
         self.height = self.currentImage.size.height;

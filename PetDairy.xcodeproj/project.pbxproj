@@ -48,6 +48,7 @@
 		B19FB06E1AF653C9004B0E34 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B19FB0691AF653C9004B0E34 /* UIBarButtonItem+Extension.m */; };
 		B19FB06F1AF653C9004B0E34 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B19FB06B1AF653C9004B0E34 /* UIImage+Extension.m */; };
 		B19FB0701AF653C9004B0E34 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B19FB06D1AF653C9004B0E34 /* UIView+Extension.m */; };
+		B1D8C5C11B04546B002DF360 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D8C5C01B04546B002DF360 /* UIView+AutoLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +122,8 @@
 		B19FB06C1AF653C9004B0E34 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		B19FB06D1AF653C9004B0E34 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		B19FB0711AF65561004B0E34 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		B1D8C5BF1B04546B002DF360 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
+		B1D8C5C01B04546B002DF360 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,6 +344,7 @@
 		B19FB0531AF61AA9004B0E34 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				B1D8C5BE1B04545B002DF360 /* Category */,
 				B181345E1AFB9D4600635DFC /* global */,
 				B18134431AFB017E00635DFC /* frameWork */,
 				B19FB0671AF653B0004B0E34 /* lib */,
@@ -402,6 +406,15 @@
 				B19FB06D1AF653C9004B0E34 /* UIView+Extension.m */,
 			);
 			name = lib;
+			sourceTree = "<group>";
+		};
+		B1D8C5BE1B04545B002DF360 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				B1D8C5BF1B04546B002DF360 /* UIView+AutoLayout.h */,
+				B1D8C5C01B04546B002DF360 /* UIView+AutoLayout.m */,
+			);
+			name = Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -524,6 +537,7 @@
 				B18DF9B11AF891F900D3071F /* LeftMenu.m in Sources */,
 				B19FB06F1AF653C9004B0E34 /* UIImage+Extension.m in Sources */,
 				B19FB0611AF64F50004B0E34 /* HTableViewController.m in Sources */,
+				B1D8C5C11B04546B002DF360 /* UIView+AutoLayout.m in Sources */,
 				B164D1721B00813D00CF7A5E /* ScrollViewInnerBtn.m in Sources */,
 				B164D16F1B007F5200CF7A5E /* ProfileController.m in Sources */,
 				B19FB02C1AF61A97004B0E34 /* main.m in Sources */,
@@ -603,7 +617,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -638,7 +652,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

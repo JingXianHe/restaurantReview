@@ -33,6 +33,11 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>请求获取位置</string>
+	<key>NSLocationWhenInUseDescription</key>
+	<string>请求暂时获取用户位置</string>
 </dict>
 </plist>

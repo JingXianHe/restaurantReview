@@ -12,9 +12,10 @@
 #import "Header.h"
 #import "PhotoesView.h"
 #import "commentView.h"
+#import "UIView+AutoLayout.h"
 
 
-@interface RightMenuController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, ScrollViewInnerBtnDelegate>
+@interface RightMenuController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, ScrollViewInnerBtnDelegate, CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
 @property (weak, nonatomic) IBOutlet UILabel *masterName;
@@ -25,13 +26,22 @@
 @property (weak, nonatomic) IBOutlet UIView *commentServiceView;
 @property (weak, nonatomic) IBOutlet UIView *commentTrafficView;
 @property (weak, nonatomic) IBOutlet UIView *commentTasteView;
+@property(nonatomic, assign)CGFloat longitude;
+@property(nonatomic, assign)CGFloat latitude;
+//cllocation manager
+@property (strong, nonatomic)CLLocationManager *mgr;
 //for delete photoes
 @property(strong, nonatomic)NSMutableArray *innerViews;
+@property (weak, nonatomic) IBOutlet UIButton *titleTinkBtn;
+@property (weak, nonatomic) IBOutlet UITextField *titleTextView;
+- (IBAction)titleTintButton:(id)sender;
 
 - (IBAction)post:(id)sender;
 - (IBAction)camera;
 - (IBAction)pickPhoto;
 - (IBAction)deletePics:(id)sender;
+- (IBAction)uploadGeo;
+- (IBAction)inputTitle;
 
 
 @property (weak, nonatomic) IBOutlet PhotoesView *photoCollections;
@@ -47,17 +57,19 @@
     self.postButton.layer.cornerRadius = 23;
     commentView *commentServiceView = [[[NSBundle mainBundle] loadNibNamed:@"newCommentView" owner:nil options:nil] lastObject];
     [self.commentServiceView addSubview:commentServiceView];
-    commentServiceView.frame = self.commentServiceView.bounds;
+    [commentServiceView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
     commentView *cmtTrafficView = [[[NSBundle mainBundle] loadNibNamed:@"newCommentView" owner:nil options:nil] lastObject];
     [self.commentTrafficView addSubview:cmtTrafficView];
-    cmtTrafficView.frame = self.commentTrafficView.bounds;
+    [cmtTrafficView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
     cmtTrafficView.TitleLabel.text = @"环境：";
     commentView *cmtTasteView = [[[NSBundle mainBundle] loadNibNamed:@"newCommentView" owner:nil options:nil] lastObject];
     [self.commentTasteView addSubview:cmtTasteView];
-    cmtTasteView.frame = self.commentTasteView.bounds;
+    //cmtTasteView.frame = self.commentTasteView.bounds;
+    [cmtTasteView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
     cmtTasteView.TitleLabel.text = @"味道：";
     //set up blur background image
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pickc540c.jpg"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"restarauntBg-1"]];
+    
 }
 
 
@@ -96,6 +108,8 @@
         });
     }];
 }
+
+
 
 
 - (IBAction)post:(id)sender {
@@ -148,6 +162,46 @@
     }
 
 }
+//title zone
+
+- (IBAction)titleTintButton:(id)sender {
+    [self.titleTextView resignFirstResponder];
+    UIButton *btn = (UIButton *)sender;
+    btn.enabled = false;
+    [btn setTitle:@"餐厅名字:" forState:UIControlStateNormal];
+}
+- (IBAction)inputTitle {
+    self.titleTinkBtn.enabled = YES;
+    [self.titleTinkBtn setTitle:@"结束输入:" forState:UIControlStateNormal];
+}
+
+//geolocation upload
+- (IBAction)uploadGeo {
+
+    self.mgr = [[CLLocationManager alloc]init];
+    self.mgr.delegate = self;
+    self.mgr.activityType = CLActivityTypeFitness;
+    self.mgr.distanceFilter = 10;
+    if ([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0) {
+        [self.mgr requestAlwaysAuthorization];
+    }else{
+        [self.mgr startUpdatingLocation];
+    }
+    
+}
+#pragma mark - cllocationmanager delegate
+-(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
+    if (status == kCLAuthorizationStatusAuthorizedAlways || status == kCLAuthorizationStatusAuthorizedWhenInUse) {
+        [self.mgr startUpdatingLocation];
+    }
+}
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
+    
+    CLLocation *newLocation = [locations lastObject];
+    self.longitude = newLocation.coordinate.longitude;
+    self.latitude = newLocation.coordinate.latitude;
+    [self.mgr stopUpdatingLocation];
+}
 
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -180,13 +234,5 @@
     }
     
 }
-//#pragma oberver method
-//-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-//    if ([keyPath isEqualToString:@"innerViews"]) {
-//        NSLog(@"aa");
-//    }
-//}
-//-(void)dealloc{
-//    [self removeObserver:self forKeyPath:@"innerViews"];
-//}
+
 @end

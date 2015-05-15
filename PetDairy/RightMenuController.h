@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface RightMenuController : UIViewController
 @property (weak, nonatomic) IBOutlet UIButton *postContentBtn;
