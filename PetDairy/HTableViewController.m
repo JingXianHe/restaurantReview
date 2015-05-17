@@ -8,6 +8,7 @@
 
 #import "HTableViewController.h"
 #import "HCmtDataModal.h"
+#import "HTableViewCell.h"
 
 @interface HTableViewController ()<UITableViewDataSource>
 @property (strong, nonatomic)NSMutableArray *dataItems;
@@ -42,7 +43,7 @@
     int result = sqlite3_open(cFile, &lib);
     if (result == SQLITE_OK) {
  
-        const char *sql = "select * from comments_test5";
+        const char *sql = "select * from comments_test6";
         if (sqlite3_prepare_v2(lib, sql, -1, &stmt, NULL)== SQLITE_OK) {
             while (sqlite3_step(stmt)== SQLITE_ROW) {
 
@@ -56,12 +57,18 @@
                 item.latitude = [[[NSString alloc]initWithUTF8String:sqlite3_column_blob(stmt, 6)] doubleValue];
                 item.longitude = [[[NSString alloc]initWithUTF8String:sqlite3_column_blob(stmt, 7)] doubleValue];
                 item.isImage = sqlite3_column_int(stmt, 8);
+                item.datevalue = [[NSString alloc]initWithUTF8String:sqlite3_column_blob(stmt, 9)];
                 [self.dataItems addObject:item];
 
             }
         }
     }
+    
     [self.tableView reloadData];
+    NSArray *indexes = [self.tableView visibleCells];
+    HTableViewCell *indexC = [indexes firstObject];
+    indexC.indicator.image = [UIImage imageNamed:@"promoboard_icon_mall"];
+    indexC.indicator.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -84,23 +91,47 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellNormal"];
+    HTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellNormal"];
     if (cell == nil) {
         // 从xib中加载cell
         cell = [[[NSBundle mainBundle] loadNibNamed:@"cellNormal" owner:nil options:nil] lastObject];
     }
     
-//    HCmtDataModal *item = self.dataItems[indexPath.row];
-//    cell.textLabel.text = item.title;
+    HCmtDataModal *item = self.dataItems[indexPath.row];
     
+    cell.timeTint.text = [NSString stringWithFormat:@"%@", item.datevalue];
+    cell.TitleTint.text = item.title;
+    cell.serviceS.text = [self convertCommentP:item.servicecmt title:@"服务："];
+    cell.tasteS.text = [self convertCommentP:item.tastecmt title:@"味道："];
+    cell.satisfyS.text = [self convertCommentP:item.satisfycmt title:@"环境："];
     // Configure the cell...
     
     return cell;
 }
+//inner method to judge comment points
+-(NSString *)convertCommentP:(int)p title:(NSString *)title{
+    if (p == 1) {
+        
+        return [title stringByAppendingString:@"很差"];
+        
+    }else if(p == 2){
+        return [title stringByAppendingString:@"一般"];
+    }else{
+        return [title stringByAppendingString:@"满意"];
+    }
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     return 70.0;
 }
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    NSArray *indexes = [self.tableView visibleCells];
+    HTableViewCell *indexC = [indexes firstObject];
+    indexC.indicator.image = [UIImage imageNamed:@"promoboard_icon_mall"];
+    indexC.indicator.backgroundColor = [UIColor whiteColor];
+    
+}
 
 /*
 // Override to support conditional editing of the table view.

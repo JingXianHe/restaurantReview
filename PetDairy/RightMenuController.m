@@ -81,7 +81,7 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"restarauntBg-1"]];
     [self didShow];
     self.titleTinkBtn.layer.cornerRadius = 15;
-    
+
 }
 
 
@@ -277,7 +277,7 @@
     const char *cFile = fileName.UTF8String;
     int result = sqlite3_open(cFile, &lib);
     if (result == SQLITE_OK) {
-        const char *sql = "create table if not exists comments_test5 (pid integer primary key autoincrement, title varchar(50) not null, content text, servicecmt integer, tastecmt integer, satisfycmt integer, latitude double, longitude double, isimage boolean);";
+        const char *sql = "create table if not exists comments_test6 (pid integer primary key autoincrement, title varchar(50) not null, content text, servicecmt integer, tastecmt integer, satisfycmt integer, latitude double, longitude double, isimage boolean, datevalue varchar(50));";
         char *error = Nil;
         result = sqlite3_exec(lib, sql, Nil, Nil, &error);
         if (result == SQLITE_OK) {
@@ -285,7 +285,13 @@
             NSString *titleText = [self.titleTextView.text stringByReplacingOccurrencesOfString:@"'" withString:@"@"];
             NSString *contentText = [self.postContentBtn.titleLabel.text stringByReplacingOccurrencesOfString:@"'" withString:@"@"];
             
-            NSString *insert = [NSString stringWithFormat:@"INSERT INTO comments_test5(title, content, servicecmt, tastecmt, satisfycmt, latitude, longitude, isimage) VALUES ('%@', '%@', %d, %d, %d, %f, %f, %d)",titleText,contentText, serviceP, tasteP, satisfyP, self.longitude, self.latitude, index];
+            //set up date data
+            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+            [formatter setDateFormat:@"yyyy-MM-dd"];
+            NSString *dateT = [formatter stringFromDate:[NSDate date]];
+            
+            
+            NSString *insert = [NSString stringWithFormat:@"INSERT INTO comments_test6(title, content, servicecmt, tastecmt, satisfycmt, latitude, longitude, isimage, datevalue) VALUES ('%@', '%@', %d, %d, %d, %f, %f, %d, '%@')",titleText,contentText, serviceP, tasteP, satisfyP, self.longitude, self.latitude, index, dateT];
   
             char *error = Nil;
             result = sqlite3_exec(lib, insert.UTF8String, Nil, Nil, &error);
@@ -327,7 +333,17 @@
                             char *error = Nil;
                             result = sqlite3_exec(lib, insert.UTF8String, Nil, Nil, &error);
                             if (result == SQLITE_OK) {
+                                //delete all photoes in scrollView
                                 
+                                for (ScrollViewInnerBtn *btn in self.innerViews) {
+                                    [btn removeFromSuperview];
+                                }
+                                // 2.delete all pics in innerview
+                                [self.innerViews removeAllObjects];
+
+                                [self.deleteBtn setTitle:@"删除图片" forState:UIControlStateNormal];
+                                self.deleteBtn.enabled = NO;
+
                                 
                             }else{
                                 

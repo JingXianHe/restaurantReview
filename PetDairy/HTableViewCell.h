@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface HTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *indicator;
+@property (weak, nonatomic) IBOutlet UIImageView *indicator;
 @property (weak, nonatomic) IBOutlet UILabel *timeTint;
 @property (weak, nonatomic) IBOutlet UILabel *TitleTint;
 @property (weak, nonatomic) IBOutlet UILabel *tasteS;

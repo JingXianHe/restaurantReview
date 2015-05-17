@@ -18,5 +18,6 @@
 @property(assign, nonatomic)float latitude;
 @property(assign, nonatomic)float longitude;
 @property(assign, nonatomic)int isImage;
+@property(copy, nonatomic)NSString *datevalue;
 @property(strong, nonatomic)NSMutableArray *imgCollections;
 @end
