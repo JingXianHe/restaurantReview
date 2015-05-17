@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *firstBtn;
 @property (weak, nonatomic) IBOutlet UIButton *secondBtn;
 @property (weak, nonatomic) IBOutlet UIButton *thirdBtn;
+@property (strong, nonatomic)NSNumber *scores;
 - (IBAction)unsatisfied:(id)sender;
 - (IBAction)average:(id)sender;
 - (IBAction)satisfied:(id)sender;

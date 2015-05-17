@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <sqlite3.h>
 
 @interface HTableViewController : UITableViewController
-
+@property(nonatomic, assign)CGFloat xOffet;
+-(void)refreshData;
 @end

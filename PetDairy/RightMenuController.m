@@ -28,11 +28,17 @@
 @property (weak, nonatomic) IBOutlet UIView *commentTasteView;
 @property(nonatomic, assign)CGFloat longitude;
 @property(nonatomic, assign)CGFloat latitude;
+//comment scores
+@property(nonatomic, strong)NSNumber *tasteS;
+@property(nonatomic, strong)NSNumber *serviceS;
+@property(nonatomic, strong)NSNumber *suitableS;
+
 //cllocation manager
 @property (strong, nonatomic)CLLocationManager *mgr;
 //for delete photoes
 @property(strong, nonatomic)NSMutableArray *innerViews;
 @property (weak, nonatomic) IBOutlet UIButton *titleTinkBtn;
+- (IBAction)sendMsg;
 @property (weak, nonatomic) IBOutlet UITextField *titleTextView;
 - (IBAction)titleTintButton:(id)sender;
 
@@ -56,19 +62,25 @@
     // Do any additional setup after loading the view from its nib.
     self.postButton.layer.cornerRadius = 23;
     commentView *commentServiceView = [[[NSBundle mainBundle] loadNibNamed:@"newCommentView" owner:nil options:nil] lastObject];
+    
     [self.commentServiceView addSubview:commentServiceView];
     [commentServiceView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
     commentView *cmtTrafficView = [[[NSBundle mainBundle] loadNibNamed:@"newCommentView" owner:nil options:nil] lastObject];
+    
+    
     [self.commentTrafficView addSubview:cmtTrafficView];
     [cmtTrafficView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
     cmtTrafficView.TitleLabel.text = @"环境：";
     commentView *cmtTasteView = [[[NSBundle mainBundle] loadNibNamed:@"newCommentView" owner:nil options:nil] lastObject];
+    
     [self.commentTasteView addSubview:cmtTasteView];
     //cmtTasteView.frame = self.commentTasteView.bounds;
     [cmtTasteView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
     cmtTasteView.TitleLabel.text = @"味道：";
     //set up blur background image
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"restarauntBg-1"]];
+    [self didShow];
+    self.titleTinkBtn.layer.cornerRadius = 15;
     
 }
 
@@ -169,10 +181,13 @@
     UIButton *btn = (UIButton *)sender;
     btn.enabled = false;
     [btn setTitle:@"餐厅名字:" forState:UIControlStateNormal];
+    self.titleTinkBtn.backgroundColor = [UIColor clearColor];
 }
 - (IBAction)inputTitle {
     self.titleTinkBtn.enabled = YES;
     [self.titleTinkBtn setTitle:@"结束输入:" forState:UIControlStateNormal];
+    self.titleTinkBtn.alpha = 1;
+    self.titleTinkBtn.backgroundColor = [UIColor lightGrayColor];
 }
 
 //geolocation upload
@@ -235,4 +250,98 @@
     
 }
 
+- (IBAction)sendMsg {
+    if (self.titleTextView.text == nil) {
+        return;
+    }
+    //retrieve comment value
+    commentView *tmpS = (commentView *)[self.commentServiceView.subviews lastObject];
+    int serviceP = tmpS.scores.intValue;
+    commentView *tasteS = (commentView *)[self.commentTasteView.subviews lastObject];
+    int tasteP = tasteS.scores.intValue;
+    commentView *satisfyS = (commentView *)[self.commentTrafficView.subviews lastObject];
+    int satisfyP = satisfyS.scores.intValue;
+    NSMutableArray *picsCollection = [[NSMutableArray alloc]init];
+    if (self.innerViews.count != 0) {
+        
+        for (ScrollViewInnerBtn *item in self.innerViews) {
+            NSData *imgData = UIImageJPEGRepresentation(item.InnerPhoto.image, 0.5);
+            [picsCollection addObject:imgData];
+        }
+    }
+    //set up sqlite
+    sqlite3 *lib;
+    NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileName = [doc stringByAppendingPathComponent:@"private_comments.sqlite"];
+    
+    const char *cFile = fileName.UTF8String;
+    int result = sqlite3_open(cFile, &lib);
+    if (result == SQLITE_OK) {
+        const char *sql = "create table if not exists comments_test5 (pid integer primary key autoincrement, title varchar(50) not null, content text, servicecmt integer, tastecmt integer, satisfycmt integer, latitude double, longitude double, isimage boolean);";
+        char *error = Nil;
+        result = sqlite3_exec(lib, sql, Nil, Nil, &error);
+        if (result == SQLITE_OK) {
+            int index = self.innerViews.count == 0 ? 0 : 1;
+            NSString *titleText = [self.titleTextView.text stringByReplacingOccurrencesOfString:@"'" withString:@"@"];
+            NSString *contentText = [self.postContentBtn.titleLabel.text stringByReplacingOccurrencesOfString:@"'" withString:@"@"];
+            
+            NSString *insert = [NSString stringWithFormat:@"INSERT INTO comments_test5(title, content, servicecmt, tastecmt, satisfycmt, latitude, longitude, isimage) VALUES ('%@', '%@', %d, %d, %d, %f, %f, %d)",titleText,contentText, serviceP, tasteP, satisfyP, self.longitude, self.latitude, index];
+  
+            char *error = Nil;
+            result = sqlite3_exec(lib, insert.UTF8String, Nil, Nil, &error);
+            if (result == SQLITE_OK) {
+
+               long long newID = sqlite3_last_insert_rowid(lib) -1;
+                const char *sql = "create table if not exists comments_photo_test3 (pid integer primary key autoincrement, comment_id integer, image blob);";
+                char *error1 = Nil;
+                result = sqlite3_exec(lib, sql, Nil, Nil, &error1);
+                if (result == SQLITE_OK) {
+                
+                    self.titleTextView.text = @"";
+                    tmpS.firstBtn.selected = false;
+                    tmpS.secondBtn.selected = false;
+                    tmpS.thirdBtn.selected = false;
+                    tmpS.scores = 0;
+                    tasteS.firstBtn.selected = false;
+                    tasteS.secondBtn.selected = false;
+                    tasteS.thirdBtn.selected = false;
+                    tasteS.scores = 0;
+                    satisfyS.firstBtn.selected = false;
+                    satisfyS.secondBtn.selected = false;
+                    satisfyS.thirdBtn.selected = false;
+                    satisfyS.scores = 0;
+                    if (self.innerViews.count != 0) {
+                         insert = @"INSERT INTO comments_photo_test3(comment_id, image) VALUES";
+                        
+                        for (int i =0; i < picsCollection.count; i++) {
+                            if (i == 0) {
+                                NSString *data = [NSString stringWithFormat:@" (%lld, '%@')",newID,picsCollection[i]];
+                                insert = [insert stringByAppendingString:data];
+                            }else{
+                                NSString *data1 = [NSString stringWithFormat:@",(%lld, '%@')",newID,picsCollection[i]];
+                                insert = [insert stringByAppendingString:data1];
+                            }
+                            
+                        }
+                        insert =[insert stringByAppendingString:@";"];
+                            char *error = Nil;
+                            result = sqlite3_exec(lib, insert.UTF8String, Nil, Nil, &error);
+                            if (result == SQLITE_OK) {
+                                
+                                
+                            }else{
+                                
+                            }
+                        
+                    }
+
+                }
+ 
+            }
+        }
+        else if(result == SQLITE_ERROR){
+            NSLog(@"wrong");
+        }
+    }
+}
 @end

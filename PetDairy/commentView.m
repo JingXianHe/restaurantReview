@@ -22,17 +22,29 @@
     self.firstBtn.selected = YES;
     self.secondBtn.selected = NO;
     self.thirdBtn.selected = NO;
+    self.scores = @1;
+    
 }
 
 - (IBAction)average:(id)sender {
     self.firstBtn.selected = YES;
     self.secondBtn.selected = YES;
     self.thirdBtn.selected = NO;
+    self.scores = @2;
+    
 }
 
 - (IBAction)satisfied:(id)sender {
     self.firstBtn.selected = YES;
     self.secondBtn.selected = YES;
     self.thirdBtn.selected = YES;
+    self.scores = @3;
+    
+}
+-(NSNumber *)scores{
+    if (_scores == nil) {
+        _scores = @0;
+    }
+    return _scores;
 }
 @end

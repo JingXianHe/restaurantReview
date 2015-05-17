@@ -34,7 +34,7 @@
 @property(nonatomic, assign)int LeftMenuH;
 @property(nonatomic, assign)int LeftMenuY;
 @property(nonatomic, assign)int RightMenuX;
-@property (nonatomic, strong) RightMenuController *rightMenuVc;
+@property (nonatomic, strong) HTableViewController *rightMenuVc;
 @property (nonatomic, weak) LeftMenu *leftMenu;
 
 @end
@@ -157,16 +157,16 @@
         // 取出正在显示的导航控制器的view
         UIView *showingView = self.showingNavigationController.view;
         
-        // 缩放比例
-        CGFloat navH = [UIScreen mainScreen].bounds.size.height - 2 * self.LeftMenuY;
-        CGFloat scale = navH / [UIScreen mainScreen].bounds.size.height;
-        
-        // 菜单左边的间距
-        CGFloat leftMenuMargin = [UIScreen mainScreen].bounds.size.width * (1 - scale) * 0.5;
-        CGFloat translateX = leftMenuMargin - self.rightMenuVc.view.width;
-        
-        CGFloat topMargin = [UIScreen mainScreen].bounds.size.height * (1 - scale) * 0.5;
-        CGFloat translateY = self.LeftMenuY - topMargin;
+//        // 缩放比例
+//        CGFloat navH = [UIScreen mainScreen].bounds.size.height - 2 * self.LeftMenuY;
+//        CGFloat scale = navH / [UIScreen mainScreen].bounds.size.height;
+//        
+//        // 菜单左边的间距
+//        CGFloat leftMenuMargin = [UIScreen mainScreen].bounds.size.width * (1 - scale) * 0.5;
+//        CGFloat translateX = leftMenuMargin - self.rightMenuVc.view.width;
+//        
+//        CGFloat topMargin = [UIScreen mainScreen].bounds.size.height * (1 - scale) * 0.5;
+//        CGFloat translateY = self.LeftMenuY - topMargin;
         
         // 缩放
         CGAffineTransform scaleForm = CGAffineTransformMakeScale(1, 1);
@@ -182,7 +182,7 @@
         cover.frame = showingView.bounds;
         [showingView addSubview:cover];
     } completion:^(BOOL finished) {
-        [self.rightMenuVc didShow];
+        [self.rightMenuVc refreshData];
     }];
 }
 
@@ -214,7 +214,7 @@
  */
 - (void)setupRightMenu
 {
-    RightMenuController *rightMenuVc = [[RightMenuController alloc] init];
+    HTableViewController *rightMenuVc = [[HTableViewController alloc] init];
     rightMenuVc.view.x = self.RightMenuX;
     rightMenuVc.view.width = self.view.width - self.RightMenuX;
     rightMenuVc.view.height = self.view.height;

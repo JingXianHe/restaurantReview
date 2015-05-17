@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B101CBBC1B074B7E00549F58 /* HCmtDataModal.m in Sources */ = {isa = PBXBuildFile; fileRef = B101CBBB1B074B7E00549F58 /* HCmtDataModal.m */; };
 		B11694A91B01C44800CF8381 /* commentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B11694A81B01C44800CF8381 /* commentView.m */; };
 		B11694AF1B01D48E00CF8381 /* newCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B11694AE1B01D48E00CF8381 /* newCommentView.xib */; };
 		B16189821AFC5FB400FE6CF4 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B16189811AFC5FB400FE6CF4 /* PostViewController.m */; };
 		B16189861AFD001C00FE6CF4 /* PhotoesView.m in Sources */ = {isa = PBXBuildFile; fileRef = B16189851AFD001C00FE6CF4 /* PhotoesView.m */; };
 		B1649BF91AF8DDA100B5EC0C /* RightMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1649BF71AF8DDA100B5EC0C /* RightMenuController.m */; };
+		B164C9F31B08028600D9282A /* HTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B164C9F21B08028600D9282A /* HTableViewCell.m */; };
+		B164C9F51B0815AC00D9282A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B164C9F41B0815AC00D9282A /* Images.xcassets */; };
 		B164D1631B0076C500CF7A5E /* RightMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B164D1621B0076C500CF7A5E /* RightMenuController.xib */; };
 		B164D1681B007DF000CF7A5E /* scrollViewInnerButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = B164D1671B007DF000CF7A5E /* scrollViewInnerButton.xib */; };
 		B164D16F1B007F5200CF7A5E /* ProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = B164D16E1B007F5200CF7A5E /* ProfileController.m */; };
@@ -34,11 +37,11 @@
 		B181345D1AFB033E00635DFC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B181345C1AFB033E00635DFC /* libsqlite3.dylib */; };
 		B18134681AFBA91200635DFC /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B18134661AFBA91200635DFC /* PostViewController.xib */; };
 		B18DF9B11AF891F900D3071F /* LeftMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B18DF9B01AF891F900D3071F /* LeftMenu.m */; };
+		B19807B91B079D6400C73AC6 /* cellNormal.xib in Resources */ = {isa = PBXBuildFile; fileRef = B19807B81B079D6400C73AC6 /* cellNormal.xib */; };
 		B19FB02C1AF61A97004B0E34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B19FB02B1AF61A97004B0E34 /* main.m */; };
 		B19FB02F1AF61A97004B0E34 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B19FB02E1AF61A97004B0E34 /* AppDelegate.m */; };
 		B19FB0321AF61A97004B0E34 /* PetDairy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B19FB0301AF61A97004B0E34 /* PetDairy.xcdatamodeld */; };
 		B19FB0381AF61A97004B0E34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B19FB0361AF61A97004B0E34 /* Main.storyboard */; };
-		B19FB03A1AF61A97004B0E34 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B19FB0391AF61A97004B0E34 /* Images.xcassets */; };
 		B19FB03D1AF61A97004B0E34 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B19FB03B1AF61A97004B0E34 /* LaunchScreen.xib */; };
 		B19FB0491AF61A97004B0E34 /* PetDairyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B19FB0481AF61A97004B0E34 /* PetDairyTests.m */; };
 		B19FB0561AF64996004B0E34 /* sidebar_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B19FB0551AF64996004B0E34 /* sidebar_bg@2x.jpg */; };
@@ -62,6 +65,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B101CBBA1B074B7E00549F58 /* HCmtDataModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCmtDataModal.h; sourceTree = "<group>"; };
+		B101CBBB1B074B7E00549F58 /* HCmtDataModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCmtDataModal.m; sourceTree = "<group>"; };
 		B11694A71B01C44800CF8381 /* commentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commentView.h; sourceTree = "<group>"; };
 		B11694A81B01C44800CF8381 /* commentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = commentView.m; sourceTree = "<group>"; };
 		B11694AE1B01D48E00CF8381 /* newCommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = newCommentView.xib; sourceTree = "<group>"; };
@@ -71,6 +76,9 @@
 		B16189851AFD001C00FE6CF4 /* PhotoesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoesView.m; sourceTree = "<group>"; };
 		B1649BF61AF8DDA100B5EC0C /* RightMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightMenuController.h; sourceTree = "<group>"; };
 		B1649BF71AF8DDA100B5EC0C /* RightMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightMenuController.m; sourceTree = "<group>"; };
+		B164C9F11B08028600D9282A /* HTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTableViewCell.h; sourceTree = "<group>"; };
+		B164C9F21B08028600D9282A /* HTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTableViewCell.m; sourceTree = "<group>"; };
+		B164C9F41B0815AC00D9282A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B164D1621B0076C500CF7A5E /* RightMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightMenuController.xib; sourceTree = "<group>"; };
 		B164D1671B007DF000CF7A5E /* scrollViewInnerButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = scrollViewInnerButton.xib; sourceTree = "<group>"; };
 		B164D16D1B007F5200CF7A5E /* ProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileController.h; sourceTree = "<group>"; };
@@ -96,6 +104,7 @@
 		B18134661AFBA91200635DFC /* PostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostViewController.xib; sourceTree = "<group>"; };
 		B18DF9AF1AF891F900D3071F /* LeftMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenu.h; sourceTree = "<group>"; };
 		B18DF9B01AF891F900D3071F /* LeftMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenu.m; sourceTree = "<group>"; };
+		B19807B81B079D6400C73AC6 /* cellNormal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = cellNormal.xib; sourceTree = "<group>"; };
 		B19FB0261AF61A97004B0E34 /* PetDairy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetDairy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B19FB02A1AF61A97004B0E34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B19FB02B1AF61A97004B0E34 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -103,7 +112,6 @@
 		B19FB02E1AF61A97004B0E34 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B19FB0311AF61A97004B0E34 /* PetDairy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PetDairy.xcdatamodel; sourceTree = "<group>"; };
 		B19FB0371AF61A97004B0E34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B19FB0391AF61A97004B0E34 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B19FB03C1AF61A97004B0E34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		B19FB0421AF61A97004B0E34 /* PetDairyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PetDairyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B19FB0471AF61A97004B0E34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -157,6 +165,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B101CBBD1B074B9F00549F58 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		B101CBBE1B074BA700549F58 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				B101CBBA1B074B7E00549F58 /* HCmtDataModal.h */,
+				B101CBBB1B074B7E00549F58 /* HCmtDataModal.m */,
+			);
+			name = Modal;
+			sourceTree = "<group>";
+		};
+		B101CBBF1B074BAE00549F58 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B19807B81B079D6400C73AC6 /* cellNormal.xib */,
+				B164C9F11B08028600D9282A /* HTableViewCell.h */,
+				B164C9F21B08028600D9282A /* HTableViewCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		B11694A41B01999600CF8381 /* commentView */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +223,9 @@
 		B1649BF01AF8CCBE00B5EC0C /* RightPanel */ = {
 			isa = PBXGroup;
 			children = (
+				B101CBBF1B074BAE00549F58 /* View */,
+				B101CBBE1B074BA700549F58 /* Modal */,
+				B101CBBD1B074B9F00549F58 /* Controller */,
 				B164D16D1B007F5200CF7A5E /* ProfileController.h */,
 				B164D16E1B007F5200CF7A5E /* ProfileController.m */,
 				B19FB05E1AF64F18004B0E34 /* HTableViewController */,
@@ -302,6 +339,7 @@
 		B19FB0291AF61A97004B0E34 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B164C9F41B0815AC00D9282A /* Images.xcassets */,
 				B16EF2731B005EA200D4F05E /* bush-food-brown-lrg.jpg */,
 				B16EF2711B003BC100D4F05E /* afriCan-groundnut-stew.jpg */,
 				B19FB02A1AF61A97004B0E34 /* Info.plist */,
@@ -334,7 +372,6 @@
 			isa = PBXGroup;
 			children = (
 				B19FB0361AF61A97004B0E34 /* Main.storyboard */,
-				B19FB0391AF61A97004B0E34 /* Images.xcassets */,
 				B19FB03B1AF61A97004B0E34 /* LaunchScreen.xib */,
 				B19FB0301AF61A97004B0E34 /* PetDairy.xcdatamodeld */,
 			);
@@ -501,12 +538,13 @@
 				B16EF2721B003BC200D4F05E /* afriCan-groundnut-stew.jpg in Resources */,
 				B19FB0561AF64996004B0E34 /* sidebar_bg@2x.jpg in Resources */,
 				B18134681AFBA91200635DFC /* PostViewController.xib in Resources */,
+				B19807B91B079D6400C73AC6 /* cellNormal.xib in Resources */,
 				B19FB0381AF61A97004B0E34 /* Main.storyboard in Resources */,
 				B16EF2741B005EA200D4F05E /* bush-food-brown-lrg.jpg in Resources */,
 				B16EF2701B00347400D4F05E /* pickc540c.jpg in Resources */,
 				B19FB03D1AF61A97004B0E34 /* LaunchScreen.xib in Resources */,
+				B164C9F51B0815AC00D9282A /* Images.xcassets in Resources */,
 				B164D1681B007DF000CF7A5E /* scrollViewInnerButton.xib in Resources */,
-				B19FB03A1AF61A97004B0E34 /* Images.xcassets in Resources */,
 				B11694AF1B01D48E00CF8381 /* newCommentView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -525,6 +563,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B164C9F31B08028600D9282A /* HTableViewCell.m in Sources */,
 				B19FB0701AF653C9004B0E34 /* UIView+Extension.m in Sources */,
 				B19FB0591AF64B16004B0E34 /* MainController.m in Sources */,
 				B16189821AFC5FB400FE6CF4 /* PostViewController.m in Sources */,
@@ -542,6 +581,7 @@
 				B164D16F1B007F5200CF7A5E /* ProfileController.m in Sources */,
 				B19FB02C1AF61A97004B0E34 /* main.m in Sources */,
 				B16189861AFD001C00FE6CF4 /* PhotoesView.m in Sources */,
+				B101CBBC1B074B7E00549F58 /* HCmtDataModal.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
