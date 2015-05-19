@@ -57,6 +57,8 @@
                 item.latitude = [[[NSString alloc]initWithUTF8String:sqlite3_column_blob(stmt, 6)] doubleValue];
                 item.longitude = [[[NSString alloc]initWithUTF8String:sqlite3_column_blob(stmt, 7)] doubleValue];
                 item.isImage = sqlite3_column_int(stmt, 8);
+
+                item.datevalue = [[NSString alloc]initWithUTF8String:sqlite3_column_blob(stmt, 9)];
                 [self.dataItems addObject:item];
 
             }
@@ -72,32 +74,6 @@
 }
 
 -(void)getImage{
-    sqlite3 *lib1;
-    NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *fileName = [doc stringByAppendingPathComponent:@"private_comments.sqlite"];
-    sqlite3_stmt *stmt1 = NULL;
-    const char *cFile = fileName.UTF8String;
-    int result = sqlite3_open(cFile, &lib1);
-    if (result == SQLITE_OK) {
-        for (HCmtDataModal *data in self.dataItems) {
-            if (data.isImage == 1) {
-                NSString *sql1 = [NSString stringWithFormat:@"select image from comments_photo_test3 where comment_id = %d", data.idComent];
-                if (sqlite3_prepare_v2(lib1, sql1.UTF8String, -1, &stmt1, NULL)== SQLITE_OK) {
-                    while (sqlite3_step(stmt1)== SQLITE_ROW) {
-                        
-                        NSString *data = [[NSString alloc]initWithUTF8String:sqlite3_column_blob(stmt1, 0)];
-                        
-                        NSData *tempData = [[NSData alloc]initWithBase64EncodedString:data options:NSDataBase64DecodingIgnoreUnknownCharacters];
-                        UIImage *img = 
-                        
-                        
-                        //[data.imgCollections addObject:tempData];
-                    }
-                }
-                
-            }
-        }
-    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -187,7 +163,7 @@
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [self refreshData];
+    [self styleVisibleCells];
     
 }
 

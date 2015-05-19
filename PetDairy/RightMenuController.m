@@ -265,7 +265,8 @@
     if (self.innerViews.count != 0) {
         
         for (ScrollViewInnerBtn *item in self.innerViews) {
-            NSData *imgData = UIImageJPEGRepresentation(item.InnerPhoto.image, 0.5);
+            NSData *imgData = UIImageJPEGRepresentation(item.InnerPhoto.image, 0.4);
+            UIImage *img = [UIImage imageWithData:imgData];
             [picsCollection addObject:imgData];
         }
     }
@@ -281,7 +282,12 @@
         char *error = Nil;
         result = sqlite3_exec(lib, sql, Nil, Nil, &error);
         if (result == SQLITE_OK) {
-            int index = self.innerViews.count == 0 ? 0 : 1;
+            int index;
+            if (self.innerViews.count == 0) {
+                index = 0;
+            }else{
+                index = 1;
+            }
             NSString *titleText = [self.titleTextView.text stringByReplacingOccurrencesOfString:@"'" withString:@"@"];
             NSString *contentText = [self.postContentBtn.titleLabel.text stringByReplacingOccurrencesOfString:@"'" withString:@"@"];
             
@@ -316,7 +322,7 @@
                     satisfyS.secondBtn.selected = false;
                     satisfyS.thirdBtn.selected = false;
                     satisfyS.scores = 0;
-                    if (self.innerViews.count != 0) {
+                    if (self.innerViews.count == 1) {
                          insert = @"INSERT INTO comments_photo_test3(comment_id, image) VALUES";
                         
                         for (int i =0; i < picsCollection.count; i++) {
