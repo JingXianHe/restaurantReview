@@ -57,18 +57,47 @@
                 item.latitude = [[[NSString alloc]initWithUTF8String:sqlite3_column_blob(stmt, 6)] doubleValue];
                 item.longitude = [[[NSString alloc]initWithUTF8String:sqlite3_column_blob(stmt, 7)] doubleValue];
                 item.isImage = sqlite3_column_int(stmt, 8);
-                item.datevalue = [[NSString alloc]initWithUTF8String:sqlite3_column_blob(stmt, 9)];
                 [self.dataItems addObject:item];
 
             }
         }
+        
     }
     
+    [self getImage];
+    
     [self.tableView reloadData];
-    NSArray *indexes = [self.tableView visibleCells];
-    HTableViewCell *indexC = [indexes firstObject];
-    indexC.indicator.image = [UIImage imageNamed:@"promoboard_icon_mall"];
-    indexC.indicator.backgroundColor = [UIColor whiteColor];
+
+    [self styleVisibleCells];
+}
+
+-(void)getImage{
+    sqlite3 *lib1;
+    NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileName = [doc stringByAppendingPathComponent:@"private_comments.sqlite"];
+    sqlite3_stmt *stmt1 = NULL;
+    const char *cFile = fileName.UTF8String;
+    int result = sqlite3_open(cFile, &lib1);
+    if (result == SQLITE_OK) {
+        for (HCmtDataModal *data in self.dataItems) {
+            if (data.isImage == 1) {
+                NSString *sql1 = [NSString stringWithFormat:@"select image from comments_photo_test3 where comment_id = %d", data.idComent];
+                if (sqlite3_prepare_v2(lib1, sql1.UTF8String, -1, &stmt1, NULL)== SQLITE_OK) {
+                    while (sqlite3_step(stmt1)== SQLITE_ROW) {
+                        
+                        NSString *data = [[NSString alloc]initWithUTF8String:sqlite3_column_blob(stmt1, 0)];
+                        
+                        NSData *tempData = [[NSData alloc]initWithBase64EncodedString:data options:NSDataBase64DecodingIgnoreUnknownCharacters];
+                        UIImage *img = 
+                        
+                        
+                        //[data.imgCollections addObject:tempData];
+                    }
+                }
+                
+            }
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,22 +120,31 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    HTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellNormal"];
-    if (cell == nil) {
-        // 从xib中加载cell
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"cellNormal" owner:nil options:nil] lastObject];
-    }
-    
     HCmtDataModal *item = self.dataItems[indexPath.row];
     
-    cell.timeTint.text = [NSString stringWithFormat:@"%@", item.datevalue];
-    cell.TitleTint.text = item.title;
-    cell.serviceS.text = [self convertCommentP:item.servicecmt title:@"服务："];
-    cell.tasteS.text = [self convertCommentP:item.tastecmt title:@"味道："];
-    cell.satisfyS.text = [self convertCommentP:item.satisfycmt title:@"环境："];
-    // Configure the cell...
-    
-    return cell;
+    if (item.isImage == 0) {
+        HTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellNormal"];
+        if (cell == nil) {
+            // 从xib中加载cell
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"cellNormal" owner:nil options:nil] lastObject];
+        }
+        cell.timeTint.text = [NSString stringWithFormat:@"%@", item.datevalue];
+        cell.TitleTint.text = [[item.title stringByReplacingOccurrencesOfString:@"@" withString:@"'"] uppercaseString];
+        cell.serviceS.text = [self convertCommentP:item.servicecmt title:@"服务："];
+        cell.tasteS.text = [self convertCommentP:item.tastecmt title:@"味道："];
+        cell.satisfyS.text = [self convertCommentP:item.satisfycmt title:@"环境："];
+        cell.indicator.image = [UIImage imageNamed:@"default_indicator"];
+        return cell;
+    }else{
+        HTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellWithPics"];
+        if (cell == nil) {
+            // 从xib中加载cell
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"cellWithPics" owner:nil options:nil] lastObject];
+        }
+        return cell;
+        
+    }
+
 }
 //inner method to judge comment points
 -(NSString *)convertCommentP:(int)p title:(NSString *)title{
@@ -120,16 +158,36 @@
         return [title stringByAppendingString:@"满意"];
     }
 }
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//inner method set the visible cells style
+-(void)styleVisibleCells{
+    NSArray *indexes = [self.tableView visibleCells];
+    for (int i =0; i < indexes.count; i++) {
+        if (i == 2) {
+            HTableViewCell *indexC = indexes[i];
+            indexC.indicator.image = [UIImage imageNamed:@"promoboard_icon_mall"];
+            indexC.indicator.backgroundColor = [UIColor whiteColor];
+        }else{
+            HTableViewCell *item = indexes[i];
+            item.indicator.image = [UIImage imageNamed:@"default_indicator"];
+            item.indicator.backgroundColor = [UIColor clearColor];
+        }
+    }
     
-    return 70.0;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    HCmtDataModal *item = self.dataItems[indexPath.row];
+    
+    if (item.isImage == 0) {
+
+        return 70.0;
+    }else{
+        return 110;
+    }
+    
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSArray *indexes = [self.tableView visibleCells];
-    HTableViewCell *indexC = [indexes firstObject];
-    indexC.indicator.image = [UIImage imageNamed:@"promoboard_icon_mall"];
-    indexC.indicator.backgroundColor = [UIColor whiteColor];
+    [self refreshData];
     
 }
 

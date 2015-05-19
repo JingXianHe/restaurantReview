@@ -23,7 +23,7 @@
                         <constraint firstAttribute="height" constant="44" id="OY1-m3-DZr"/>
                     </constraints>
                     <items>
-                        <navigationItem title="写日记" id="aCu-ka-Eoe">
+                        <navigationItem title="写评论" id="aCu-ka-Eoe">
                             <barButtonItem key="leftBarButtonItem" style="plain" id="0dS-Y3-szU">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dBw-vO-aab">
                                     <rect key="frame" x="-23" y="-15" width="71" height="30"/>

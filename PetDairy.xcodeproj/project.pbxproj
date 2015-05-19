@@ -15,6 +15,10 @@
 		B1649BF91AF8DDA100B5EC0C /* RightMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1649BF71AF8DDA100B5EC0C /* RightMenuController.m */; };
 		B164C9F31B08028600D9282A /* HTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B164C9F21B08028600D9282A /* HTableViewCell.m */; };
 		B164C9F51B0815AC00D9282A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B164C9F41B0815AC00D9282A /* Images.xcassets */; };
+		B164CA001B08666500D9282A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B164C9FE1B08666500D9282A /* DetailViewController.m */; };
+		B164CA011B08666500D9282A /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B164C9FF1B08666500D9282A /* DetailViewController.xib */; };
+		B164CA071B086A6B00D9282A /* cellWithPics.m in Sources */ = {isa = PBXBuildFile; fileRef = B164CA051B086A6B00D9282A /* cellWithPics.m */; };
+		B164CA081B086A6B00D9282A /* cellWithPics.xib in Resources */ = {isa = PBXBuildFile; fileRef = B164CA061B086A6B00D9282A /* cellWithPics.xib */; };
 		B164D1631B0076C500CF7A5E /* RightMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B164D1621B0076C500CF7A5E /* RightMenuController.xib */; };
 		B164D1681B007DF000CF7A5E /* scrollViewInnerButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = B164D1671B007DF000CF7A5E /* scrollViewInnerButton.xib */; };
 		B164D16F1B007F5200CF7A5E /* ProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = B164D16E1B007F5200CF7A5E /* ProfileController.m */; };
@@ -79,6 +83,12 @@
 		B164C9F11B08028600D9282A /* HTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTableViewCell.h; sourceTree = "<group>"; };
 		B164C9F21B08028600D9282A /* HTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTableViewCell.m; sourceTree = "<group>"; };
 		B164C9F41B0815AC00D9282A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B164C9FD1B08666500D9282A /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		B164C9FE1B08666500D9282A /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		B164C9FF1B08666500D9282A /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		B164CA041B086A6B00D9282A /* cellWithPics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cellWithPics.h; sourceTree = "<group>"; };
+		B164CA051B086A6B00D9282A /* cellWithPics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cellWithPics.m; sourceTree = "<group>"; };
+		B164CA061B086A6B00D9282A /* cellWithPics.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = cellWithPics.xib; sourceTree = "<group>"; };
 		B164D1621B0076C500CF7A5E /* RightMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightMenuController.xib; sourceTree = "<group>"; };
 		B164D1671B007DF000CF7A5E /* scrollViewInnerButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = scrollViewInnerButton.xib; sourceTree = "<group>"; };
 		B164D16D1B007F5200CF7A5E /* ProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileController.h; sourceTree = "<group>"; };
@@ -184,9 +194,8 @@
 		B101CBBF1B074BAE00549F58 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B19807B81B079D6400C73AC6 /* cellNormal.xib */,
-				B164C9F11B08028600D9282A /* HTableViewCell.h */,
-				B164C9F21B08028600D9282A /* HTableViewCell.m */,
+				B164CA031B086A2400D9282A /* cellPics */,
+				B164CA021B086A1A00D9282A /* cellNormal */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -231,6 +240,46 @@
 				B19FB05E1AF64F18004B0E34 /* HTableViewController */,
 			);
 			name = RightPanel;
+			sourceTree = "<group>";
+		};
+		B164C9F61B0862CE00D9282A /* postController */ = {
+			isa = PBXGroup;
+			children = (
+				B16189801AFC5FB400FE6CF4 /* PostViewController.h */,
+				B16189811AFC5FB400FE6CF4 /* PostViewController.m */,
+				B18134661AFBA91200635DFC /* PostViewController.xib */,
+			);
+			name = postController;
+			sourceTree = "<group>";
+		};
+		B164C9F71B0862F000D9282A /* detailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B164C9FD1B08666500D9282A /* DetailViewController.h */,
+				B164C9FE1B08666500D9282A /* DetailViewController.m */,
+				B164C9FF1B08666500D9282A /* DetailViewController.xib */,
+			);
+			name = detailViewController;
+			sourceTree = "<group>";
+		};
+		B164CA021B086A1A00D9282A /* cellNormal */ = {
+			isa = PBXGroup;
+			children = (
+				B19807B81B079D6400C73AC6 /* cellNormal.xib */,
+				B164C9F11B08028600D9282A /* HTableViewCell.h */,
+				B164C9F21B08028600D9282A /* HTableViewCell.m */,
+			);
+			name = cellNormal;
+			sourceTree = "<group>";
+		};
+		B164CA031B086A2400D9282A /* cellPics */ = {
+			isa = PBXGroup;
+			children = (
+				B164CA041B086A6B00D9282A /* cellWithPics.h */,
+				B164CA051B086A6B00D9282A /* cellWithPics.m */,
+				B164CA061B086A6B00D9282A /* cellWithPics.xib */,
+			);
+			name = cellPics;
 			sourceTree = "<group>";
 		};
 		B164D1641B007D3600CF7A5E /* controller */ = {
@@ -281,9 +330,8 @@
 		B181345E1AFB9D4600635DFC /* global */ = {
 			isa = PBXGroup;
 			children = (
-				B16189801AFC5FB400FE6CF4 /* PostViewController.h */,
-				B16189811AFC5FB400FE6CF4 /* PostViewController.m */,
-				B18134661AFBA91200635DFC /* PostViewController.xib */,
+				B164C9F71B0862F000D9282A /* detailViewController */,
+				B164C9F61B0862CE00D9282A /* postController */,
 			);
 			name = global;
 			sourceTree = "<group>";
@@ -535,8 +583,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B164D1631B0076C500CF7A5E /* RightMenuController.xib in Resources */,
+				B164CA011B08666500D9282A /* DetailViewController.xib in Resources */,
 				B16EF2721B003BC200D4F05E /* afriCan-groundnut-stew.jpg in Resources */,
 				B19FB0561AF64996004B0E34 /* sidebar_bg@2x.jpg in Resources */,
+				B164CA081B086A6B00D9282A /* cellWithPics.xib in Resources */,
 				B18134681AFBA91200635DFC /* PostViewController.xib in Resources */,
 				B19807B91B079D6400C73AC6 /* cellNormal.xib in Resources */,
 				B19FB0381AF61A97004B0E34 /* Main.storyboard in Resources */,
@@ -566,6 +616,7 @@
 				B164C9F31B08028600D9282A /* HTableViewCell.m in Sources */,
 				B19FB0701AF653C9004B0E34 /* UIView+Extension.m in Sources */,
 				B19FB0591AF64B16004B0E34 /* MainController.m in Sources */,
+				B164CA071B086A6B00D9282A /* cellWithPics.m in Sources */,
 				B16189821AFC5FB400FE6CF4 /* PostViewController.m in Sources */,
 				B19FB0651AF6519C004B0E34 /* TitleButton.m in Sources */,
 				B19FB02F1AF61A97004B0E34 /* AppDelegate.m in Sources */,
@@ -578,6 +629,7 @@
 				B19FB0611AF64F50004B0E34 /* HTableViewController.m in Sources */,
 				B1D8C5C11B04546B002DF360 /* UIView+AutoLayout.m in Sources */,
 				B164D1721B00813D00CF7A5E /* ScrollViewInnerBtn.m in Sources */,
+				B164CA001B08666500D9282A /* DetailViewController.m in Sources */,
 				B164D16F1B007F5200CF7A5E /* ProfileController.m in Sources */,
 				B19FB02C1AF61A97004B0E34 /* main.m in Sources */,
 				B16189861AFD001C00FE6CF4 /* PhotoesView.m in Sources */,
@@ -708,7 +760,7 @@
 					"$(PROJECT_DIR)/PetDairy",
 				);
 				INFOPLIST_FILE = PetDairy/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -723,7 +775,7 @@
 					"$(PROJECT_DIR)/PetDairy",
 				);
 				INFOPLIST_FILE = PetDairy/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
