@@ -15,6 +15,7 @@
 #import "UIView+AutoLayout.h"
 
 
+
 @interface RightMenuController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, ScrollViewInnerBtnDelegate, CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
@@ -263,22 +264,31 @@
     int satisfyP = satisfyS.scores.intValue;
     NSMutableArray *picsCollection = [[NSMutableArray alloc]init];
     if (self.innerViews.count != 0) {
+        //set up date data
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yyyy-MM-dd-HH-mm-ss"];
+        NSString *dateT = [formatter stringFromDate:[NSDate date]];
         
+        NSString *doc = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
+        int loop = 0;
         for (ScrollViewInnerBtn *item in self.innerViews) {
-            NSData *imgData = UIImageJPEGRepresentation(item.InnerPhoto.image, 0.4);
-            UIImage *img = [UIImage imageWithData:imgData];
-            [picsCollection addObject:imgData];
+            NSString *file = [NSString stringWithFormat:@"%@%d.png",dateT,loop];
+            NSString *fileName = [doc stringByAppendingPathComponent:file];
+            NSData *imgData = UIImagePNGRepresentation(item.InnerPhoto.image);
+            [imgData writeToFile:fileName atomically:YES];
+            [picsCollection addObject:file];
+            loop++;
         }
     }
     //set up sqlite
     sqlite3 *lib;
-    NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *fileName = [doc stringByAppendingPathComponent:@"private_comments.sqlite"];
+    NSString *doc = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *fileName = [doc stringByAppendingPathComponent:@"privateForcomments.sqlite"];
     
     const char *cFile = fileName.UTF8String;
     int result = sqlite3_open(cFile, &lib);
     if (result == SQLITE_OK) {
-        const char *sql = "create table if not exists comments_test6 (pid integer primary key autoincrement, title varchar(50) not null, content text, servicecmt integer, tastecmt integer, satisfycmt integer, latitude double, longitude double, isimage boolean, datevalue varchar(50));";
+        const char *sql = "create table if not exists comments_test7 (pid integer primary key autoincrement, title varchar(50) not null, content text, servicecmt integer, tastecmt integer, satisfycmt integer, latitude double, longitude double, isimage boolean, datevalue varchar(50));";
         char *error = Nil;
         result = sqlite3_exec(lib, sql, Nil, Nil, &error);
         if (result == SQLITE_OK) {
@@ -297,13 +307,16 @@
             NSString *dateT = [formatter stringFromDate:[NSDate date]];
             
             
-            NSString *insert = [NSString stringWithFormat:@"INSERT INTO comments_test6(title, content, servicecmt, tastecmt, satisfycmt, latitude, longitude, isimage, datevalue) VALUES ('%@', '%@', %d, %d, %d, %f, %f, %d, '%@')",titleText,contentText, serviceP, tasteP, satisfyP, self.longitude, self.latitude, index, dateT];
+            NSString *insert = [NSString stringWithFormat:@"INSERT INTO comments_test7(title, content, servicecmt, tastecmt, satisfycmt, latitude, longitude, isimage, datevalue) VALUES ('%@', '%@', %d, %d, %d, %f, %f, %d, '%@')",titleText,contentText, serviceP, tasteP, satisfyP, self.longitude, self.latitude, index, dateT];
   
             char *error = Nil;
             result = sqlite3_exec(lib, insert.UTF8String, Nil, Nil, &error);
             if (result == SQLITE_OK) {
 
-               long long newID = sqlite3_last_insert_rowid(lib) -1;
+               long long ID = sqlite3_last_insert_rowid(lib);
+                int newID = (int)ID;
+                newID = newID -1;
+                NSLog(@"%d", newID);
                 const char *sql = "create table if not exists comments_photo_test3 (pid integer primary key autoincrement, comment_id integer, image blob);";
                 char *error1 = Nil;
                 result = sqlite3_exec(lib, sql, Nil, Nil, &error1);
@@ -327,10 +340,10 @@
                         
                         for (int i =0; i < picsCollection.count; i++) {
                             if (i == 0) {
-                                NSString *data = [NSString stringWithFormat:@" (%lld, '%@')",newID,picsCollection[i]];
+                                NSString *data = [NSString stringWithFormat:@" (%d, '%@')",newID,picsCollection[i]];
                                 insert = [insert stringByAppendingString:data];
                             }else{
-                                NSString *data1 = [NSString stringWithFormat:@",(%lld, '%@')",newID,picsCollection[i]];
+                                NSString *data1 = [NSString stringWithFormat:@",(%d, '%@')",newID,picsCollection[i]];
                                 insert = [insert stringByAppendingString:data1];
                             }
                             

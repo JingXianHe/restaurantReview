@@ -34,4 +34,9 @@
 }
 */
 
+- (IBAction)leftNavBtn:(id)sender {
+}
+
+- (IBAction)rightNavBtn:(id)sender {
+}
 @end

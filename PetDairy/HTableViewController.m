@@ -9,8 +9,10 @@
 #import "HTableViewController.h"
 #import "HCmtDataModal.h"
 #import "HTableViewCell.h"
+#import "cellWithPics.h"
 
-@interface HTableViewController ()<UITableViewDataSource>
+
+@interface HTableViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic)NSMutableArray *dataItems;
 @end
 
@@ -24,6 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     
     
     // Uncomment the following line to preserve selection between presentations.
@@ -36,14 +39,14 @@
 
 -(void)refreshData{
     sqlite3 *lib;
-    NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *fileName = [doc stringByAppendingPathComponent:@"private_comments.sqlite"];
+    NSString *doc = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *fileName = [doc stringByAppendingPathComponent:@"privateForcomments.sqlite"];
     sqlite3_stmt *stmt = NULL;
     const char *cFile = fileName.UTF8String;
     int result = sqlite3_open(cFile, &lib);
     if (result == SQLITE_OK) {
  
-        const char *sql = "select * from comments_test6";
+        const char *sql = "select * from comments_test7";
         if (sqlite3_prepare_v2(lib, sql, -1, &stmt, NULL)== SQLITE_OK) {
             while (sqlite3_step(stmt)== SQLITE_ROW) {
 
@@ -57,24 +60,43 @@
                 item.latitude = [[[NSString alloc]initWithUTF8String:sqlite3_column_blob(stmt, 6)] doubleValue];
                 item.longitude = [[[NSString alloc]initWithUTF8String:sqlite3_column_blob(stmt, 7)] doubleValue];
                 item.isImage = sqlite3_column_int(stmt, 8);
-
+                
                 item.datevalue = [[NSString alloc]initWithUTF8String:sqlite3_column_blob(stmt, 9)];
+                
+                
                 [self.dataItems addObject:item];
+                if (item.isImage == 1) {
+
+                    sqlite3_stmt *stmt1 = NULL;
+                    NSString *sql1 = [NSString stringWithFormat:@"select image from comments_photo_test3 where comment_id = %d;", item.idComent];
+                    if (sqlite3_prepare_v2(lib, sql1.UTF8String, -1, &stmt1, NULL)== SQLITE_OK) {
+
+                        while (sqlite3_step(stmt1)== SQLITE_ROW) {
+                            
+                           NSString *imgdata = [[NSString alloc]initWithUTF8String:sqlite3_column_blob(stmt1, 0)];
+                            NSString *getFile = [doc stringByAppendingPathComponent:imgdata];
+                            UIImage *img = [UIImage imageWithContentsOfFile:getFile];
+                             [item.imgCollections addObject:img];
+
+                        }
+                    }
+ 
+                }
+                
 
             }
         }
         
     }
     
-    [self getImage];
+
     
     [self.tableView reloadData];
 
     [self styleVisibleCells];
 }
 
--(void)getImage{
-}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -112,10 +134,21 @@
         cell.indicator.image = [UIImage imageNamed:@"default_indicator"];
         return cell;
     }else{
-        HTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellWithPics"];
+        cellWithPics *cell = [tableView dequeueReusableCellWithIdentifier:@"cellWithPics"];
         if (cell == nil) {
             // 从xib中加载cell
             cell = [[[NSBundle mainBundle] loadNibNamed:@"cellWithPics" owner:nil options:nil] lastObject];
+        }
+        cell.timeTint.text = [NSString stringWithFormat:@"%@", item.datevalue];
+        cell.TitleTint.text = [[item.title stringByReplacingOccurrencesOfString:@"@" withString:@"'"] uppercaseString];
+        cell.serviceS.text = [self convertCommentP:item.servicecmt title:@"服务："];
+        cell.tasteS.text = [self convertCommentP:item.tastecmt title:@"味道："];
+        cell.satisfyS.text = [self convertCommentP:item.satisfycmt title:@"环境："];
+        cell.indicator.image = [UIImage imageNamed:@"default_indicator"];
+        
+        for (UIImage *img in item.imgCollections) {
+            UIImageView *imgv = [[UIImageView alloc]initWithImage:img];
+            [cell.scrollNav addSubview:imgv];
         }
         return cell;
         
@@ -164,6 +197,11 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self styleVisibleCells];
+    
+}
+
+#pragma delegate methods
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
 }
 

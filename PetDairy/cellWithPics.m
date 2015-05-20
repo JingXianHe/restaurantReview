@@ -7,6 +7,7 @@
 //
 
 #import "cellWithPics.h"
+#import "HScrollView.h"
 
 @implementation cellWithPics
 

@@ -23,9 +23,11 @@
 		B164D1681B007DF000CF7A5E /* scrollViewInnerButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = B164D1671B007DF000CF7A5E /* scrollViewInnerButton.xib */; };
 		B164D16F1B007F5200CF7A5E /* ProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = B164D16E1B007F5200CF7A5E /* ProfileController.m */; };
 		B164D1721B00813D00CF7A5E /* ScrollViewInnerBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = B164D1711B00813D00CF7A5E /* ScrollViewInnerBtn.m */; };
+		B168FF881B0C65A800D2BC9A /* UIImage+OIInCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B168FF871B0C65A800D2BC9A /* UIImage+OIInCache.m */; };
 		B16EF2701B00347400D4F05E /* pickc540c.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B16EF26F1B00347400D4F05E /* pickc540c.jpg */; };
 		B16EF2721B003BC200D4F05E /* afriCan-groundnut-stew.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B16EF2711B003BC100D4F05E /* afriCan-groundnut-stew.jpg */; };
 		B16EF2741B005EA200D4F05E /* bush-food-brown-lrg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B16EF2731B005EA200D4F05E /* bush-food-brown-lrg.jpg */; };
+		B17080181B0B490700636A41 /* HScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B17080171B0B490700636A41 /* HScrollView.m */; };
 		B18134461AFB019900635DFC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18134441AFB019900635DFC /* Bolts.framework */; };
 		B18134471AFB019900635DFC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18134451AFB019900635DFC /* Parse.framework */; };
 		B18134491AFB024200635DFC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18134481AFB024200635DFC /* AudioToolbox.framework */; };
@@ -95,9 +97,13 @@
 		B164D16E1B007F5200CF7A5E /* ProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileController.m; sourceTree = "<group>"; };
 		B164D1701B00813D00CF7A5E /* ScrollViewInnerBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewInnerBtn.h; sourceTree = "<group>"; };
 		B164D1711B00813D00CF7A5E /* ScrollViewInnerBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewInnerBtn.m; sourceTree = "<group>"; };
+		B168FF861B0C65A800D2BC9A /* UIImage+OIInCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OIInCache.h"; sourceTree = "<group>"; };
+		B168FF871B0C65A800D2BC9A /* UIImage+OIInCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+OIInCache.m"; sourceTree = "<group>"; };
 		B16EF26F1B00347400D4F05E /* pickc540c.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pickc540c.jpg; sourceTree = "<group>"; };
 		B16EF2711B003BC100D4F05E /* afriCan-groundnut-stew.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "afriCan-groundnut-stew.jpg"; sourceTree = "<group>"; };
 		B16EF2731B005EA200D4F05E /* bush-food-brown-lrg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bush-food-brown-lrg.jpg"; sourceTree = "<group>"; };
+		B17080161B0B490700636A41 /* HScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HScrollView.h; sourceTree = "<group>"; };
+		B17080171B0B490700636A41 /* HScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HScrollView.m; sourceTree = "<group>"; };
 		B18134441AFB019900635DFC /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		B18134451AFB019900635DFC /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		B18134481AFB024200635DFC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -318,6 +324,15 @@
 			name = ScrollviewInnerButton;
 			sourceTree = "<group>";
 		};
+		B17080151B0B48CE00636A41 /* scrollView */ = {
+			isa = PBXGroup;
+			children = (
+				B17080161B0B490700636A41 /* HScrollView.h */,
+				B17080171B0B490700636A41 /* HScrollView.m */,
+			);
+			name = scrollView;
+			sourceTree = "<group>";
+		};
 		B18134431AFB017E00635DFC /* frameWork */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,6 +345,7 @@
 		B181345E1AFB9D4600635DFC /* global */ = {
 			isa = PBXGroup;
 			children = (
+				B17080151B0B48CE00636A41 /* scrollView */,
 				B164C9F71B0862F000D9282A /* detailViewController */,
 				B164C9F61B0862CE00D9282A /* postController */,
 			);
@@ -496,6 +512,8 @@
 		B1D8C5BE1B04545B002DF360 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				B168FF861B0C65A800D2BC9A /* UIImage+OIInCache.h */,
+				B168FF871B0C65A800D2BC9A /* UIImage+OIInCache.m */,
 				B1D8C5BF1B04546B002DF360 /* UIView+AutoLayout.h */,
 				B1D8C5C01B04546B002DF360 /* UIView+AutoLayout.m */,
 			);
@@ -613,6 +631,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B17080181B0B490700636A41 /* HScrollView.m in Sources */,
 				B164C9F31B08028600D9282A /* HTableViewCell.m in Sources */,
 				B19FB0701AF653C9004B0E34 /* UIView+Extension.m in Sources */,
 				B19FB0591AF64B16004B0E34 /* MainController.m in Sources */,
@@ -623,6 +642,7 @@
 				B19FB06E1AF653C9004B0E34 /* UIBarButtonItem+Extension.m in Sources */,
 				B11694A91B01C44800CF8381 /* commentView.m in Sources */,
 				B19FB0321AF61A97004B0E34 /* PetDairy.xcdatamodeld in Sources */,
+				B168FF881B0C65A800D2BC9A /* UIImage+OIInCache.m in Sources */,
 				B1649BF91AF8DDA100B5EC0C /* RightMenuController.m in Sources */,
 				B18DF9B11AF891F900D3071F /* LeftMenu.m in Sources */,
 				B19FB06F1AF653C9004B0E34 /* UIImage+Extension.m in Sources */,
