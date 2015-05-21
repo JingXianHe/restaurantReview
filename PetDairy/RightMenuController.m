@@ -288,7 +288,7 @@
     const char *cFile = fileName.UTF8String;
     int result = sqlite3_open(cFile, &lib);
     if (result == SQLITE_OK) {
-        const char *sql = "create table if not exists comments_test7 (pid integer primary key autoincrement, title varchar(50) not null, content text, servicecmt integer, tastecmt integer, satisfycmt integer, latitude double, longitude double, isimage boolean, datevalue varchar(50));";
+        const char *sql = "create table if not exists comments_test9 (pid integer primary key autoincrement, title text, content text, servicecmt integer, tastecmt integer, satisfycmt integer, latitude double, longitude double, isimage boolean, datevalue varchar(50));";
         char *error = Nil;
         result = sqlite3_exec(lib, sql, Nil, Nil, &error);
         if (result == SQLITE_OK) {
@@ -307,7 +307,7 @@
             NSString *dateT = [formatter stringFromDate:[NSDate date]];
             
             
-            NSString *insert = [NSString stringWithFormat:@"INSERT INTO comments_test7(title, content, servicecmt, tastecmt, satisfycmt, latitude, longitude, isimage, datevalue) VALUES ('%@', '%@', %d, %d, %d, %f, %f, %d, '%@')",titleText,contentText, serviceP, tasteP, satisfyP, self.longitude, self.latitude, index, dateT];
+            NSString *insert = [NSString stringWithFormat:@"INSERT INTO comments_test9(title, content, servicecmt, tastecmt, satisfycmt, latitude, longitude, isimage, datevalue) VALUES ('%@', '%@', %d, %d, %d, %f, %f, %d, '%@')",titleText,contentText, serviceP, tasteP, satisfyP, self.longitude, self.latitude, index, dateT];
   
             char *error = Nil;
             result = sqlite3_exec(lib, insert.UTF8String, Nil, Nil, &error);
@@ -315,9 +315,9 @@
 
                long long ID = sqlite3_last_insert_rowid(lib);
                 int newID = (int)ID;
-                newID = newID -1;
-                NSLog(@"%d", newID);
-                const char *sql = "create table if not exists comments_photo_test3 (pid integer primary key autoincrement, comment_id integer, image blob);";
+                
+                
+                const char *sql = "create table if not exists comments_photo_test5 (pid integer primary key autoincrement, comment_id integer, image blob);";
                 char *error1 = Nil;
                 result = sqlite3_exec(lib, sql, Nil, Nil, &error1);
                 if (result == SQLITE_OK) {
@@ -335,8 +335,8 @@
                     satisfyS.secondBtn.selected = false;
                     satisfyS.thirdBtn.selected = false;
                     satisfyS.scores = 0;
-                    if (self.innerViews.count == 1) {
-                         insert = @"INSERT INTO comments_photo_test3(comment_id, image) VALUES";
+                    if (self.innerViews.count != 0) {
+                         insert = @"INSERT INTO comments_photo_test5(comment_id, image) VALUES";
                         
                         for (int i =0; i < picsCollection.count; i++) {
                             if (i == 0) {

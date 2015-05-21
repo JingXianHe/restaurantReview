@@ -23,7 +23,6 @@
     
     int index = 0;
     CGFloat imageH = self.frame.size.height;
-    
     for (id item in self.subviews) {
         if (index == 0) {
             

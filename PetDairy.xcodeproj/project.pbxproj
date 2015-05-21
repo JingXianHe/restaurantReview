@@ -8,10 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		B101CBBC1B074B7E00549F58 /* HCmtDataModal.m in Sources */ = {isa = PBXBuildFile; fileRef = B101CBBB1B074B7E00549F58 /* HCmtDataModal.m */; };
+		B10679491B0DBCC70039AC33 /* HPopOverBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = B10679481B0DBCC70039AC33 /* HPopOverBtn.m */; };
+		B106794B1B0DEABB0039AC33 /* suShi.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B106794A1B0DEABB0039AC33 /* suShi.jpg */; };
 		B11694A91B01C44800CF8381 /* commentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B11694A81B01C44800CF8381 /* commentView.m */; };
 		B11694AF1B01D48E00CF8381 /* newCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B11694AE1B01D48E00CF8381 /* newCommentView.xib */; };
 		B16189821AFC5FB400FE6CF4 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B16189811AFC5FB400FE6CF4 /* PostViewController.m */; };
 		B16189861AFD001C00FE6CF4 /* PhotoesView.m in Sources */ = {isa = PBXBuildFile; fileRef = B16189851AFD001C00FE6CF4 /* PhotoesView.m */; };
+		B162CB381B0E1E1400DB6205 /* DetailScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B162CB371B0E1E1400DB6205 /* DetailScrollView.m */; };
+		B162CB3C1B0E42F500DB6205 /* DeTailImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = B162CB3B1B0E42F500DB6205 /* DeTailImgView.m */; };
 		B1649BF91AF8DDA100B5EC0C /* RightMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1649BF71AF8DDA100B5EC0C /* RightMenuController.m */; };
 		B164C9F31B08028600D9282A /* HTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B164C9F21B08028600D9282A /* HTableViewCell.m */; };
 		B164C9F51B0815AC00D9282A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B164C9F41B0815AC00D9282A /* Images.xcassets */; };
@@ -73,6 +77,9 @@
 /* Begin PBXFileReference section */
 		B101CBBA1B074B7E00549F58 /* HCmtDataModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCmtDataModal.h; sourceTree = "<group>"; };
 		B101CBBB1B074B7E00549F58 /* HCmtDataModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCmtDataModal.m; sourceTree = "<group>"; };
+		B10679471B0DBCC70039AC33 /* HPopOverBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPopOverBtn.h; sourceTree = "<group>"; };
+		B10679481B0DBCC70039AC33 /* HPopOverBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPopOverBtn.m; sourceTree = "<group>"; };
+		B106794A1B0DEABB0039AC33 /* suShi.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = suShi.jpg; sourceTree = "<group>"; };
 		B11694A71B01C44800CF8381 /* commentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commentView.h; sourceTree = "<group>"; };
 		B11694A81B01C44800CF8381 /* commentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = commentView.m; sourceTree = "<group>"; };
 		B11694AE1B01D48E00CF8381 /* newCommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = newCommentView.xib; sourceTree = "<group>"; };
@@ -80,6 +87,10 @@
 		B16189811AFC5FB400FE6CF4 /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
 		B16189841AFD001C00FE6CF4 /* PhotoesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoesView.h; sourceTree = "<group>"; };
 		B16189851AFD001C00FE6CF4 /* PhotoesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoesView.m; sourceTree = "<group>"; };
+		B162CB361B0E1E1400DB6205 /* DetailScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailScrollView.h; sourceTree = "<group>"; };
+		B162CB371B0E1E1400DB6205 /* DetailScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailScrollView.m; sourceTree = "<group>"; };
+		B162CB3A1B0E42F500DB6205 /* DeTailImgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeTailImgView.h; sourceTree = "<group>"; };
+		B162CB3B1B0E42F500DB6205 /* DeTailImgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeTailImgView.m; sourceTree = "<group>"; };
 		B1649BF61AF8DDA100B5EC0C /* RightMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightMenuController.h; sourceTree = "<group>"; };
 		B1649BF71AF8DDA100B5EC0C /* RightMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightMenuController.m; sourceTree = "<group>"; };
 		B164C9F11B08028600D9282A /* HTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTableViewCell.h; sourceTree = "<group>"; };
@@ -206,6 +217,15 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		B10679461B0DBC8F0039AC33 /* popOverBtn */ = {
+			isa = PBXGroup;
+			children = (
+				B10679471B0DBCC70039AC33 /* HPopOverBtn.h */,
+				B10679481B0DBCC70039AC33 /* HPopOverBtn.m */,
+			);
+			name = popOverBtn;
+			sourceTree = "<group>";
+		};
 		B11694A41B01999600CF8381 /* commentView */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +243,24 @@
 				B16189851AFD001C00FE6CF4 /* PhotoesView.m */,
 			);
 			name = ScrollView;
+			sourceTree = "<group>";
+		};
+		B162CB351B0E1DE500DB6205 /* DetailScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				B162CB361B0E1E1400DB6205 /* DetailScrollView.h */,
+				B162CB371B0E1E1400DB6205 /* DetailScrollView.m */,
+			);
+			name = DetailScrollView;
+			sourceTree = "<group>";
+		};
+		B162CB391B0E42B900DB6205 /* InnerImgView */ = {
+			isa = PBXGroup;
+			children = (
+				B162CB3A1B0E42F500DB6205 /* DeTailImgView.h */,
+				B162CB3B1B0E42F500DB6205 /* DeTailImgView.m */,
+			);
+			name = InnerImgView;
 			sourceTree = "<group>";
 		};
 		B1649BEF1AF8CCA700B5EC0C /* MiddlePanel */ = {
@@ -261,6 +299,8 @@
 		B164C9F71B0862F000D9282A /* detailViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B162CB391B0E42B900DB6205 /* InnerImgView */,
+				B162CB351B0E1DE500DB6205 /* DetailScrollView */,
 				B164C9FD1B08666500D9282A /* DetailViewController.h */,
 				B164C9FE1B08666500D9282A /* DetailViewController.m */,
 				B164C9FF1B08666500D9282A /* DetailViewController.xib */,
@@ -345,6 +385,7 @@
 		B181345E1AFB9D4600635DFC /* global */ = {
 			isa = PBXGroup;
 			children = (
+				B10679461B0DBC8F0039AC33 /* popOverBtn */,
 				B17080151B0B48CE00636A41 /* scrollView */,
 				B164C9F71B0862F000D9282A /* detailViewController */,
 				B164C9F61B0862CE00D9282A /* postController */,
@@ -406,6 +447,7 @@
 				B164C9F41B0815AC00D9282A /* Images.xcassets */,
 				B16EF2731B005EA200D4F05E /* bush-food-brown-lrg.jpg */,
 				B16EF2711B003BC100D4F05E /* afriCan-groundnut-stew.jpg */,
+				B106794A1B0DEABB0039AC33 /* suShi.jpg */,
 				B19FB02A1AF61A97004B0E34 /* Info.plist */,
 				B19FB0551AF64996004B0E34 /* sidebar_bg@2x.jpg */,
 				B16EF26F1B00347400D4F05E /* pickc540c.jpg */,
@@ -604,6 +646,7 @@
 				B164CA011B08666500D9282A /* DetailViewController.xib in Resources */,
 				B16EF2721B003BC200D4F05E /* afriCan-groundnut-stew.jpg in Resources */,
 				B19FB0561AF64996004B0E34 /* sidebar_bg@2x.jpg in Resources */,
+				B106794B1B0DEABB0039AC33 /* suShi.jpg in Resources */,
 				B164CA081B086A6B00D9282A /* cellWithPics.xib in Resources */,
 				B18134681AFBA91200635DFC /* PostViewController.xib in Resources */,
 				B19807B91B079D6400C73AC6 /* cellNormal.xib in Resources */,
@@ -638,6 +681,7 @@
 				B164CA071B086A6B00D9282A /* cellWithPics.m in Sources */,
 				B16189821AFC5FB400FE6CF4 /* PostViewController.m in Sources */,
 				B19FB0651AF6519C004B0E34 /* TitleButton.m in Sources */,
+				B162CB381B0E1E1400DB6205 /* DetailScrollView.m in Sources */,
 				B19FB02F1AF61A97004B0E34 /* AppDelegate.m in Sources */,
 				B19FB06E1AF653C9004B0E34 /* UIBarButtonItem+Extension.m in Sources */,
 				B11694A91B01C44800CF8381 /* commentView.m in Sources */,
@@ -646,6 +690,7 @@
 				B1649BF91AF8DDA100B5EC0C /* RightMenuController.m in Sources */,
 				B18DF9B11AF891F900D3071F /* LeftMenu.m in Sources */,
 				B19FB06F1AF653C9004B0E34 /* UIImage+Extension.m in Sources */,
+				B10679491B0DBCC70039AC33 /* HPopOverBtn.m in Sources */,
 				B19FB0611AF64F50004B0E34 /* HTableViewController.m in Sources */,
 				B1D8C5C11B04546B002DF360 /* UIView+AutoLayout.m in Sources */,
 				B164D1721B00813D00CF7A5E /* ScrollViewInnerBtn.m in Sources */,
@@ -654,6 +699,7 @@
 				B19FB02C1AF61A97004B0E34 /* main.m in Sources */,
 				B16189861AFD001C00FE6CF4 /* PhotoesView.m in Sources */,
 				B101CBBC1B074B7E00549F58 /* HCmtDataModal.m in Sources */,
+				B162CB3C1B0E42F500DB6205 /* DeTailImgView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

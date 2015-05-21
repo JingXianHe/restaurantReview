@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 
+
 @interface DetailViewController ()
 
 @end
@@ -17,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.ContentTextView.editable = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,9 +36,8 @@
 }
 */
 
-- (IBAction)leftNavBtn:(id)sender {
-}
 
-- (IBAction)rightNavBtn:(id)sender {
-}
+- (IBAction)leftNav {
+    [self.view removeFromSuperview];
+     }
 @end

@@ -9,13 +9,17 @@
 #import <UIKit/UIKit.h>
 
 @interface DetailViewController : UIViewController
-- (IBAction)leftNavBtn:(id)sender;
-- (IBAction)rightNavBtn:(id)sender;
+
+- (IBAction)leftNav;
+
 @property (weak, nonatomic) IBOutlet UIImageView *profileImg;
 @property (weak, nonatomic) IBOutlet UILabel *leftCommentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *MCommentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *RCommentLabel;
 @property (weak, nonatomic) IBOutlet UITextView *ContentTextView;
 @property (weak, nonatomic) IBOutlet UIScrollView *picsScrollView;
+@property (weak, nonatomic) IBOutlet UIButton *RightNavBtn;
+@property (weak, nonatomic) IBOutlet UINavigationItem *TitleBar;
+@property (weak, nonatomic) IBOutlet UIButton *geoIndicator;
 
 @end
