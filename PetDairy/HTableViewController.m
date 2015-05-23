@@ -12,11 +12,12 @@
 #import "cellWithPics.h"
 #import "DetailViewController.h"
 #import "DeTailImgView.h"
-
+#import "UIView+Extension.h"
 
 @interface HTableViewController ()<UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 @property (strong, nonatomic)NSMutableArray *dataItems;
 @property(strong, nonatomic)DetailViewController *popUpController;
+@property(weak, nonatomic)DeTailImgView *selectedImg;
 @end
 
 @implementation HTableViewController
@@ -40,7 +41,10 @@
 
 }
 
+
+
 -(void)refreshData{
+    [self.dataItems removeAllObjects];
     sqlite3 *lib;
     NSString *doc = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
     NSString *fileName = [doc stringByAppendingPathComponent:@"privateForcomments.sqlite"];
@@ -240,9 +244,13 @@
     //check geolocation available
     if (item.latitude && item.longitude) {
         detailCon.geoIndicator.enabled = NO;
-    }else if (item.latitude == 0.0){
-        detailCon.geoIndicator.enabled = NO;
+    }else{
+        detailCon.latitude = item.latitude;
+        detailCon.longitude = item.longitude;
     }
+//    }else if (item.latitude == 0.0){
+//        detailCon.geoIndicator.enabled = NO;
+//    }
     //parse imgs to pop up view
     if (item.isImage == 1) {
         for (UIImage *pic in item.imgCollections) {
@@ -271,7 +279,46 @@
 }
 - (void)tabEvent:(UITapGestureRecognizer *)tapRecognizer
 {
-    NSLog(@"tap");
+    self.selectedImg = (DeTailImgView *)tapRecognizer.view;
+    //create a cover
+    UIView *cover = [[UIView alloc]init];
+    cover.frame = [UIScreen mainScreen].bounds;
+    cover.backgroundColor = [UIColor lightGrayColor];
+    cover.userInteractionEnabled = YES;
+    
+    [cover addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapOver:)]];
+    [[UIApplication sharedApplication].keyWindow addSubview:cover];
+    UIImageView *displayImgView = [[UIImageView alloc]init];
+    displayImgView.image = self.selectedImg.image;
+    displayImgView.contentMode = UIViewContentModeScaleAspectFill;
+    displayImgView.frame = self.selectedImg.frame;
+    [cover addSubview:displayImgView];
+    [cover convertRect:displayImgView.frame fromView:self.selectedImg];
+    displayImgView.y += [[self.selectedImg superview] superview].y;
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        displayImgView.frame = CGRectMake(0, cover.height*0.2, cover.width, cover.height*0.6);
+    }];
+    
+    
+    
+    
+    
+    
+}
+-(void)tapOver:(UITapGestureRecognizer *)tapRecognizer{
+    
+    UIView *cover = tapRecognizer.view;
+    UIImageView *temp = [cover.subviews lastObject];
+
+    [UIView animateWithDuration:0.25 animations:^{
+        temp.frame = self.selectedImg.frame;
+        temp.y += [[self.selectedImg superview] superview].y;
+    } completion:^(BOOL finished) {
+        [tapRecognizer.view removeFromSuperview];
+        self.selectedImg = nil;
+    }];
+    
 }
 /*
 // Override to support conditional editing of the table view.

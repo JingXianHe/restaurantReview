@@ -7,10 +7,11 @@
 //
 
 #import "DetailViewController.h"
+#import "MapViewController.h"
 
 
 @interface DetailViewController ()
-
+@property(strong, nonatomic)MapViewController *mapViewController;
 @end
 
 @implementation DetailViewController
@@ -38,6 +39,38 @@
 
 
 - (IBAction)leftNav {
+    
     [self.view removeFromSuperview];
-     }
+    
+}
+
+- (IBAction)rightNav {
+    
+    MapViewController *map = [[MapViewController alloc]init];
+    self.mapViewController = map;
+    
+    map.title = self.TitleBar.title;
+    map.latitude =self.latitude;
+    map.longitude = self.longitude;
+    
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    map.view.frame = CGRectMake(width, 0, width, height);
+    UIView *view = [[UIView alloc]init];
+    view.frame = CGRectMake(0, 0, width, height);
+    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:map.view];
+    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:view];
+    
+    __weak UIView *bgView = view;
+    __weak MapViewController *bMap = map;
+    [UIView animateWithDuration:0.75 animations:^{
+        map.view.frame = CGRectMake(0, 0, width, height);
+    } completion:^(BOOL finished) {
+        [bgView removeFromSuperview];
+        [bMap setGeolocation];
+    }];
+
+    
+    
+}
 @end

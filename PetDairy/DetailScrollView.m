@@ -38,7 +38,6 @@
             DeTailImgView *btn = (DeTailImgView *)item;
             int lIndex = index % itemNum;
             int cIndex = index / itemNum;
-            NSLog(@"%d -- %d", lIndex, cIndex);
             btn.frame = CGRectMake(lIndex*(btnWidth+padding)+padding, cIndex*(padding+btnWidth), btnWidth, btnWidth);
             
             index++;

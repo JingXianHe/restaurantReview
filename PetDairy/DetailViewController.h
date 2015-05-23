@@ -11,6 +11,7 @@
 @interface DetailViewController : UIViewController
 
 - (IBAction)leftNav;
+- (IBAction)rightNav;
 
 @property (weak, nonatomic) IBOutlet UIImageView *profileImg;
 @property (weak, nonatomic) IBOutlet UILabel *leftCommentLabel;
@@ -21,5 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *RightNavBtn;
 @property (weak, nonatomic) IBOutlet UINavigationItem *TitleBar;
 @property (weak, nonatomic) IBOutlet UIButton *geoIndicator;
+@property(nonatomic, assign)CGFloat latitude;
+@property(nonatomic, assign)CGFloat longitude;
 
 @end

@@ -14,6 +14,9 @@
 #import "LeftMenu.h"
 #import "RightMenuController.h"
 #import <Parse/Parse.h>
+#import "UIViewController+RefreshData.h"
+#import "NavIntestedPeoTVC.h"
+#import "NavShareComTVC.h"
 
 #define HMNavShowAnimDuration 0.25
 #define HMCoverTag 100
@@ -34,12 +37,19 @@
 @property(nonatomic, assign)int LeftMenuH;
 @property(nonatomic, assign)int LeftMenuY;
 @property(nonatomic, assign)int RightMenuX;
-@property (nonatomic, strong) HTableViewController *rightMenuVc;
+@property (nonatomic, strong) UIViewController *rightMenuVc;
 @property (nonatomic, weak) LeftMenu *leftMenu;
+@property(nonatomic, strong)NSMutableArray *rightControllers;
 
 @end
 
 @implementation MainController
+-(NSMutableArray *)rightControllers{
+    if (!_rightControllers) {
+        _rightControllers = [[NSMutableArray alloc]init];
+    }
+    return _rightControllers;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -68,6 +78,7 @@
     // 1.创建子控制器
     [self setupAllChildVcs];
     
+    
     // 2.添加左菜单
     [self setupLeftMenu];
     
@@ -79,6 +90,14 @@
     // 1.新闻控制器
     RightMenuController *profile = [[RightMenuController alloc] init];
     [self setupVc:profile title:@"新闻"];
+    HTableViewController *hTableCon = [[HTableViewController alloc]init];
+    [self storeRightController:hTableCon];
+    self.rightMenuVc = self.rightControllers[0];
+    //2.frineds VC
+    NavIntestedPeoTVC *friVc = [[NavIntestedPeoTVC alloc]init];
+    [self setupVc:friVc title:@"关注"];
+    NavShareComTVC *rigFriVc = [[NavShareComTVC alloc]init];
+    [self storeRightController:rigFriVc];
 }
 
 /**
@@ -107,9 +126,18 @@
     // 4.包装一个导航控制器
     ProfileController *nav = [[ProfileController alloc] initWithRootViewController:vc];
     nav.navigationBar.backgroundColor = [UIColor whiteColor];
-    // 让newsNav成为self（MainViewController）的子控制器，能保证：self在，newsNav就在
-    // 如果两个控制器互为父子关系，那么它们的view也应该互为父子关系
+    //wrap the second controller
+    
     [self addChildViewController:nav];
+}
+-(void)storeRightController:(UIViewController *)rightPanel{
+    
+    [self.rightControllers addObject:rightPanel];
+}
+-(void)willDisplayRightController{
+   
+    
+    
 }
 
 #pragma mark - 监听导航栏按钮点击
@@ -214,18 +242,20 @@
  */
 - (void)setupRightMenu
 {
-    HTableViewController *rightMenuVc = [[HTableViewController alloc] init];
-    rightMenuVc.view.x = self.RightMenuX;
-    rightMenuVc.view.width = self.view.width - self.RightMenuX;
-    rightMenuVc.view.height = self.view.height;
-    rightMenuVc.xOffet = self.RightMenuX;
-    [self.view insertSubview:rightMenuVc.view atIndex:1];
-    self.rightMenuVc = rightMenuVc;
+    UIViewController *rightVc = self.rightMenuVc;
+    
+    rightVc.view.x = self.RightMenuX;
+    rightVc.view.width = self.view.width - self.RightMenuX;
+    rightVc.view.height = self.view.height;
+    //rightMenuVc.xOffet = self.RightMenuX;
+    [self.view insertSubview:rightVc.view atIndex:1];
+    
 }
 
 #pragma mark - HMLeftMenuDelegate
 - (void)leftMenu:(LeftMenu *)menu didSelectedButtonFromIndex:(int)fromIndex toIndex:(int)toIndex
 {
+    
     // 0.移除旧控制器的view
     UINavigationController *oldNav = self.childViewControllers[fromIndex];
     [oldNav.view removeFromSuperview];
@@ -233,6 +263,10 @@
     // 1.显示新控制器的view
     UINavigationController *newNav = self.childViewControllers[toIndex];
     [self.view addSubview:newNav.view];
+    //1.1 set up right tableView controller
+    self.rightMenuVc = self.rightControllers[toIndex];
+    [self setupRightMenu];
+    
     
     // 2.设置新控制的transform跟旧控制器一样
     newNav.view.transform = oldNav.view.transform;
