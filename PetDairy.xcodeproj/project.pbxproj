@@ -70,6 +70,8 @@
 		B19FB06E1AF653C9004B0E34 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B19FB0691AF653C9004B0E34 /* UIBarButtonItem+Extension.m */; };
 		B19FB06F1AF653C9004B0E34 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B19FB06B1AF653C9004B0E34 /* UIImage+Extension.m */; };
 		B19FB0701AF653C9004B0E34 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B19FB06D1AF653C9004B0E34 /* UIView+Extension.m */; };
+		B1CFE1291B14B96F002DB2B0 /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CFE1271B14B96F002DB2B0 /* RegisterVC.m */; };
+		B1CFE12A1B14B96F002DB2B0 /* RegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1CFE1281B14B96F002DB2B0 /* RegisterVC.xib */; };
 		B1D8C5C11B04546B002DF360 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D8C5C01B04546B002DF360 /* UIView+AutoLayout.m */; };
 /* End PBXBuildFile section */
 
@@ -181,6 +183,9 @@
 		B19FB06C1AF653C9004B0E34 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		B19FB06D1AF653C9004B0E34 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		B19FB0711AF65561004B0E34 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		B1CFE1261B14B96F002DB2B0 /* RegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterVC.h; sourceTree = "<group>"; };
+		B1CFE1271B14B96F002DB2B0 /* RegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterVC.m; sourceTree = "<group>"; };
+		B1CFE1281B14B96F002DB2B0 /* RegisterVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterVC.xib; sourceTree = "<group>"; };
 		B1D8C5BF1B04546B002DF360 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		B1D8C5C01B04546B002DF360 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -602,8 +607,9 @@
 				B19FB0671AF653B0004B0E34 /* lib */,
 				B19FB0541AF61AC6004B0E34 /* HomePanel */,
 				B17AC26B1B103B9E0070A381 /* FriendsPanel */,
-				B19FB02E1AF61A97004B0E34 /* AppDelegate.m */,
+				B1CFE1251B14B8B1002DB2B0 /* RegisterPanel */,
 				B19FB02D1AF61A97004B0E34 /* AppDelegate.h */,
+				B19FB02E1AF61A97004B0E34 /* AppDelegate.m */,
 			);
 			name = Class;
 			sourceTree = "<group>";
@@ -661,6 +667,16 @@
 				B16963271B10A5E2008F75E2 /* UIViewController+RefreshData.m */,
 			);
 			name = lib;
+			sourceTree = "<group>";
+		};
+		B1CFE1251B14B8B1002DB2B0 /* RegisterPanel */ = {
+			isa = PBXGroup;
+			children = (
+				B1CFE1261B14B96F002DB2B0 /* RegisterVC.h */,
+				B1CFE1271B14B96F002DB2B0 /* RegisterVC.m */,
+				B1CFE1281B14B96F002DB2B0 /* RegisterVC.xib */,
+			);
+			name = RegisterPanel;
 			sourceTree = "<group>";
 		};
 		B1D8C5BE1B04545B002DF360 /* Category */ = {
@@ -757,6 +773,7 @@
 				B164D1631B0076C500CF7A5E /* RightMenuController.xib in Resources */,
 				B164CA011B08666500D9282A /* DetailViewController.xib in Resources */,
 				B16EF2721B003BC200D4F05E /* afriCan-groundnut-stew.jpg in Resources */,
+				B1CFE12A1B14B96F002DB2B0 /* RegisterVC.xib in Resources */,
 				B17481EF1B135D6300FC700F /* cellForFriends.xib in Resources */,
 				B17F854C1B0EB66700211BFD /* MapViewController.xib in Resources */,
 				B19FB0561AF64996004B0E34 /* sidebar_bg@2x.jpg in Resources */,
@@ -791,6 +808,7 @@
 				B17080181B0B490700636A41 /* HScrollView.m in Sources */,
 				B164C9F31B08028600D9282A /* HTableViewCell.m in Sources */,
 				B19FB0701AF653C9004B0E34 /* UIView+Extension.m in Sources */,
+				B1CFE1291B14B96F002DB2B0 /* RegisterVC.m in Sources */,
 				B19FB0591AF64B16004B0E34 /* MainController.m in Sources */,
 				B164CA071B086A6B00D9282A /* cellWithPics.m in Sources */,
 				B16189821AFC5FB400FE6CF4 /* PostViewController.m in Sources */,

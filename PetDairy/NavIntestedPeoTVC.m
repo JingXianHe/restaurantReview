@@ -7,8 +7,9 @@
 //
 
 #import "NavIntestedPeoTVC.h"
+#import "cellForFriends.h"
 
-@interface NavIntestedPeoTVC ()
+@interface NavIntestedPeoTVC ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
 
@@ -16,6 +17,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.tableView.dataSource = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -34,24 +38,33 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return 10;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
     
+    cellForFriends *cell = [tableView dequeueReusableCellWithIdentifier:@"cellForFriends"];
+    if (cell == nil) {
+        // 从xib中加载cell
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"cellForFriends" owner:nil options:nil] lastObject];
+    }
+    cell.nameText.text = @"aa";
+    cell.InterestedNum.text = @"4";
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+
     return cell;
+    
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

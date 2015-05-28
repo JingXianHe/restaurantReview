@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
 @interface TitleButton : UIButton
 @property(nonatomic, copy)NSString *title;
+@property(nonatomic, strong)PFUser *currentUser;
 @end
