@@ -13,6 +13,7 @@
 #import "PhotoesView.h"
 #import "commentView.h"
 #import "UIView+AutoLayout.h"
+#import <Parse/Parse.h>
 
 
 
@@ -33,6 +34,8 @@
 @property(nonatomic, strong)NSNumber *tasteS;
 @property(nonatomic, strong)NSNumber *serviceS;
 @property(nonatomic, strong)NSNumber *suitableS;
+//decide public or private
+@property (weak, nonatomic) IBOutlet UISwitch *publicSwitch;
 
 //cllocation manager
 @property (strong, nonatomic)CLLocationManager *mgr;
@@ -82,6 +85,7 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"restarauntBg-1"]];
     [self didShow];
     self.titleTinkBtn.layer.cornerRadius = 15;
+    
 
 }
 
@@ -252,6 +256,7 @@
 }
 
 - (IBAction)sendMsg {
+    
     if (self.titleTextView.text == nil) {
         return;
     }
@@ -308,7 +313,30 @@
             
             
             NSString *insert = [NSString stringWithFormat:@"INSERT INTO comments_test9(title, content, servicecmt, tastecmt, satisfycmt, latitude, longitude, isimage, datevalue) VALUES ('%@', '%@', %d, %d, %d, %f, %f, %d, '%@')",titleText,contentText, serviceP, tasteP, satisfyP, self.longitude, self.latitude, index, dateT];
+            
+            NSString *latestObId;
+            //save data to parse
+            if (![self.publicSwitch isOn]) {
+                PFObject *post = [[PFObject alloc]initWithClassName:@"posts"];
+                post[@"usersObjectId"] = [[PFUser currentUser] objectId];
+                post[@"title"] = titleText;
+                post[@"content"] = contentText;
+                post[@"service"]= @(serviceP);
+                post[@"taste"]= @(tasteP);
+                post[@"comfortable"]= @(satisfyP);
+                post[@"location"] = [PFGeoPoint geoPointWithLatitude:self.latitude longitude:self.longitude];
+                post[@"postDate"] = dateT;
+                __block NSString *latestO = latestObId;
+                [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (succeeded) {
+                        
+                        latestO = [[post objectId]copy];
+ 
+                    }
+                }];
+            }
   
+            NSLog(@"%@", latestObId);
             char *error = Nil;
             result = sqlite3_exec(lib, insert.UTF8String, Nil, Nil, &error);
             if (result == SQLITE_OK) {
@@ -375,7 +403,8 @@
             }
         }
         else if(result == SQLITE_ERROR){
-            NSLog(@"wrong");
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"警告" message:@"不能打开本地数据库" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
         }
     }
 }

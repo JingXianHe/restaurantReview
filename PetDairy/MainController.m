@@ -43,7 +43,8 @@
 @property (nonatomic, weak) LeftMenu *leftMenu;
 @property(nonatomic, strong)NSMutableArray *rightControllers;
 @property(nonatomic, strong)PFUser *currentUser;
-
+//title btn
+@property(strong, nonatomic)TitleButton *titleBtn;
 @end
 
 @implementation MainController
@@ -54,6 +55,16 @@
     return _rightControllers;
 }
 
+-(TitleButton *)titleBtn{
+    
+    TitleButton *titleView = [[TitleButton alloc] init];
+    _titleBtn = titleView;
+    if (self.currentUser) {
+        titleView.title = self.currentUser.username;
+    }
+    [titleView addTarget:self action:@selector(titleClick) forControlEvents:UIControlEventTouchUpInside];
+    return _titleBtn;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIVisualEffect *blurEffect;
@@ -96,18 +107,18 @@
 -(void)setupAllChildVcs{
     // 1.新闻控制器
     RightMenuController *profile = [[RightMenuController alloc] init];
-    [self setupVc:profile title:@"登录"];
+    [self setupVc:profile];
     HTableViewController *hTableCon = [[HTableViewController alloc]init];
     [self storeRightController:hTableCon];
     self.rightMenuVc = self.rightControllers[0];
     //2.frineds VC
     NavIntestedPeoTVC *friVc = [[NavIntestedPeoTVC alloc]init];
-    [self setupVc:friVc title:@"登录"];
+    [self setupVc:friVc];
     NavShareComTVC *rigFriVc = [[NavShareComTVC alloc]init];
     [self storeRightController:rigFriVc];
     //3. register VC
     RegisterVC *registerVC = [[RegisterVC alloc]init];
-    [self setupVc:registerVC title:@"登录"];
+    [self setupVc:registerVC];
     NavShareComTVC *rigFriVc1 = [[NavShareComTVC alloc]init];
     [self storeRightController:rigFriVc1];
 }
@@ -118,21 +129,15 @@
  *  @param vc      需要初始化的控制器
  *  @param title   控制器的标题
  */
-- (void)setupVc:(UIViewController *)vc title:(NSString *)title
+- (void)setupVc:(UIViewController *)vc
 {
     // 1.设置背景色
     //vc.view.backgroundColor = [UIColor whiteColor];
     
     // 2.设置标题
-    TitleButton *titleView = [[TitleButton alloc] init];
-    if (self.currentUser) {
-        titleView.title = self.currentUser.username;
-    }else{
-        titleView.title = title;
-    }
-    
-    vc.navigationItem.titleView = titleView;
-    [titleView addTarget:self action:@selector(titleClick) forControlEvents:UIControlEventTouchUpInside];
+
+    vc.navigationItem.titleView = self.titleBtn;
+
     
     
     
@@ -159,7 +164,7 @@
         return;
     }else{
         
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"登录" message:@"请输入email地址和密码，如果新用户请点击注册按钮" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",@"注册", nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"登录" message:@"请输入用户名字和密码，如果新用户请点击注册按钮" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",@"注册", nil];
         alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
         [alert show];
     }
@@ -169,8 +174,19 @@
 #pragma uialertViewDelegat
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1) {
-        NSString *email = [alertView textFieldAtIndex:0].text;
+        NSString *userName = [alertView textFieldAtIndex:0].text;
         NSString *password = [alertView textFieldAtIndex:1].text;
+        [PFUser logInWithUsernameInBackground:userName password:password block:^(PFUser *user, NSError *error) {
+            if (!error) {
+                [self checkUserStatus];
+                
+            }else{
+                NSString *errorMsg = error.userInfo[@"error"];
+                UIAlertView *view = [[UIAlertView alloc]initWithTitle:@"警告" message:errorMsg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [view show];
+                
+            }
+        }];
     }
 }
 
@@ -180,6 +196,7 @@
     PFUser *currentUser =  [PFUser currentUser];
     if (currentUser) {
         self.currentUser = currentUser;
+        self.titleBtn.title = currentUser.username;
     }
     
 }
