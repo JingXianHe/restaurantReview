@@ -20,9 +20,6 @@
 @interface RightMenuController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, ScrollViewInnerBtnDelegate, CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
-@property (weak, nonatomic) IBOutlet UILabel *masterName;
-@property (weak, nonatomic) IBOutlet UILabel *petName;
-@property (weak, nonatomic) IBOutlet UIButton *postButton;
 @property (weak, nonatomic) IBOutlet UIButton *deleteBtn;
 @property(strong,nonatomic)PostViewController *postViewController;
 @property (weak, nonatomic) IBOutlet UIView *commentServiceView;
@@ -34,6 +31,8 @@
 @property(nonatomic, strong)NSNumber *tasteS;
 @property(nonatomic, strong)NSNumber *serviceS;
 @property(nonatomic, strong)NSNumber *suitableS;
+//photoes for parse.com
+@property(nonatomic,strong)NSMutableArray *photoes;
 //decide public or private
 @property (weak, nonatomic) IBOutlet UISwitch *publicSwitch;
 
@@ -53,18 +52,42 @@
 - (IBAction)uploadGeo;
 - (IBAction)inputTitle;
 
+- (IBAction)switchPublic:(id)sender;
 
 @property (weak, nonatomic) IBOutlet PhotoesView *photoCollections;
+@property (strong, nonatomic)NSMutableArray *pfiles;
 
 
 @end
 
 @implementation RightMenuController
 
+-(NSMutableArray *)pfiles{
+    if (_pfiles == nil) {
+        _pfiles = [[NSMutableArray alloc]init];
+    }
+    return _pfiles;
+}
+
+-(NSMutableArray *)photoes{
+    if (_photoes == nil) {
+        _photoes = [[NSMutableArray alloc]init];
+    }
+    return _photoes;
+}
+
+-(NSString *)content{
+    if (_content == nil) {
+        _content = @"";
+    }
+    return _content;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.postButton.layer.cornerRadius = 23;
+    self.postContentBtn.layer.cornerRadius = 23;
     commentView *commentServiceView = [[[NSBundle mainBundle] loadNibNamed:@"newCommentView" owner:nil options:nil] lastObject];
     
     [self.commentServiceView addSubview:commentServiceView];
@@ -134,9 +157,7 @@
             self.postViewController.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:self.postViewController.view];
     self.postViewController.rightMenuController = self;
-    if (![self.postContentBtn.titleLabel.text isEqualToString:@"想写点什么...."]) {
-        self.postViewController.textContent.text = self.postContentBtn.titleLabel.text;
-    }
+    self.postViewController.textContent.text = self.content;
 
 }
 
@@ -193,6 +214,16 @@
     [self.titleTinkBtn setTitle:@"结束输入:" forState:UIControlStateNormal];
     self.titleTinkBtn.alpha = 1;
     self.titleTinkBtn.backgroundColor = [UIColor lightGrayColor];
+}
+
+- (IBAction)switchPublic:(id)sender {
+    if (![PFUser currentUser]) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"警告" message:@"请登录否则你的评论不能公开" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        UISwitch *switch1 = (UISwitch *)sender;
+        [switch1 setOn:YES animated:YES];
+        
+    }
 }
 
 //geolocation upload
@@ -268,7 +299,9 @@
     commentView *satisfyS = (commentView *)[self.commentTrafficView.subviews lastObject];
     int satisfyP = satisfyS.scores.intValue;
     NSMutableArray *picsCollection = [[NSMutableArray alloc]init];
-    if (self.innerViews.count != 0) {
+    if (self.innerViews.count > 0) {
+        //vacuum self.pfiles every time before use because it hard to know whenever the images finish uploading
+        [self.pfiles removeAllObjects];
         //set up date data
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
         [formatter setDateFormat:@"yyyy-MM-dd-HH-mm-ss"];
@@ -277,9 +310,12 @@
         NSString *doc = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
         int loop = 0;
         for (ScrollViewInnerBtn *item in self.innerViews) {
-            NSString *file = [NSString stringWithFormat:@"%@%d.png",dateT,loop];
+            NSString *file = [NSString stringWithFormat:@"%@%d.jpg",dateT,loop];
             NSString *fileName = [doc stringByAppendingPathComponent:file];
-            NSData *imgData = UIImagePNGRepresentation(item.InnerPhoto.image);
+            NSData *imgData = UIImageJPEGRepresentation(item.InnerPhoto.image, 0.4);
+            
+            [self.photoes addObject:imgData];
+            
             [imgData writeToFile:fileName atomically:YES];
             [picsCollection addObject:file];
             loop++;
@@ -298,13 +334,13 @@
         result = sqlite3_exec(lib, sql, Nil, Nil, &error);
         if (result == SQLITE_OK) {
             int index;
-            if (self.innerViews.count == 0) {
-                index = 0;
-            }else{
+            if (self.innerViews.count > 0) {
                 index = 1;
+            }else{
+                index = 0;
             }
             NSString *titleText = [self.titleTextView.text stringByReplacingOccurrencesOfString:@"'" withString:@"@"];
-            NSString *contentText = [self.postContentBtn.titleLabel.text stringByReplacingOccurrencesOfString:@"'" withString:@"@"];
+            NSString *contentText = [self.content stringByReplacingOccurrencesOfString:@"'" withString:@"@"];
             
             //set up date data
             NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
@@ -314,7 +350,7 @@
             
             NSString *insert = [NSString stringWithFormat:@"INSERT INTO comments_test9(title, content, servicecmt, tastecmt, satisfycmt, latitude, longitude, isimage, datevalue) VALUES ('%@', '%@', %d, %d, %d, %f, %f, %d, '%@')",titleText,contentText, serviceP, tasteP, satisfyP, self.longitude, self.latitude, index, dateT];
             
-            NSString *latestObId;
+            
             //save data to parse
             if (![self.publicSwitch isOn]) {
                 PFObject *post = [[PFObject alloc]initWithClassName:@"posts"];
@@ -326,17 +362,38 @@
                 post[@"comfortable"]= @(satisfyP);
                 post[@"location"] = [PFGeoPoint geoPointWithLatitude:self.latitude longitude:self.longitude];
                 post[@"postDate"] = dateT;
-                __block NSString *latestO = latestObId;
-                [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                //PFObject *imgModal = [[PFObject alloc]initWithClassName:@"imgsForPost"];
+                //__weak PFObject *weakPost = post;
+                if (self.innerViews.count > 0) {
+                    
+                    for (int i = 0; i< self.photoes.count; i++) {
+                        NSData *imgData = self.photoes[i];
+                        NSString *name = picsCollection[i];
+                        PFFile *file = [PFFile fileWithName:name data:imgData];
+                        [self.pfiles addObject:file];
+
+                    }
+                }
+
+                __weak typeof(self) weakSelf = self;
+                
+                [post saveEventually:^(BOOL succeeded, NSError *error) {
                     if (succeeded) {
+                        for (int i =0; i<weakSelf.pfiles.count; i++) {
+                            PFObject *img = [[PFObject alloc]initWithClassName:@"imgsForPost"];
+                            img[@"postObId"] = post.objectId;
+                            img[@"image"] = weakSelf.pfiles[i];
+                            [img saveInBackground];
+                            
+                        }
                         
-                        latestO = [[post objectId]copy];
- 
                     }
                 }];
+                
+                
             }
   
-            NSLog(@"%@", latestObId);
+            
             char *error = Nil;
             result = sqlite3_exec(lib, insert.UTF8String, Nil, Nil, &error);
             if (result == SQLITE_OK) {
@@ -363,7 +420,11 @@
                     satisfyS.secondBtn.selected = false;
                     satisfyS.thirdBtn.selected = false;
                     satisfyS.scores = 0;
-                    if (self.innerViews.count != 0) {
+                    self.postViewController.textContent.text = @"";
+                    self.content = nil;
+                    
+                    
+                    if (self.innerViews.count > 0) {
                          insert = @"INSERT INTO comments_photo_test5(comment_id, image) VALUES";
                         
                         for (int i =0; i < picsCollection.count; i++) {
@@ -387,6 +448,7 @@
                                 }
                                 // 2.delete all pics in innerview
                                 [self.innerViews removeAllObjects];
+                                [self.photoes removeAllObjects];
 
                                 [self.deleteBtn setTitle:@"删除图片" forState:UIControlStateNormal];
                                 self.deleteBtn.enabled = NO;

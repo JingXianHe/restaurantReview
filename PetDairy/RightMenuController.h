@@ -12,6 +12,7 @@
 
 @interface RightMenuController : UIViewController
 @property (weak, nonatomic) IBOutlet UIButton *postContentBtn;
+@property(copy, nonatomic)NSString *content;
 @property(nonatomic, assign)CGFloat xOffet;
 /**
  *  右边菜单全部显示出来

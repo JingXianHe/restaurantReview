@@ -8,12 +8,30 @@
 
 #import "NavIntestedPeoTVC.h"
 #import "cellForFriends.h"
+#import <Parse/Parse.h>
+#import "usersData.h"
+#import "Followers.h"
 
 @interface NavIntestedPeoTVC ()<UITableViewDataSource,UITableViewDelegate>
-
+@property(strong, nonatomic)NSMutableArray *users;
+@property(strong, nonatomic)NSMutableArray *followers;
 @end
 
 @implementation NavIntestedPeoTVC
+
+-(NSMutableArray *)users{
+    if (_users == nil) {
+        _users = [[NSMutableArray alloc]init];
+    }
+    return _users;
+}
+
+-(NSMutableArray *)followers{
+    if (_followers == nil) {
+        _followers = [[NSMutableArray alloc]init];
+    }
+    return _followers;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -21,17 +39,68 @@
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    PFQuery *query = [PFUser query];
+    
+    __weak typeof(self) weakSelf = self;
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            
+            for (PFObject *pfuser in objects) {
+                usersData *user = [[usersData alloc]init];
+                user.username = pfuser[@"username"];
+                user.email = pfuser[@"email"];
+                user.gender = (int)pfuser[@"gender"];
+                user.createdDate = pfuser[@"createdAt"];
+                user.objectId = pfuser[@"objectId"];
+                NSData *imgData = pfuser[@"profileImg"];
+                if (imgData) {
+                    UIImage *img = [[UIImage alloc]initWithData:imgData];
+                    user.profileImg = img;
+                }
+                
+                [weakSelf.users addObject:user];
+                
+
+            }
+            
+            dispatch_queue_t q = dispatch_get_main_queue();
+            dispatch_async(q, ^{
+                [self.tableView reloadData];
+            });
+  
+        }
+        
+    }];
+//    PFQuery *queryF = [[PFQuery alloc]initWithClassName:@"followers"];
+//
+//    [queryF findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        if (!error) {
+//            for (PFObject *follower in objects) {
+//                Followers *followerData = [[Followers alloc]init];
+//                followerData.follower = follower[@"follower"];
+//                followerData.following = follower[@"following"];
+//                [self.followers addObject:followerData];
+//            }
+//            dispatch_queue_t q = dispatch_get_main_queue();
+//            dispatch_sync(q, ^{
+//                [self.tableView reloadData];
+//            });
+//        }
+//    }];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 #pragma mark - Table view data source
 
@@ -44,25 +113,28 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 10;
+    return self.users.count;
 }
+
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
+    usersData *data = self.users[indexPath.row];
     cellForFriends *cell = [tableView dequeueReusableCellWithIdentifier:@"cellForFriends"];
     if (cell == nil) {
         // 从xib中加载cell
         cell = [[[NSBundle mainBundle] loadNibNamed:@"cellForFriends" owner:nil options:nil] lastObject];
     }
-    cell.nameText.text = @"aa";
-    cell.InterestedNum.text = @"4";
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.nameText.text = data.username;
     
 
     return cell;
     
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 40;
 }
 
 

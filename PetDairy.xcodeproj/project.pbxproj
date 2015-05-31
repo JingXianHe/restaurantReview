@@ -27,10 +27,12 @@
 		B164D1681B007DF000CF7A5E /* scrollViewInnerButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = B164D1671B007DF000CF7A5E /* scrollViewInnerButton.xib */; };
 		B164D16F1B007F5200CF7A5E /* ProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = B164D16E1B007F5200CF7A5E /* ProfileController.m */; };
 		B164D1721B00813D00CF7A5E /* ScrollViewInnerBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = B164D1711B00813D00CF7A5E /* ScrollViewInnerBtn.m */; };
+		B16876681B1A88B5001A7413 /* Followers.m in Sources */ = {isa = PBXBuildFile; fileRef = B16876671B1A88B5001A7413 /* Followers.m */; };
 		B168FF881B0C65A800D2BC9A /* UIImage+OIInCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B168FF871B0C65A800D2BC9A /* UIImage+OIInCache.m */; };
 		B16963281B10A5E2008F75E2 /* UIViewController+RefreshData.m in Sources */ = {isa = PBXBuildFile; fileRef = B16963271B10A5E2008F75E2 /* UIViewController+RefreshData.m */; };
 		B169632C1B10B6DF008F75E2 /* NavIntestedPeoTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B169632B1B10B6DF008F75E2 /* NavIntestedPeoTVC.m */; };
 		B16963331B10B75D008F75E2 /* NavShareComTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B16963321B10B75D008F75E2 /* NavShareComTVC.m */; };
+		B16B86CA1B189E4900E28C2A /* usersData.m in Sources */ = {isa = PBXBuildFile; fileRef = B16B86C91B189E4900E28C2A /* usersData.m */; };
 		B16EF2701B00347400D4F05E /* pickc540c.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B16EF26F1B00347400D4F05E /* pickc540c.jpg */; };
 		B16EF2721B003BC200D4F05E /* afriCan-groundnut-stew.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B16EF2711B003BC100D4F05E /* afriCan-groundnut-stew.jpg */; };
 		B16EF2741B005EA200D4F05E /* bush-food-brown-lrg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B16EF2731B005EA200D4F05E /* bush-food-brown-lrg.jpg */; };
@@ -119,6 +121,8 @@
 		B164D16E1B007F5200CF7A5E /* ProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileController.m; sourceTree = "<group>"; };
 		B164D1701B00813D00CF7A5E /* ScrollViewInnerBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewInnerBtn.h; sourceTree = "<group>"; };
 		B164D1711B00813D00CF7A5E /* ScrollViewInnerBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewInnerBtn.m; sourceTree = "<group>"; };
+		B16876661B1A88B5001A7413 /* Followers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Followers.h; sourceTree = "<group>"; };
+		B16876671B1A88B5001A7413 /* Followers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Followers.m; sourceTree = "<group>"; };
 		B168FF861B0C65A800D2BC9A /* UIImage+OIInCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OIInCache.h"; sourceTree = "<group>"; };
 		B168FF871B0C65A800D2BC9A /* UIImage+OIInCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+OIInCache.m"; sourceTree = "<group>"; };
 		B16963261B10A5E2008F75E2 /* UIViewController+RefreshData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RefreshData.h"; sourceTree = "<group>"; };
@@ -127,6 +131,8 @@
 		B169632B1B10B6DF008F75E2 /* NavIntestedPeoTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavIntestedPeoTVC.m; sourceTree = "<group>"; };
 		B16963311B10B75D008F75E2 /* NavShareComTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavShareComTVC.h; sourceTree = "<group>"; };
 		B16963321B10B75D008F75E2 /* NavShareComTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavShareComTVC.m; sourceTree = "<group>"; };
+		B16B86C81B189E4900E28C2A /* usersData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = usersData.h; sourceTree = "<group>"; };
+		B16B86C91B189E4900E28C2A /* usersData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = usersData.m; sourceTree = "<group>"; };
 		B16EF26F1B00347400D4F05E /* pickc540c.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pickc540c.jpg; sourceTree = "<group>"; };
 		B16EF2711B003BC100D4F05E /* afriCan-groundnut-stew.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "afriCan-groundnut-stew.jpg"; sourceTree = "<group>"; };
 		B16EF2731B005EA200D4F05E /* bush-food-brown-lrg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bush-food-brown-lrg.jpg"; sourceTree = "<group>"; };
@@ -395,6 +401,15 @@
 			name = ScrollviewInnerButton;
 			sourceTree = "<group>";
 		};
+		B16876651B1A8899001A7413 /* followers */ = {
+			isa = PBXGroup;
+			children = (
+				B16876661B1A88B5001A7413 /* Followers.h */,
+				B16876671B1A88B5001A7413 /* Followers.m */,
+			);
+			name = followers;
+			sourceTree = "<group>";
+		};
 		B16963291B10B68C008F75E2 /* NavIntrestedPeoController */ = {
 			isa = PBXGroup;
 			children = (
@@ -416,6 +431,8 @@
 		B169632E1B10B6F8008F75E2 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				B16876651B1A8899001A7413 /* followers */,
+				B16B86C71B189E2900E28C2A /* usersData */,
 			);
 			name = Modal;
 			sourceTree = "<group>";
@@ -435,6 +452,15 @@
 				B16963321B10B75D008F75E2 /* NavShareComTVC.m */,
 			);
 			name = NavShareComTVC;
+			sourceTree = "<group>";
+		};
+		B16B86C71B189E2900E28C2A /* usersData */ = {
+			isa = PBXGroup;
+			children = (
+				B16B86C81B189E4900E28C2A /* usersData.h */,
+				B16B86C91B189E4900E28C2A /* usersData.m */,
+			);
+			name = usersData;
 			sourceTree = "<group>";
 		};
 		B17080151B0B48CE00636A41 /* scrollView */ = {
@@ -813,6 +839,7 @@
 				B164CA071B086A6B00D9282A /* cellWithPics.m in Sources */,
 				B16189821AFC5FB400FE6CF4 /* PostViewController.m in Sources */,
 				B19FB0651AF6519C004B0E34 /* TitleButton.m in Sources */,
+				B16B86CA1B189E4900E28C2A /* usersData.m in Sources */,
 				B162CB381B0E1E1400DB6205 /* DetailScrollView.m in Sources */,
 				B19FB02F1AF61A97004B0E34 /* AppDelegate.m in Sources */,
 				B19FB06E1AF653C9004B0E34 /* UIBarButtonItem+Extension.m in Sources */,
@@ -824,6 +851,7 @@
 				B18DF9B11AF891F900D3071F /* LeftMenu.m in Sources */,
 				B19FB06F1AF653C9004B0E34 /* UIImage+Extension.m in Sources */,
 				B10679491B0DBCC70039AC33 /* HPopOverBtn.m in Sources */,
+				B16876681B1A88B5001A7413 /* Followers.m in Sources */,
 				B19FB0611AF64F50004B0E34 /* HTableViewController.m in Sources */,
 				B17F85521B0F677700211BFD /* MyAnnotation.m in Sources */,
 				B1D8C5C11B04546B002DF360 /* UIView+AutoLayout.m in Sources */,

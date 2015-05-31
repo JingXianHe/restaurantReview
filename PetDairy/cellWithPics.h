@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *serviceS;
 @property (weak, nonatomic) IBOutlet UILabel *satisfyS;
 @property (weak, nonatomic) IBOutlet UIImageView *mapIndicator;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollNav;
-@property (weak, nonatomic) IBOutlet UIImageView *testImage;
+
+@property (weak, nonatomic) IBOutlet UITextView *content;
+
 @end

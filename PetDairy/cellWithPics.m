@@ -7,12 +7,14 @@
 //
 
 #import "cellWithPics.h"
-#import "HScrollView.h"
+
 
 @implementation cellWithPics
 
 - (void)awakeFromNib {
     // Initialization code
+    self.content.editable = NO;
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

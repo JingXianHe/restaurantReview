@@ -39,9 +39,22 @@
 
 
 - (IBAction)leftNav {
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
     
-    [self.view removeFromSuperview];
+    UIView *view = [[UIView alloc]init];
     
+    
+    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:view];
+    
+    __weak typeof(self) weakSelf = self;
+    [UIView animateWithDuration:0.75 animations:^{
+        weakSelf.view.frame = CGRectMake(0, height, width, height);
+    } completion:^(BOOL finished) {
+        [view removeFromSuperview];
+        [weakSelf.view removeFromSuperview];
+    }];
+
 }
 
 - (IBAction)rightNav {

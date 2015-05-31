@@ -22,9 +22,9 @@
         
         CGFloat alpha = 0.2;
         
-        [self setupBtnWithIcon:@"sidebar_nav_news" title:@"新闻" bgColor:HMColorRGBA(202, 68, 73, alpha)];
-        [self setupBtnWithIcon:@"sidebar_nav_reading" title:@"订阅" bgColor:HMColorRGBA(190, 111, 69, alpha)];
-        [self setupBtnWithIcon:@"sidebar_nav_photo" title:@"图片" bgColor:HMColorRGBA(76, 132, 190, alpha)];
+        [self setupBtnWithIcon:@"sidebar_nav_news" title:@"评论" bgColor:HMColorRGBA(202, 68, 73, alpha)];
+        [self setupBtnWithIcon:@"sidebar_nav_reading" title:@"关注" bgColor:HMColorRGBA(190, 111, 69, alpha)];
+        [self setupBtnWithIcon:@"sidebar_nav_photo" title:@"注册" bgColor:HMColorRGBA(76, 132, 190, alpha)];
         [self setupBtnWithIcon:@"sidebar_nav_video" title:@"视频" bgColor:HMColorRGBA(101, 170, 78, alpha)];
         [self setupBtnWithIcon:@"sidebar_nav_comment" title:@"跟帖" bgColor:HMColorRGBA(170, 172, 73, alpha)];
         [self setupBtnWithIcon:@"sidebar_nav_radio" title:@"电台" bgColor:HMColorRGBA(190, 62, 119, alpha)];

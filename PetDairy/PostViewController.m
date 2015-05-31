@@ -44,12 +44,41 @@
 
 - (IBAction)cancel {
 
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    
+    UIView *view = [[UIView alloc]init];
+    
+    
+    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:view];
+    
+    __weak typeof(self) weakSelf = self;
+    [UIView animateWithDuration:0.75 animations:^{
+        weakSelf.view.frame = CGRectMake(0, height, width, height);
+    } completion:^(BOOL finished) {
+        [view removeFromSuperview];
+        [weakSelf.view removeFromSuperview];
+    }];
 
-    [self.view removeFromSuperview];
 }
 
 - (IBAction)commit {
-    self.rightMenuController.postContentBtn.titleLabel.text = self.textContent.text;
-    [self.view removeFromSuperview];
+    self.rightMenuController.content = self.textContent.text;
+    
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    
+    UIView *view = [[UIView alloc]init];
+    
+    
+    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:view];
+    
+    __weak typeof(self) weakSelf = self;
+    [UIView animateWithDuration:0.75 animations:^{
+        weakSelf.view.frame = CGRectMake(0, height, width, height);
+    } completion:^(BOOL finished) {
+        [view removeFromSuperview];
+        [weakSelf.view removeFromSuperview];
+    }];
 }
 @end

@@ -14,7 +14,6 @@
                 <outlet property="deleteBtn" destination="Id4-Mt-Wsp" id="bL6-bH-8To"/>
                 <outlet property="iconView" destination="ZqM-8p-cqu" id="oO5-f2-Blx"/>
                 <outlet property="photoCollections" destination="Ffg-Vc-KAc" id="fvI-uq-ZBN"/>
-                <outlet property="postButton" destination="QBS-OV-0rJ" id="pKj-q5-9mC"/>
                 <outlet property="postContentBtn" destination="QBS-OV-0rJ" id="cEz-zC-bGY"/>
                 <outlet property="publicSwitch" destination="K1w-mG-xHT" id="NXC-Th-Bp8"/>
                 <outlet property="titleTextView" destination="yuT-do-SNO" id="7X6-Un-E31"/>
@@ -56,6 +55,9 @@
                                             <exclude reference="8UD-O1-eJe"/>
                                         </mask>
                                     </variation>
+                                    <connections>
+                                        <action selector="switchPublic:" destination="-1" eventType="valueChanged" id="3t3-Ih-3Qg"/>
+                                    </connections>
                                 </switch>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

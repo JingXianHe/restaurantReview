@@ -101,7 +101,20 @@
     // 3.添加右菜单
     [self setupRightMenu];
     
-    
+    //test
+//    PFObject *imgModal = [[PFObject alloc]initWithClassName:@"imgsForPost"];
+//    UIImage *img = [UIImage imageNamed:@"bush-food-brown-lrg.jpg"];
+//    NSData *imgData = UIImageJPEGRepresentation(img, 0.4);
+//    NSString *name = @"aa.jpg";
+//    PFFile *file = [PFFile fileWithName:name data:imgData];
+//    imgModal[@"postObId"] = @"test";
+//    imgModal[@"image"] = file;
+//    
+//    [imgModal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//        if (succeeded) {
+//            NSLog(@"aa");
+//        }
+//    }];
 }
 
 -(void)setupAllChildVcs{
@@ -137,9 +150,6 @@
     // 2.设置标题
 
     vc.navigationItem.titleView = self.titleBtn;
-
-    
-    
     
     // 3.设置左右按钮
     vc.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"top_navigation_menuicon" target:self action:@selector(leftMenuClick)];
@@ -343,6 +353,8 @@
     
     // 3.点击遮盖
     [self coverClick:[newNav.view viewWithTag:HMCoverTag]];
+    
+
 }
 
 -(BOOL)prefersStatusBarHidden{

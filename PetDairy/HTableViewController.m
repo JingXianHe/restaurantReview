@@ -31,7 +31,7 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"sidebar_bg@2x.jpg"]];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -60,12 +60,18 @@
                 HCmtDataModal *item = [[HCmtDataModal alloc]init];
                 item.idComent = sqlite3_column_int(stmt, 0);
                 const char *titleT =sqlite3_column_blob(stmt, 1);
-                NSString *titleText = [[NSString alloc]initWithUTF8String:titleT];
+                if (titleT) {
+                    NSString *titleText = [[NSString alloc]initWithUTF8String:titleT];
+                    
+                    item.title = titleText;
+                }
                 
-                item.title = titleText;
                 const char *cContent = sqlite3_column_blob(stmt, 2);
+                if (cContent) {
+                    item.content = [[NSString alloc]initWithUTF8String:cContent];
+                }
                 
-                item.content = [[NSString alloc]initWithUTF8String:cContent];
+                
                 item.servicecmt = sqlite3_column_int(stmt, 3);
                 item.tastecmt = sqlite3_column_int(stmt, 4);
                 item.satisfycmt = sqlite3_column_int(stmt, 5);
@@ -137,21 +143,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HCmtDataModal *item = self.dataItems[indexPath.row];
     
-    if (item.isImage == 0) {
-        HTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellNormal"];
-        if (cell == nil) {
-            // 从xib中加载cell
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"cellNormal" owner:nil options:nil] lastObject];
-        }
-        cell.timeTint.text = [NSString stringWithFormat:@"%@", item.datevalue];
-        cell.TitleTint.text = [[item.title stringByReplacingOccurrencesOfString:@"@" withString:@"'"] uppercaseString];
-        cell.serviceS.text = [self convertCommentP:item.servicecmt title:@"服务："];
-        cell.tasteS.text = [self convertCommentP:item.tastecmt title:@"味道："];
-        cell.satisfyS.text = [self convertCommentP:item.satisfycmt title:@"环境："];
-        cell.indicator.image = [UIImage imageNamed:@"default_indicator"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
-    }else{
+    
+        
         cellWithPics *cell = [tableView dequeueReusableCellWithIdentifier:@"cellWithPics"];
         if (cell == nil) {
             // 从xib中加载cell
@@ -164,14 +157,28 @@
         cell.satisfyS.text = [self convertCommentP:item.satisfycmt title:@"环境："];
         cell.indicator.image = [UIImage imageNamed:@"default_indicator"];
         
-        for (UIImage *img in item.imgCollections) {
-            UIImageView *imgv = [[UIImageView alloc]initWithImage:img];
-            [cell.scrollNav addSubview:imgv];
-        }
+        cell.content.text = item.content;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
         
-    }
+    
+        
+//        HTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellNormal"];
+//        if (cell == nil) {
+//            // 从xib中加载cell
+//            cell = [[[NSBundle mainBundle] loadNibNamed:@"cellNormal" owner:nil options:nil] lastObject];
+//        }
+//        cell.timeTint.text = [NSString stringWithFormat:@"%@", item.datevalue];
+//        cell.TitleTint.text = [[item.title stringByReplacingOccurrencesOfString:@"@" withString:@"'"] uppercaseString];
+//        cell.serviceS.text = [self convertCommentP:item.servicecmt title:@"服务："];
+//        cell.tasteS.text = [self convertCommentP:item.tastecmt title:@"味道："];
+//        cell.satisfyS.text = [self convertCommentP:item.satisfycmt title:@"环境："];
+//        cell.indicator.image = [UIImage imageNamed:@"default_indicator"];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        return cell;
+
+        
+   
 
 }
 
@@ -210,12 +217,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     HCmtDataModal *item = self.dataItems[indexPath.row];
     
-    if (item.isImage == 0) {
-
-        return 70.0;
-    }else{
-        return 110;
-    }
+    return 110.0;
     
 }
 
