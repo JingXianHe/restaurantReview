@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "addOrDelBtn.h"
 
 @interface cellForFriends : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *profileImgView;
@@ -14,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *GenderIcon;
 @property (weak, nonatomic) IBOutlet UILabel *experienceValue;
 @property (weak, nonatomic) IBOutlet UILabel *InterestedNum;
-@property (weak, nonatomic) IBOutlet UIButton *followingBtn;
-- (IBAction)addOrDel:(id)sender;
+@property (weak, nonatomic) IBOutlet addOrDelBtn *followingBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *genderImg;
 
 @end

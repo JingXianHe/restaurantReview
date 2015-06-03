@@ -27,7 +27,11 @@
 		B164D1681B007DF000CF7A5E /* scrollViewInnerButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = B164D1671B007DF000CF7A5E /* scrollViewInnerButton.xib */; };
 		B164D16F1B007F5200CF7A5E /* ProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = B164D16E1B007F5200CF7A5E /* ProfileController.m */; };
 		B164D1721B00813D00CF7A5E /* ScrollViewInnerBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = B164D1711B00813D00CF7A5E /* ScrollViewInnerBtn.m */; };
+		B167FF4F1B1DB28500211BF4 /* addOrDelBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = B167FF4E1B1DB28500211BF4 /* addOrDelBtn.m */; };
 		B16876681B1A88B5001A7413 /* Followers.m in Sources */ = {isa = PBXBuildFile; fileRef = B16876671B1A88B5001A7413 /* Followers.m */; };
+		B16876851B1B117A001A7413 /* cellForPost.m in Sources */ = {isa = PBXBuildFile; fileRef = B16876831B1B117A001A7413 /* cellForPost.m */; };
+		B16876861B1B117A001A7413 /* cellForPost.xib in Resources */ = {isa = PBXBuildFile; fileRef = B16876841B1B117A001A7413 /* cellForPost.xib */; };
+		B168768A1B1B458C001A7413 /* postData.m in Sources */ = {isa = PBXBuildFile; fileRef = B16876891B1B458C001A7413 /* postData.m */; };
 		B168FF881B0C65A800D2BC9A /* UIImage+OIInCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B168FF871B0C65A800D2BC9A /* UIImage+OIInCache.m */; };
 		B16963281B10A5E2008F75E2 /* UIViewController+RefreshData.m in Sources */ = {isa = PBXBuildFile; fileRef = B16963271B10A5E2008F75E2 /* UIViewController+RefreshData.m */; };
 		B169632C1B10B6DF008F75E2 /* NavIntestedPeoTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B169632B1B10B6DF008F75E2 /* NavIntestedPeoTVC.m */; };
@@ -121,8 +125,15 @@
 		B164D16E1B007F5200CF7A5E /* ProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileController.m; sourceTree = "<group>"; };
 		B164D1701B00813D00CF7A5E /* ScrollViewInnerBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewInnerBtn.h; sourceTree = "<group>"; };
 		B164D1711B00813D00CF7A5E /* ScrollViewInnerBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewInnerBtn.m; sourceTree = "<group>"; };
+		B167FF4D1B1DB28500211BF4 /* addOrDelBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addOrDelBtn.h; sourceTree = "<group>"; };
+		B167FF4E1B1DB28500211BF4 /* addOrDelBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addOrDelBtn.m; sourceTree = "<group>"; };
 		B16876661B1A88B5001A7413 /* Followers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Followers.h; sourceTree = "<group>"; };
 		B16876671B1A88B5001A7413 /* Followers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Followers.m; sourceTree = "<group>"; };
+		B16876821B1B117A001A7413 /* cellForPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cellForPost.h; sourceTree = "<group>"; };
+		B16876831B1B117A001A7413 /* cellForPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cellForPost.m; sourceTree = "<group>"; };
+		B16876841B1B117A001A7413 /* cellForPost.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = cellForPost.xib; sourceTree = "<group>"; };
+		B16876881B1B458C001A7413 /* postData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = postData.h; sourceTree = "<group>"; };
+		B16876891B1B458C001A7413 /* postData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = postData.m; sourceTree = "<group>"; };
 		B168FF861B0C65A800D2BC9A /* UIImage+OIInCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OIInCache.h"; sourceTree = "<group>"; };
 		B168FF871B0C65A800D2BC9A /* UIImage+OIInCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+OIInCache.m"; sourceTree = "<group>"; };
 		B16963261B10A5E2008F75E2 /* UIViewController+RefreshData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RefreshData.h"; sourceTree = "<group>"; };
@@ -401,6 +412,15 @@
 			name = ScrollviewInnerButton;
 			sourceTree = "<group>";
 		};
+		B167FF4C1B1DB25500211BF4 /* addOrDelBtn */ = {
+			isa = PBXGroup;
+			children = (
+				B167FF4D1B1DB28500211BF4 /* addOrDelBtn.h */,
+				B167FF4E1B1DB28500211BF4 /* addOrDelBtn.m */,
+			);
+			name = addOrDelBtn;
+			sourceTree = "<group>";
+		};
 		B16876651B1A8899001A7413 /* followers */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,6 +428,32 @@
 				B16876671B1A88B5001A7413 /* Followers.m */,
 			);
 			name = followers;
+			sourceTree = "<group>";
+		};
+		B16876691B1ABE1A001A7413 /* cellForPost */ = {
+			isa = PBXGroup;
+			children = (
+				B16876821B1B117A001A7413 /* cellForPost.h */,
+				B16876831B1B117A001A7413 /* cellForPost.m */,
+				B16876841B1B117A001A7413 /* cellForPost.xib */,
+			);
+			name = cellForPost;
+			sourceTree = "<group>";
+		};
+		B16876721B1B006F001A7413 /* DetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = DetailViewController;
+			sourceTree = "<group>";
+		};
+		B16876871B1B4570001A7413 /* postData */ = {
+			isa = PBXGroup;
+			children = (
+				B16876881B1B458C001A7413 /* postData.h */,
+				B16876891B1B458C001A7413 /* postData.m */,
+			);
+			name = postData;
 			sourceTree = "<group>";
 		};
 		B16963291B10B68C008F75E2 /* NavIntrestedPeoController */ = {
@@ -422,6 +468,7 @@
 		B169632D1B10B6EE008F75E2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B16876721B1B006F001A7413 /* DetailViewController */,
 				B16963301B10B711008F75E2 /* NavShareComTVC */,
 				B16963291B10B68C008F75E2 /* NavIntrestedPeoController */,
 			);
@@ -431,6 +478,7 @@
 		B169632E1B10B6F8008F75E2 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				B16876871B1B4570001A7413 /* postData */,
 				B16876651B1A8899001A7413 /* followers */,
 				B16B86C71B189E2900E28C2A /* usersData */,
 			);
@@ -440,6 +488,7 @@
 		B169632F1B10B702008F75E2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B16876691B1ABE1A001A7413 /* cellForPost */,
 				B17481F01B135D6D00FC700F /* cellForFriends */,
 			);
 			name = View;
@@ -475,6 +524,7 @@
 		B17481F01B135D6D00FC700F /* cellForFriends */ = {
 			isa = PBXGroup;
 			children = (
+				B167FF4C1B1DB25500211BF4 /* addOrDelBtn */,
 				B17481EB1B135D6300FC700F /* cellForFriends.h */,
 				B17481EC1B135D6300FC700F /* cellForFriends.m */,
 				B17481ED1B135D6300FC700F /* cellForFriends.xib */,
@@ -805,6 +855,7 @@
 				B19FB0561AF64996004B0E34 /* sidebar_bg@2x.jpg in Resources */,
 				B106794B1B0DEABB0039AC33 /* suShi.jpg in Resources */,
 				B164CA081B086A6B00D9282A /* cellWithPics.xib in Resources */,
+				B16876861B1B117A001A7413 /* cellForPost.xib in Resources */,
 				B18134681AFBA91200635DFC /* PostViewController.xib in Resources */,
 				B19807B91B079D6400C73AC6 /* cellNormal.xib in Resources */,
 				B19FB0381AF61A97004B0E34 /* Main.storyboard in Resources */,
@@ -840,6 +891,7 @@
 				B16189821AFC5FB400FE6CF4 /* PostViewController.m in Sources */,
 				B19FB0651AF6519C004B0E34 /* TitleButton.m in Sources */,
 				B16B86CA1B189E4900E28C2A /* usersData.m in Sources */,
+				B16876851B1B117A001A7413 /* cellForPost.m in Sources */,
 				B162CB381B0E1E1400DB6205 /* DetailScrollView.m in Sources */,
 				B19FB02F1AF61A97004B0E34 /* AppDelegate.m in Sources */,
 				B19FB06E1AF653C9004B0E34 /* UIBarButtonItem+Extension.m in Sources */,
@@ -854,8 +906,10 @@
 				B16876681B1A88B5001A7413 /* Followers.m in Sources */,
 				B19FB0611AF64F50004B0E34 /* HTableViewController.m in Sources */,
 				B17F85521B0F677700211BFD /* MyAnnotation.m in Sources */,
+				B168768A1B1B458C001A7413 /* postData.m in Sources */,
 				B1D8C5C11B04546B002DF360 /* UIView+AutoLayout.m in Sources */,
 				B164D1721B00813D00CF7A5E /* ScrollViewInnerBtn.m in Sources */,
+				B167FF4F1B1DB28500211BF4 /* addOrDelBtn.m in Sources */,
 				B16963281B10A5E2008F75E2 /* UIViewController+RefreshData.m in Sources */,
 				B164CA001B08666500D9282A /* DetailViewController.m in Sources */,
 				B17F854B1B0EB66700211BFD /* MapViewController.m in Sources */,

@@ -13,8 +13,12 @@
 - (void)awakeFromNib {
     // Initialization code
     self.profileImgView.layer.cornerRadius = self.profileImgView.frame.size.height / 2;
+    self.profileImgView.clipsToBounds = YES;
+
     self.GenderIcon.layer.cornerRadius = self.GenderIcon.frame.size.height / 2;
+    self.GenderIcon.clipsToBounds = YES;
     self.followingBtn.layer.cornerRadius = self.followingBtn.frame.size.height / 2;
+    self.followingBtn.clipsToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

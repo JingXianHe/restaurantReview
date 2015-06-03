@@ -11,6 +11,8 @@
 #import <Parse/Parse.h>
 #import "usersData.h"
 #import "Followers.h"
+#import "addOrDelBtn.h"
+#import "AppDelegate.h"
 
 @interface NavIntestedPeoTVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(strong, nonatomic)NSMutableArray *users;
@@ -38,62 +40,95 @@
     
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.backgroundColor = [UIColor lightGrayColor];
     
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]init];
+    spinner.center = self.tableView.center;
+    spinner.hidesWhenStopped = YES;
+    
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+
     PFQuery *query = [PFUser query];
     
     __weak typeof(self) weakSelf = self;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
         if (!error) {
             
             for (PFObject *pfuser in objects) {
                 usersData *user = [[usersData alloc]init];
                 user.username = pfuser[@"username"];
+                
                 user.email = pfuser[@"email"];
-                user.gender = (int)pfuser[@"gender"];
+                NSString *gender = (NSString *)pfuser[@"gender"];
+                user.gender = gender.intValue;
+                
+                NSString *postTime = pfuser[@"postTime"];
+                user.postTimes = postTime.intValue;
                 user.createdDate = pfuser[@"createdAt"];
                 user.objectId = pfuser[@"objectId"];
-                NSData *imgData = pfuser[@"profileImg"];
-                if (imgData) {
-                    UIImage *img = [[UIImage alloc]initWithData:imgData];
+                PFFile *imgData = pfuser[@"profileImg"];
+                NSData *Data = [imgData getData];
+                if (Data) {
+                    UIImage *img = [[UIImage alloc]initWithData:Data];
                     user.profileImg = img;
                 }
                 
                 [weakSelf.users addObject:user];
-                
 
+            }
+            
+            dispatch_queue_t q = dispatch_get_main_queue();
+            dispatch_async(q, ^{
+                AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+                [delegate.parseUserArray addObjectsFromArray:weakSelf.users];
+                [spinner stopAnimating];
+                [self.tableView reloadData];
+                [[UIApplication sharedApplication]endIgnoringInteractionEvents];
+            });
+            
+        }else{
+            
+            [spinner stopAnimating];
+            UIAlertView *view = [[UIAlertView alloc]initWithTitle:@"错误" message:error.userInfo[@"error"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [view show];
+            [[UIApplication sharedApplication]endIgnoringInteractionEvents];
+        }
+        
+    }];
+    PFQuery *queryF = [[PFQuery alloc]initWithClassName:@"followers"];
+    
+    [queryF findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            for (PFObject *follower in objects) {
+                Followers *followerData = [[Followers alloc]init];
+                followerData.follower = follower[@"follower"];
+                followerData.following = follower[@"following"];
+                [weakSelf.followers addObject:followerData];
             }
             
             dispatch_queue_t q = dispatch_get_main_queue();
             dispatch_async(q, ^{
                 [self.tableView reloadData];
             });
-  
+            
+        }else{
+            NSLog(@"%@", error.userInfo[@"error"]);
+
         }
-        
     }];
-//    PFQuery *queryF = [[PFQuery alloc]initWithClassName:@"followers"];
-//
-//    [queryF findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//        if (!error) {
-//            for (PFObject *follower in objects) {
-//                Followers *followerData = [[Followers alloc]init];
-//                followerData.follower = follower[@"follower"];
-//                followerData.following = follower[@"following"];
-//                [self.followers addObject:followerData];
-//            }
-//            dispatch_queue_t q = dispatch_get_main_queue();
-//            dispatch_sync(q, ^{
-//                [self.tableView reloadData];
-//            });
-//        }
-//    }];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -128,15 +163,124 @@
     }
     cell.nameText.text = data.username;
     
+    cell.InterestedNum.text = [NSString stringWithFormat:@"%d",[self checkFollowings:data.username]];
+    
+    cell.experienceValue.text = [NSString stringWithFormat:@"%d",data.postTimes];
+    
+    if (data.profileImg) {
+        cell.profileImgView.image = data.profileImg;
+    }
+    
+    if ([self checkIfFollow:data.username]) {
+        [cell.followingBtn setTitle:@"取消" forState:UIControlStateNormal];
+    }else{
+        [cell.followingBtn setTitle:@"关注" forState:UIControlStateNormal];
+    }
+    
+    if (data.gender == 0) {
+        cell.genderImg.image = [UIImage imageNamed:@"male"];
+    }else{
+        cell.genderImg.image = [UIImage imageNamed:@"female.jpg"];
+    }
 
+    cell.backgroundColor = [UIColor clearColor];
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    [cell.followingBtn addTarget:self action:@selector(setFollowValue:) forControlEvents:UIControlEventTouchUpInside];
+    cell.followingBtn.username = data.username;
+    
     return cell;
     
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 40;
+#pragma for follow btn event
+-(void)setFollowValue:(addOrDelBtn *)btn{
+    
+    btn.userInteractionEnabled = NO;
+    
+    if ([btn.titleLabel.text isEqualToString:@"取消"]) {
+        
+        PFQuery *query = [[PFQuery alloc]initWithClassName:@"followers"];
+        [query whereKey:@"follower" containsString:[PFUser currentUser].username];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            
+            if (!error) {
+                for (PFObject *follower in objects) {
+                    if ([follower[@"following"] isEqualToString:btn.username]) {
+                        [follower deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                            if (succeeded) {
+                                
+                                dispatch_queue_t q = dispatch_get_main_queue();
+                                dispatch_async(q, ^{
+                                    [btn setTitle:@"关注" forState:UIControlStateNormal];
+                                    btn.userInteractionEnabled = YES;
+                                });
+                                
+                            }else{
+                                dispatch_queue_t q = dispatch_get_main_queue();
+                                dispatch_async(q, ^{
+                                    btn.userInteractionEnabled = YES;
+                                });
+                            }
+                        }];
+                    }
+                    
+                }
+            }
+
+        }];
+        
+    }else{
+        PFObject *post = [[PFObject alloc]initWithClassName:@"followers"];
+        post[@"follower"] = [PFUser currentUser].username;
+        post[@"following"] = btn.username;
+        [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                dispatch_queue_t q = dispatch_get_main_queue();
+                dispatch_async(q, ^{
+                    [btn setTitle:@"取消" forState:UIControlStateNormal];
+                    btn.userInteractionEnabled = YES;
+                });
+            }else{
+                dispatch_queue_t q = dispatch_get_main_queue();
+                dispatch_async(q, ^{
+                    btn.userInteractionEnabled = YES;
+                });
+            }
+        }];
+        
+    }
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 95;
+}
+
+-(int)checkFollowings:(NSString *)name{
+    int count = 0;
+    for (Followers *follower in self.followers) {
+        if ([follower.following isEqualToString:name]) {
+            count ++;
+        }
+    }
+    return count;
+}
+
+-(BOOL)checkIfFollow:(NSString *)name{
+    
+    BOOL status = false;
+    NSString *user = [PFUser currentUser].username;
+    for (Followers *follower in self.followers) {
+        if ([follower.follower isEqualToString:user]) {
+            if ([follower.following isEqualToString:name]) {
+                status = true;
+            }
+        }
+    }
+    return status;
+    
+}
 
 /*
 // Override to support conditional editing of the table view.

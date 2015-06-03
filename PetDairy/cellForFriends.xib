@@ -62,7 +62,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="6dU-Dy-d7D" firstAttribute="top" secondItem="pho-Kk-xrI" secondAttribute="top" id="0yO-YG-xvF"/>
                                     <constraint firstAttribute="bottom" secondItem="Fj5-i0-iin" secondAttribute="bottom" id="5pB-Ia-Oow"/>
@@ -105,14 +105,14 @@
                                                 </constraints>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="centerX" secondItem="0wi-NP-JYc" secondAttribute="centerX" id="krZ-ix-vZN"/>
                                             <constraint firstAttribute="centerY" secondItem="0wi-NP-JYc" secondAttribute="centerY" id="vZJ-AG-YMQ"/>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="sQH-XT-j0k" firstAttribute="top" secondItem="j2c-yA-liV" secondAttribute="top" id="1LQ-1I-IWM"/>
                                     <constraint firstItem="sQH-XT-j0k" firstAttribute="width" secondItem="3h4-eG-Drp" secondAttribute="width" multiplier="2" id="3kr-YO-l03"/>
@@ -126,7 +126,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="j2c-yA-liV" firstAttribute="height" secondItem="pho-Kk-xrI" secondAttribute="height" multiplier="2" id="JSX-of-YMu"/>
                             <constraint firstAttribute="bottom" secondItem="pho-Kk-xrI" secondAttribute="bottom" id="ahZ-5w-oaK"/>
@@ -142,19 +142,17 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z7W-gv-pYJ" userLabel="InterestedView">
                         <rect key="frame" x="290" y="0.0" width="77" height="84"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOv-sg-e89">
-                                <rect key="frame" x="9" y="12" width="60" height="60"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOv-sg-e89" customClass="addOrDelBtn">
+                                <rect key="frame" x="14" y="17" width="50" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="NJO-Dr-B5b"/>
-                                    <constraint firstAttribute="height" constant="60" id="btX-kT-kwg"/>
+                                    <constraint firstAttribute="width" constant="50" id="NJO-Dr-B5b"/>
+                                    <constraint firstAttribute="height" constant="50" id="btX-kT-kwg"/>
                                 </constraints>
                                 <state key="normal" title="关注">
                                     <color key="titleColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="addOrDel:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="shK-LQ-I0L"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -198,6 +196,7 @@
                 <outlet property="InterestedNum" destination="6dU-Dy-d7D" id="JPr-ei-WOc"/>
                 <outlet property="experienceValue" destination="Fj5-i0-iin" id="OIR-h2-wIZ"/>
                 <outlet property="followingBtn" destination="rOv-sg-e89" id="uFE-Of-RRj"/>
+                <outlet property="genderImg" destination="0wi-NP-JYc" id="lpI-lh-7oP"/>
                 <outlet property="nameText" destination="sQH-XT-j0k" id="qtf-5s-iN2"/>
                 <outlet property="profileImgView" destination="9r4-E0-F9U" id="2tI-Ex-n1l"/>
             </connections>

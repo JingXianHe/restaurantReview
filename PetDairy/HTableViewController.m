@@ -215,7 +215,6 @@
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    HCmtDataModal *item = self.dataItems[indexPath.row];
     
     return 110.0;
     

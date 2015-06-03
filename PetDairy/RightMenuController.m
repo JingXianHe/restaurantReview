@@ -354,7 +354,7 @@
             //save data to parse
             if (![self.publicSwitch isOn]) {
                 PFObject *post = [[PFObject alloc]initWithClassName:@"posts"];
-                post[@"usersObjectId"] = [[PFUser currentUser] objectId];
+                post[@"name"] = [[PFUser currentUser] username];
                 post[@"title"] = titleText;
                 post[@"content"] = contentText;
                 post[@"service"]= @(serviceP);
@@ -362,6 +362,7 @@
                 post[@"comfortable"]= @(satisfyP);
                 post[@"location"] = [PFGeoPoint geoPointWithLatitude:self.latitude longitude:self.longitude];
                 post[@"postDate"] = dateT;
+                post[@"isImage"] = [NSString stringWithFormat:@"%d",index];
                 //PFObject *imgModal = [[PFObject alloc]initWithClassName:@"imgsForPost"];
                 //__weak PFObject *weakPost = post;
                 if (self.innerViews.count > 0) {

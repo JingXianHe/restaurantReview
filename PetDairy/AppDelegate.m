@@ -14,6 +14,13 @@
 
 @implementation AppDelegate
 
+-(NSMutableArray *)parseUserArray{
+    
+    if (_parseUserArray == nil) {
+        _parseUserArray = [[NSMutableArray alloc]init];
+    }
+    return _parseUserArray;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
