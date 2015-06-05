@@ -301,11 +301,6 @@
         displayImgView.frame = CGRectMake(0, cover.height*0.2, cover.width, cover.height*0.6);
     }];
     
-    
-    
-    
-    
-    
 }
 -(void)tapOver:(UITapGestureRecognizer *)tapRecognizer{
     

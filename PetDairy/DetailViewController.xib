@@ -10,7 +10,6 @@
                 <outlet property="ContentTextView" destination="pRg-6S-3DU" id="a8R-X4-u3P"/>
                 <outlet property="MCommentLabel" destination="iMa-5c-x6b" id="eEA-J1-13q"/>
                 <outlet property="RCommentLabel" destination="V9R-GA-wPJ" id="Fje-zf-sBU"/>
-                <outlet property="RightNavBtn" destination="YW1-Ac-AU4" id="aOU-gz-W2l"/>
                 <outlet property="TitleBar" destination="ewJ-r6-gHC" id="I27-sD-y9K"/>
                 <outlet property="geoIndicator" destination="YW1-Ac-AU4" id="4XF-us-rhR"/>
                 <outlet property="leftCommentLabel" destination="4iU-gi-pgK" id="6A4-Xr-0iF"/>

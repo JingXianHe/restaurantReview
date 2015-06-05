@@ -9,5 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @interface RegisterVC : UIViewController
+@property (weak, nonatomic) IBOutlet UIImageView *profileImg;
+- (IBAction)uploadImg;
+@property (weak, nonatomic) IBOutlet UITextField *username;
+@property (weak, nonatomic) IBOutlet UITextField *password;
+@property (weak, nonatomic) IBOutlet UITextField *email;
+@property (weak, nonatomic) IBOutlet UISwitch *genderSwitch;
+- (IBAction)register;
+
+@property (weak, nonatomic) IBOutlet UIView *upperView;
+@property (weak, nonatomic) IBOutlet UIView *downView;
 
 @end

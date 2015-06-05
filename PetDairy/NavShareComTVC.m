@@ -12,11 +12,16 @@
 #import "cellForPost.h"
 #import "AppDelegate.h"
 #import "usersData.h"
+#import "DetailParseViewController.h"
+#import "DeTailImgView.h"
+#import "UIView+Extension.h"
 
-@interface NavShareComTVC ()<UITableViewDataSource, UITableViewDelegate>
+@interface NavShareComTVC ()<UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 @property(strong, nonatomic)NSMutableArray *followings;
 @property(strong, nonatomic)NSMutableArray *postData;
 @property(strong, nonatomic)NSMutableArray *usersData;
+@property(strong, nonatomic)DetailParseViewController *detailVC;
+@property(weak, nonatomic)DeTailImgView *selectedImg;
 @end
 
 @implementation NavShareComTVC
@@ -46,6 +51,7 @@
     [super viewDidLoad];
     
     self.tableView.dataSource = self;
+    self.tableView.delegate =self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     // Uncomment the following line to preserve selection between presentations.
@@ -123,6 +129,9 @@
             
 
             
+        }else{
+            [spinner stopAnimating];
+            [[UIApplication sharedApplication]endIgnoringInteractionEvents];
         }
         
     }];
@@ -223,6 +232,106 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 150.0;
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    postData *postDta = self.postData[indexPath.row];
+    
+    DetailParseViewController *detailCon = [[DetailParseViewController alloc]init];
+    self.detailVC = detailCon;
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    detailCon.view.frame = CGRectMake(0, height, width, height);
+    UIView *view = [[UIView alloc]init];
+    view.frame = CGRectMake(0, 0, width, height);
+    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:detailCon.view];
+    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:view];
+    //set up detail view
+    
+    detailCon.TitleBar.title = [[postDta.title stringByReplacingOccurrencesOfString:@"@" withString:@"'"] uppercaseString];
+    detailCon.leftCommentLabel.text = [self convertCommentP:postDta.servicecmt title:@"服务："];
+    detailCon.MCommentLabel.text = [self convertCommentP:postDta.tastecmt title:@"味道："];
+    detailCon.RCommentLabel.text = [self convertCommentP:postDta.satisfycmt title:@"环境："];
+    detailCon.ContentTextView.text = postDta.content;
+    //check geolocation available
+    if (!postDta.location) {
+        detailCon.geoIndicator.enabled = NO;
+    }else{
+        detailCon.latitude = [postDta.location latitude];
+        detailCon.longitude = [postDta.location longitude];
+    }
+
+    if (postDta.isImage == 0) {
+        detailCon.ImageViewHeight.constant = 0;
+    }
+    //parse imgs to pop up view
+    if (postDta.isImage > 0) {
+        
+        PFQuery *query = [[PFQuery alloc]initWithClassName:@"imgsPost"];
+        [query whereKey:@"postObjectId" containsString:postDta.username];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (error == nil) {
+                for (UIImage *img in objects) {
+                    DeTailImgView *picView = [[DeTailImgView alloc]initWithImage:img];
+                    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tabEvent:)];
+                    tapRecognizer.delegate =self;
+                    [picView addGestureRecognizer:tapRecognizer];
+                    picView.userInteractionEnabled = YES;
+                    [detailCon.picsScrollView addSubview:picView];
+
+                }
+            }else{
+                UIAlertView *view = [[UIAlertView alloc]initWithTitle:@"错误" message:error.userInfo[@"error"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [view show];
+            }
+        }];
+    }
+    __weak UIView *bgView = view;
+    [UIView animateWithDuration:0.75 animations:^{
+        detailCon.view.frame = CGRectMake(0, 0, width, height);
+    } completion:^(BOOL finished) {
+        [bgView removeFromSuperview];
+    }];
+
+}
+- (void)tabEvent:(UITapGestureRecognizer *)tapRecognizer
+{
+    self.selectedImg = (DeTailImgView *)tapRecognizer.view;
+    //create a cover
+    UIView *cover = [[UIView alloc]init];
+    cover.frame = [UIScreen mainScreen].bounds;
+    cover.backgroundColor = [UIColor lightGrayColor];
+    cover.userInteractionEnabled = YES;
+    
+    [cover addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapOver:)]];
+    [[UIApplication sharedApplication].keyWindow addSubview:cover];
+    UIImageView *displayImgView = [[UIImageView alloc]init];
+    displayImgView.image = self.selectedImg.image;
+    displayImgView.contentMode = UIViewContentModeScaleAspectFill;
+    displayImgView.frame = self.selectedImg.frame;
+    [cover addSubview:displayImgView];
+    [cover convertRect:displayImgView.frame fromView:self.selectedImg];
+    displayImgView.y += [[self.selectedImg superview] superview].y;
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        displayImgView.frame = CGRectMake(0, cover.height*0.2, cover.width, cover.height*0.6);
+    }];
+    
+}
+-(void)tapOver:(UITapGestureRecognizer *)tapRecognizer{
+    
+    UIView *cover = tapRecognizer.view;
+    UIImageView *temp = [cover.subviews lastObject];
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        temp.frame = self.selectedImg.frame;
+        temp.y += [[self.selectedImg superview] superview].y;
+    } completion:^(BOOL finished) {
+        [tapRecognizer.view removeFromSuperview];
+        self.selectedImg = nil;
+    }];
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
