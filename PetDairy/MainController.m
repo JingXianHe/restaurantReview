@@ -152,8 +152,8 @@
     vc.navigationItem.titleView = self.titleBtn;
     
     // 3.设置左右按钮
-    vc.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"top_navigation_menuicon" target:self action:@selector(leftMenuClick)];
-    vc.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"top_navigation_infoicon" target:self action:@selector(rightMenuClick)];
+    vc.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"copypaste3" target:self action:@selector(leftMenuClick)];
+    vc.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"tools" target:self action:@selector(rightMenuClick)];
     
     
     // 4.包装一个导航控制器

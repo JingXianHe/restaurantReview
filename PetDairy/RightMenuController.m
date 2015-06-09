@@ -105,7 +105,7 @@
     [cmtTasteView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
     cmtTasteView.TitleLabel.text = @"味道：";
     //set up blur background image
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"restarauntBg-1"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"homeBlur"]];
     [self didShow];
     self.titleTinkBtn.layer.cornerRadius = 15;
     

@@ -12,6 +12,6 @@
 @interface cmtData : NSObject
 @property(copy, nonatomic)NSString *content;
 @property(copy, nonatomic)NSString *username;
-@property(copy, nonatomic)UIImage *profileImg;
+
 @property(copy, nonatomic)NSDate *date;
 @end

@@ -21,11 +21,13 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *picsScrollView;
 @property (weak, nonatomic) IBOutlet UIView *textView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewConstant;
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableToText;
 @property (weak, nonatomic) IBOutlet UITableView *commentTableView;
 @property (weak, nonatomic) IBOutlet UINavigationItem *TitleBar;
 @property (weak, nonatomic) IBOutlet UIButton *geoIndicator;
 @property(nonatomic, assign)CGFloat latitude;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ImageViewHeight;
 @property(nonatomic, assign)CGFloat longitude;
+- (IBAction)send;
+@property(nonatomic,copy)NSString *postId;
 @end

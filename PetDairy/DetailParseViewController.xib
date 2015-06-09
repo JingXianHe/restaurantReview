@@ -13,11 +13,13 @@
                 <outlet property="RCommentLabel" destination="bcf-aH-flZ" id="w2M-U8-SbA"/>
                 <outlet property="TitleBar" destination="JCG-Bs-re0" id="Q1M-FV-yqr"/>
                 <outlet property="bgView" destination="b4R-PI-iRe" id="cDC-Vc-3fB"/>
+                <outlet property="commentTF" destination="uzX-ID-9nz" id="W4Z-3P-Znt"/>
                 <outlet property="commentTableView" destination="VTv-DW-p3Y" id="p7C-8L-HlV"/>
                 <outlet property="geoIndicator" destination="nTl-4b-KsH" id="eVG-am-aCa"/>
                 <outlet property="leftCommentLabel" destination="5yF-Uc-nBh" id="Lp9-a2-OVH"/>
                 <outlet property="picsScrollView" destination="Bpf-dC-Rvb" id="7kQ-fp-yAg"/>
                 <outlet property="profileImg" destination="TDZ-8a-MgA" id="FlK-i2-gbR"/>
+                <outlet property="tableToText" destination="FkX-fL-Srb" id="NlB-kl-ob1"/>
                 <outlet property="textView" destination="PwT-Jj-g9T" id="wgh-iC-Hll"/>
                 <outlet property="textViewConstant" destination="wTl-i5-pCQ" id="lJ0-76-OYM"/>
                 <outlet property="view" destination="b4R-PI-iRe" id="twT-bj-Gk8"/>
@@ -46,10 +48,10 @@
                                         <color key="titleColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="leftNav" destination="-1" eventType="touchUpInside" id="zDN-xA-srX"/>
+                                    </connections>
                                 </button>
-                                <connections>
-                                    <action selector="leftNav" destination="-1" id="by5-KT-agf"/>
-                                </connections>
                             </barButtonItem>
                             <barButtonItem key="rightBarButtonItem" style="plain" id="mdq-UT-iaL">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nTl-4b-KsH">
@@ -84,26 +86,26 @@
                         <constraint firstAttribute="centerX" secondItem="TDZ-8a-MgA" secondAttribute="centerX" constant="80" id="mY8-Rc-4Ef"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PRJ-ao-HgY" userLabel="InfoView">
-                    <rect key="frame" x="0.0" y="94" width="320" height="101"/>
+                <view alpha="0.74999999999999978" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PRJ-ao-HgY" userLabel="InfoView">
+                    <rect key="frame" x="0.0" y="94" width="320" height="89"/>
                     <subviews>
-                        <view alpha="0.79999999999999982" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BqB-Zb-9MV">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="28"/>
+                        <view alpha="0.79999999999999982" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BqB-Zb-9MV">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="23"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35b-Ow-NXq" userLabel="MLab">
-                                    <rect key="frame" x="107" y="0.0" width="106" height="28"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35b-Ow-NXq" userLabel="MLab">
+                                    <rect key="frame" x="107" y="0.0" width="106" height="23"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <color key="textColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcf-aH-flZ" userLabel="RLab">
-                                    <rect key="frame" x="213" y="0.0" width="107" height="28"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcf-aH-flZ" userLabel="RLab">
+                                    <rect key="frame" x="213" y="0.0" width="107" height="23"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <color key="textColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5yF-Uc-nBh" userLabel="LLab">
-                                    <rect key="frame" x="0.0" y="0.0" width="107" height="28"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5yF-Uc-nBh" userLabel="LLab">
+                                    <rect key="frame" x="0.0" y="0.0" width="107" height="23"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <color key="textColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -127,18 +129,19 @@
                                 <constraint firstItem="35b-Ow-NXq" firstAttribute="top" secondItem="BqB-Zb-9MV" secondAttribute="top" id="yRM-4T-RWB"/>
                             </constraints>
                         </view>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.79999999999999982" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dwY-r9-CGD">
-                            <rect key="frame" x="0.0" y="33" width="320" height="63"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.79999999999999982" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dwY-r9-CGD">
+                            <rect key="frame" x="0.0" y="28" width="320" height="52"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <accessibility key="accessibilityConfiguration">
                                 <bool key="isElement" value="NO"/>
                             </accessibility>
                             <inset key="scrollIndicatorInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                            <color key="textColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="BqB-Zb-9MV" secondAttribute="trailing" id="1gz-ls-VJ4"/>
                         <constraint firstItem="BqB-Zb-9MV" firstAttribute="top" secondItem="PRJ-ao-HgY" secondAttribute="top" id="3BO-0g-Wpw"/>
@@ -151,15 +154,15 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t4y-0w-aUu" userLabel="ImageView">
-                    <rect key="frame" x="0.0" y="195" width="320" height="110"/>
+                    <rect key="frame" x="0.0" y="183" width="320" height="140"/>
                     <subviews>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bpf-dC-Rvb" customClass="DetailScrollView">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
                         </scrollView>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="110" id="IeG-zQ-dja"/>
+                        <constraint firstAttribute="height" constant="140" id="IeG-zQ-dja"/>
                         <constraint firstAttribute="trailing" secondItem="Bpf-dC-Rvb" secondAttribute="trailing" id="To5-fl-MgW"/>
                         <constraint firstAttribute="bottom" secondItem="Bpf-dC-Rvb" secondAttribute="bottom" id="mct-TB-p9o"/>
                         <constraint firstItem="Bpf-dC-Rvb" firstAttribute="top" secondItem="t4y-0w-aUu" secondAttribute="top" id="npC-Id-XyH"/>
@@ -173,7 +176,7 @@
                     </variation>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="VTv-DW-p3Y">
-                    <rect key="frame" x="0.0" y="305" width="320" height="145"/>
+                    <rect key="frame" x="0.0" y="323" width="320" height="127"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -193,6 +196,9 @@
                                 <color key="titleColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="send" destination="-1" eventType="touchUpInside" id="5mh-WF-sZN"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -16,6 +16,8 @@
 		B16127961B1F032500A64001 /* DetailParseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B16127941B1F032500A64001 /* DetailParseViewController.xib */; };
 		B16189821AFC5FB400FE6CF4 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B16189811AFC5FB400FE6CF4 /* PostViewController.m */; };
 		B16189861AFD001C00FE6CF4 /* PhotoesView.m in Sources */ = {isa = PBXBuildFile; fileRef = B16189851AFD001C00FE6CF4 /* PhotoesView.m */; };
+		B161A8301B247C7F009DBED3 /* cellForComment.xib in Resources */ = {isa = PBXBuildFile; fileRef = B161A82F1B247C7F009DBED3 /* cellForComment.xib */; };
+		B161A8331B248273009DBED3 /* cellForComment.m in Sources */ = {isa = PBXBuildFile; fileRef = B161A8321B248273009DBED3 /* cellForComment.m */; };
 		B162CB381B0E1E1400DB6205 /* DetailScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B162CB371B0E1E1400DB6205 /* DetailScrollView.m */; };
 		B162CB3C1B0E42F500DB6205 /* DeTailImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = B162CB3B1B0E42F500DB6205 /* DeTailImgView.m */; };
 		B1638D4C1B2120E5006828A7 /* cmtData.m in Sources */ = {isa = PBXBuildFile; fileRef = B1638D4B1B2120E5006828A7 /* cmtData.m */; };
@@ -110,6 +112,9 @@
 		B16189811AFC5FB400FE6CF4 /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
 		B16189841AFD001C00FE6CF4 /* PhotoesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoesView.h; sourceTree = "<group>"; };
 		B16189851AFD001C00FE6CF4 /* PhotoesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoesView.m; sourceTree = "<group>"; };
+		B161A82F1B247C7F009DBED3 /* cellForComment.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = cellForComment.xib; sourceTree = "<group>"; };
+		B161A8311B248273009DBED3 /* cellForComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cellForComment.h; sourceTree = "<group>"; };
+		B161A8321B248273009DBED3 /* cellForComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cellForComment.m; sourceTree = "<group>"; };
 		B162CB361B0E1E1400DB6205 /* DetailScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailScrollView.h; sourceTree = "<group>"; };
 		B162CB371B0E1E1400DB6205 /* DetailScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailScrollView.m; sourceTree = "<group>"; };
 		B162CB3A1B0E42F500DB6205 /* DeTailImgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeTailImgView.h; sourceTree = "<group>"; };
@@ -299,6 +304,16 @@
 				B16189851AFD001C00FE6CF4 /* PhotoesView.m */,
 			);
 			name = ScrollView;
+			sourceTree = "<group>";
+		};
+		B161A82E1B247C5F009DBED3 /* cellForComment */ = {
+			isa = PBXGroup;
+			children = (
+				B161A82F1B247C7F009DBED3 /* cellForComment.xib */,
+				B161A8311B248273009DBED3 /* cellForComment.h */,
+				B161A8321B248273009DBED3 /* cellForComment.m */,
+			);
+			name = cellForComment;
 			sourceTree = "<group>";
 		};
 		B162CB351B0E1DE500DB6205 /* DetailScrollView */ = {
@@ -509,6 +524,7 @@
 		B169632F1B10B702008F75E2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B161A82E1B247C5F009DBED3 /* cellForComment */,
 				B16876691B1ABE1A001A7413 /* cellForPost */,
 				B17481F01B135D6D00FC700F /* cellForFriends */,
 			);
@@ -882,6 +898,7 @@
 				B19807B91B079D6400C73AC6 /* cellNormal.xib in Resources */,
 				B19FB0381AF61A97004B0E34 /* Main.storyboard in Resources */,
 				B16EF2741B005EA200D4F05E /* bush-food-brown-lrg.jpg in Resources */,
+				B161A8301B247C7F009DBED3 /* cellForComment.xib in Resources */,
 				B16EF2701B00347400D4F05E /* pickc540c.jpg in Resources */,
 				B19FB03D1AF61A97004B0E34 /* LaunchScreen.xib in Resources */,
 				B164C9F51B0815AC00D9282A /* Images.xcassets in Resources */,
@@ -935,6 +952,7 @@
 				B164D1721B00813D00CF7A5E /* ScrollViewInnerBtn.m in Sources */,
 				B167FF4F1B1DB28500211BF4 /* addOrDelBtn.m in Sources */,
 				B16963281B10A5E2008F75E2 /* UIViewController+RefreshData.m in Sources */,
+				B161A8331B248273009DBED3 /* cellForComment.m in Sources */,
 				B164CA001B08666500D9282A /* DetailViewController.m in Sources */,
 				B17F854B1B0EB66700211BFD /* MapViewController.m in Sources */,
 				B164D16F1B007F5200CF7A5E /* ProfileController.m in Sources */,

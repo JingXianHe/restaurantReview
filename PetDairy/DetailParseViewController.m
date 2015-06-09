@@ -8,24 +8,77 @@
 
 #import "DetailParseViewController.h"
 #import "cmtData.h"
+#import <Parse/Parse.h>
+#import "cellForComment.h"
+#import "usersData.h"
+#import "AppDelegate.h"
 
-@interface DetailParseViewController ()<UITableViewDataSource>
+@interface DetailParseViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(strong, nonatomic)NSMutableArray *userData;
 @property(strong, nonatomic)NSMutableArray *comments;
+@property (weak, nonatomic) IBOutlet UITextField *commentTF;
 
 @end
 
 @implementation DetailParseViewController
 
+-(NSMutableArray *)comments{
+    if (_comments == nil) {
+        _comments = [[NSMutableArray alloc]init];
+    }
+    return _comments;
+}
+
+-(NSMutableArray *)userData{
+    
+    if (_userData == nil) {
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        _userData = delegate.parseUserArray;
+    }
+    return _userData;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.bgView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"suShi.jpg"]];
+    self.bgView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"sushiBlur"]];
     self.ContentTextView.editable = NO;
     self.commentTableView.dataSource = self;
+    self.commentTableView.delegate = self;
+    self.commentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.commentTableView.backgroundColor = [UIColor clearColor];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     // 键盘即将隐藏, 就会发出UIKeyboardWillHideNotification
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+
+    PFQuery *query = [[PFQuery alloc]initWithClassName:@"commentsForPost"];
+    [query whereKey:@"postObId" containsString:self.postId];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error == nil) {
+            
+            for (PFObject *obj in objects) {
+                cmtData *data = [[cmtData alloc]init];
+                data.content = obj[@"content"];
+                data.username = obj[@"username"];
+                data.date = obj.createdAt;
+                [self.comments addObject:data];
+            }
+            __weak typeof(self) weakSelf = self;
+            dispatch_queue_t q = dispatch_get_main_queue();
+            dispatch_async(q, ^{
+                [weakSelf.commentTableView reloadData];
+
+            });
+        }
+    }];
+    
+    self.profileImg.image = [self getProfileImg:[PFUser currentUser].username];
+    self.profileImg.layer.cornerRadius = self.profileImg.frame.size.height / 2;
+    self.profileImg.clipsToBounds = YES;
+//    self.profileImg.layer.borderColor = [[UIColor whiteColor] CGColor];
+//    self.profileImg.layer.borderWidth = 1.0f;
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,6 +87,7 @@
 }
 
 - (IBAction)leftNav {
+    NSLog(@"aa");
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
     
@@ -51,6 +105,7 @@
     }];
     
 }
+
 
 - (IBAction)rightNav {
     
@@ -93,16 +148,29 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     cmtData *data = self.comments[indexPath.row];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    cellForComment *cell = [tableView dequeueReusableCellWithIdentifier:@"comment"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"cellForComment" owner:nil options:nil] lastObject];
     }
-    cell.imageView.image = data.profileImg;
-    cell.textLabel.text = data.content;
-    cell.accessibilityLabel = data.username;
+    cell.profileImg.image = [self getProfileImg:data.username];
+    cell.content.text = data.content;
+    cell.author.text = data.username;
+    NSDate *date1 = data.date;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd-MM-YYYY"];
+
+    cell.timeline.text = [dateFormatter stringFromDate:date1];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.commentTF resignFirstResponder];
+}
+
 #pragma keyboard respond
 - (void)keyboardWillShow:(NSNotification *)note
 {
@@ -116,6 +184,8 @@
         CGFloat keyboardH = keyboardF.size.height;
         
         self.textViewConstant.constant = keyboardH;
+        self.ImageViewHeight.constant = 0;
+        
     }];
 }
 /**
@@ -129,10 +199,45 @@
     // 2.动画
     [UIView animateWithDuration:duration animations:^{
         self.textViewConstant.constant = 0;
+        self.ImageViewHeight.constant = 140;
+        
     }];
 }
 
-
+//find profile image from global variables
+-(UIImage *)getProfileImg:(NSString *)username{
+    
+    for (usersData *user in self.userData) {
+        if ([user.username isEqualToString:username]) {
+            return user.profileImg;
+        }
+    }
+    return nil;
+    
+}
+#pragma inner retrieve data from parse.com
+-(void)getDataFromParse{
+    PFQuery *query = [[PFQuery alloc]initWithClassName:@"commentsForPost"];
+    [query whereKey:@"postObId" containsString:self.postId];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error == nil) {
+            
+            for (PFObject *obj in objects) {
+                cmtData *data = [[cmtData alloc]init];
+                data.content = obj[@"content"];
+                data.username = obj[@"username"];
+                data.date = obj.createdAt;
+                [self.comments addObject:data];
+            }
+            __weak typeof(self) weakSelf = self;
+            dispatch_queue_t q = dispatch_get_main_queue();
+            dispatch_async(q, ^{
+                [weakSelf.commentTableView reloadData];
+                
+            });
+        }
+    }];
+}
 /*
 #pragma mark - Navigation
 
@@ -145,5 +250,42 @@
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+- (IBAction)send {
+    
+    PFObject *obj = [[PFObject alloc]initWithClassName:@"commentsForPost"];
+    if (self.commentTF.text) {
+        obj[@"content"] = self.commentTF.text;
+        obj[@"username"]= [PFUser currentUser].username;
+        obj[@"postObId"]= self.postId;
+    }
+    [self.commentTF resignFirstResponder];
+    NSError *error = nil;
+    if ([obj save:&error]) {
+        PFQuery *obj = [[PFQuery alloc]initWithClassName:@"posts"];
+        [obj whereKey:@"objectId" containsString:self.postId];
+        [obj findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            for (PFObject *obj in objects) {
+                NSNumber *num = obj[@"comments"];
+                int numNew = num.intValue +1;
+                obj[@"comments"] = [NSNumber numberWithInt:numNew];
+                dispatch_queue_t q = dispatch_get_main_queue();
+                dispatch_async(q, ^{
+                    [obj saveInBackground];
+                    
+                });
+            }
+        }];
+        
+        
+        UIAlertView *view = [[UIAlertView alloc]initWithTitle:@"成功" message:@"成功发布评论" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [view show];
+        self.commentTF.text = nil;
+        [self getDataFromParse];
+    }else{
+        UIAlertView *view = [[UIAlertView alloc]initWithTitle:@"错误" message:error.userInfo[@"error"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [view show];
+
+    }
 }
 @end

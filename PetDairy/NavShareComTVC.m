@@ -65,6 +65,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
 -(void)refreshData{
     
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]init];
@@ -83,7 +86,11 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
         if (!error) {
+
             
+            if (weakSelf.followings.count > 0) {
+                [weakSelf.followings removeAllObjects];
+            }
             for (PFObject *pfuser in objects) {
                 NSString *name = pfuser[@"following"];
                 [weakSelf.followings addObject:name];
@@ -95,11 +102,15 @@
             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 
                 if (!error) {
+                    if (weakSelf.postData.count > 0) {
+                        [weakSelf.postData removeAllObjects];
+                    }
                     for (PFObject *obj in objects) {
                         postData *data = [[postData alloc]init];
                         data.username = obj[@"username"];
-                        data.objectId = obj[@"objectId"];
+                        data.objectId = obj.objectId;
                         data.content = obj[@"content"];
+                        
                         data.title = obj[@"title"];
                         NSString *isImg = obj[@"isImage"];
                         data.isImage = isImg.intValue;
@@ -111,6 +122,7 @@
                         data.satisfycmt = satisC.intValue;
                         data.postDate = obj[@"postDate"];
                         data.location = obj[@"location"];
+                        data.comments = [obj[@"comments"] intValue];
                         [weakSelf.postData addObject:data];
                     }
                     
@@ -253,6 +265,8 @@
     detailCon.MCommentLabel.text = [self convertCommentP:postDta.tastecmt title:@"味道："];
     detailCon.RCommentLabel.text = [self convertCommentP:postDta.satisfycmt title:@"环境："];
     detailCon.ContentTextView.text = postDta.content;
+
+    detailCon.postId = postDta.objectId;
     //check geolocation available
     if (!postDta.location) {
         detailCon.geoIndicator.enabled = NO;
@@ -267,11 +281,14 @@
     //parse imgs to pop up view
     if (postDta.isImage > 0) {
         
-        PFQuery *query = [[PFQuery alloc]initWithClassName:@"imgsPost"];
-        [query whereKey:@"postObjectId" containsString:postDta.username];
+        PFQuery *query = [[PFQuery alloc]initWithClassName:@"imgsForPost"];
+        [query whereKey:@"postObId" containsString:postDta.objectId];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (error == nil) {
-                for (UIImage *img in objects) {
+                for (PFObject *obj in objects) {
+                    PFFile *file = obj[@"image"];
+                    NSData *data = [file getData];
+                    UIImage *img = [UIImage imageWithData:data];
                     DeTailImgView *picView = [[DeTailImgView alloc]initWithImage:img];
                     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tabEvent:)];
                     tapRecognizer.delegate =self;
@@ -286,6 +303,8 @@
             }
         }];
     }
+    
+    
     __weak UIView *bgView = view;
     [UIView animateWithDuration:0.75 animations:^{
         detailCon.view.frame = CGRectMake(0, 0, width, height);

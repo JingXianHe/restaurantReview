@@ -10,7 +10,7 @@
 #import <Parse/Parse.h>
 
 @interface postData : NSObject
-@property(assign, nonatomic)NSString *objectId;
+@property(copy, nonatomic)NSString *objectId;
 @property(copy,nonatomic)NSString *username;
 
 @property(copy, nonatomic)NSString *title;
@@ -18,7 +18,7 @@
 @property(assign, nonatomic)int servicecmt;
 @property(assign, nonatomic)int tastecmt;
 @property(assign, nonatomic)int satisfycmt;
-@property(assign, nonatomic)PFGeoPoint *location;
+@property(copy, nonatomic)PFGeoPoint *location;
 @property(assign, nonatomic)int isImage;
 @property(copy, nonatomic)NSString *datevalue;
 @property(strong, nonatomic)NSMutableArray *imgCollections;

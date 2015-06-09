@@ -24,10 +24,14 @@
     self.upperView.backgroundColor = [UIColor colorWithRed:133/255.0 green:210/255.0 blue:197/255.0 alpha:1.0];
     self.downView.backgroundColor = [UIColor colorWithRed:106/255.0 green:168/255.0 blue:158/255.0 alpha:1.0];
     self.profileImg.layer.cornerRadius = self.profileImg.frame.size.height / 2;
+    self.profileImg.clipsToBounds = YES;
      //create and configure the tap gesture
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tabEvent)];
     tapRecognizer.delegate =self;
     [self.view addGestureRecognizer:tapRecognizer];
+    
+    self.password.secureTextEntry = YES;
+    
 }
 
 #pragma tap event
@@ -75,33 +79,107 @@
 
 - (IBAction)register {
     
-    PFQuery *query = [PFUser query];
+    UIView *view = [[UIView alloc]init];
+    view.frame = self.view.frame;
+    view.backgroundColor = [UIColor grayColor];
+    view.userInteractionEnabled = YES;
+    view.alpha = 0.8;
+    
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]init];
+    spinner.center = self.view.center;
+    spinner.hidesWhenStopped = YES;
+    
+    [self.view addSubview:view];
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
+    
+    
+    PFQuery *query = [[PFQuery alloc]initWithClassName:@"User"];
     [query whereKey:@"username" containsString:self.username.text];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
     
-    
-        if(objects == nil){
-            PFUser *user = [PFUser init];
-            user.username = self.username.text;
-            user.password = self.password.text;
-            user.email = self.email.text;
-            NSData *data = UIImageJPEGRepresentation(self.profileImg.image, 0.4);
-            NSString *name = @"profile.jpg";
-            user[@"profileImg"] = [ PFFile fileWithName:name data:data];
-            user[@"postCount"] = 0;
-            [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if(error == nil){
+        if (error == nil){
+
+            if(objects.count == 1){
+
+                [spinner stopAnimating];
+                [view removeFromSuperview];
+                
+                UIAlertView *view = [[UIAlertView alloc]initWithTitle:@"错误" message:@"名字已被注册，请填写新名字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [view show];
+                
+            }else{
+                
+                PFUser *user = [PFUser user];
+                user.username = self.username.text;
+                user.password = self.password.text;
+                user.email = self.email.text;
+                NSData *data = UIImageJPEGRepresentation(self.profileImg.image, 0.4);
+                NSString *name = @"profile.jpg";
+                user[@"profileImg"] = [ PFFile fileWithName:name data:data];
+                user[@"postCount"] = [NSNumber numberWithInt:0];
+                if([self.genderSwitch isOn]){
+                    user[@"gender"]= [NSNumber numberWithInt:1];
                     
                 }else{
-                    
+                    user[@"gender"] = [NSNumber numberWithInt:0];
                 }
-            }];
+                //__block UIActivityIndicatorView *blockSpin = spinner;
+                
+                dispatch_queue_t q = dispatch_get_main_queue();
+                dispatch_async(q, ^{
+                    [spinner stopAnimating];
+                    [view removeFromSuperview];
+                    NSError *error = nil;
+                    if([user signUp:(&error)]){
+                        
+                        self.username.text = nil;
+                        self.password.text = nil;
+                        self.email.text = nil;
+                        self.profileImg.image = [UIImage imageNamed:@"default_avatar"];
+                        UIAlertView *view = [[UIAlertView alloc]initWithTitle:@"成功" message:@"注册成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                        [view show];
+                        
+                    }else{
+                        
+                        UIAlertView *alertVIew = [[UIAlertView alloc]initWithTitle:@"错误" message:error.userInfo[@"error"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                        [alertVIew show];
+                        
+                    }
+                    
+                });
+                
+ 
+//                [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//                    [blockSpin stopAnimating];
+//                    [view removeFromSuperview];
+//                    if(error == nil){
+//                        
+//                        self.username.text = nil;
+//                        self.password.text = nil;
+//                        self.email.text = nil;
+//                        self.profileImg.image = [UIImage imageNamed:@"default_avatar"];
+//                        UIAlertView *view = [[UIAlertView alloc]initWithTitle:@"成功" message:@"注册成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//                        [view show];
+//                        
+//                    }else{
+//                        UIAlertView *alertVIew = [[UIAlertView alloc]initWithTitle:@"错误" message:error.userInfo[@"error"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//                        [alertVIew show];
+//                    }
+//
+//                }];
+                
+
+            }
+
         }else{
-            
-            UIAlertView *view = [[UIAlertView alloc]initWithTitle:@"错误" message:error.userInfo[@"error"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [view show];
+            [spinner stopAnimating];
+            [view removeFromSuperview];
+            UIAlertView *alertVIew = [[UIAlertView alloc]initWithTitle:@"错误" message:error.userInfo[@"error"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertVIew show];
             
         }
+    
         
     }];
     

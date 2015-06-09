@@ -40,7 +40,7 @@
     
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.backgroundColor = [UIColor lightGrayColor];
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"soupBlur"]];
     
 }
 
@@ -69,7 +69,7 @@
                 NSString *gender = (NSString *)pfuser[@"gender"];
                 user.gender = gender.intValue;
                 
-                NSString *postTime = pfuser[@"postTime"];
+                NSString *postTime = pfuser[@"postCount"];
                 user.postTimes = postTime.intValue;
                 user.createdDate = pfuser[@"createdAt"];
                 user.objectId = pfuser[@"objectId"];
@@ -87,6 +87,9 @@
             dispatch_queue_t q = dispatch_get_main_queue();
             dispatch_async(q, ^{
                 AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+                if (delegate.parseUserArray.count > 0) {
+                    [delegate.parseUserArray removeAllObjects];
+                }
                 [delegate.parseUserArray addObjectsFromArray:weakSelf.users];
                 [spinner stopAnimating];
                 [self.tableView reloadData];
@@ -96,9 +99,10 @@
         }else{
             
             [spinner stopAnimating];
+            [[UIApplication sharedApplication]endIgnoringInteractionEvents];
             UIAlertView *view = [[UIAlertView alloc]initWithTitle:@"错误" message:error.userInfo[@"error"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [view show];
-            [[UIApplication sharedApplication]endIgnoringInteractionEvents];
+            
         }
         
     }];
