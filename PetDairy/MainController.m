@@ -67,15 +67,15 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIVisualEffect *blurEffect;
-    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-
-    
-    UIVisualEffectView *visualEffectView;
-    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    
-    visualEffectView.frame = self.imageView.bounds;
-    [self.imageView addSubview:visualEffectView];
+//    UIVisualEffect *blurEffect;
+//    blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//
+//    
+//    UIVisualEffectView *visualEffectView;
+//    visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+//    
+//    visualEffectView.frame = self.imageView.bounds;
+//    [self.imageView addSubview:visualEffectView];
     if (FourInch) {
         self.LeftMenuW = 150;
         self.LeftMenuH = 400;
