@@ -18,7 +18,7 @@
 #import "NavIntestedPeoTVC.h"
 #import "NavShareComTVC.h"
 #import "RegisterVC.h"
-
+#import "NearBySearchViewController.h"
 
 #define HMNavShowAnimDuration 0.25
 #define HMCoverTag 100
@@ -120,20 +120,25 @@
 -(void)setupAllChildVcs{
     // 1.新闻控制器
     RightMenuController *profile = [[RightMenuController alloc] init];
-    [self setupVc:profile];
+    [self setupVc:profile withRightNavOption:YES];
     HTableViewController *hTableCon = [[HTableViewController alloc]init];
     [self storeRightController:hTableCon];
     self.rightMenuVc = self.rightControllers[0];
     //2.frineds VC
     NavIntestedPeoTVC *friVc = [[NavIntestedPeoTVC alloc]init];
-    [self setupVc:friVc];
+    [self setupVc:friVc withRightNavOption:YES];
     NavShareComTVC *rigFriVc = [[NavShareComTVC alloc]init];
     [self storeRightController:rigFriVc];
     //3. register VC
     RegisterVC *registerVC = [[RegisterVC alloc]init];
-    [self setupVc:registerVC];
+    [self setupVc:registerVC withRightNavOption:NO];
     NavShareComTVC *rigFriVc1 = [[NavShareComTVC alloc]init];
     [self storeRightController:rigFriVc1];
+    //4. baidu map kit
+    NearBySearchViewController *nearByVc = [[NearBySearchViewController alloc]init];
+    [self setupVc:nearByVc withRightNavOption:NO];
+    UIViewController *rigFriVc2 = [[UIViewController alloc]init];
+    [self storeRightController:rigFriVc2];
 }
 
 /**
@@ -142,7 +147,7 @@
  *  @param vc      需要初始化的控制器
  *  @param title   控制器的标题
  */
-- (void)setupVc:(UIViewController *)vc
+- (void)setupVc:(UIViewController *)vc withRightNavOption:(BOOL)wanted
 {
     // 1.设置背景色
     //vc.view.backgroundColor = [UIColor whiteColor];
@@ -153,8 +158,9 @@
     
     // 3.设置左右按钮
     vc.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"copypaste3" target:self action:@selector(leftMenuClick)];
-    vc.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"tools" target:self action:@selector(rightMenuClick)];
-    
+    if (wanted) {
+        vc.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"tools" target:self action:@selector(rightMenuClick)];
+    }
     
     // 4.包装一个导航控制器
     ProfileController *nav = [[ProfileController alloc] initWithRootViewController:vc];

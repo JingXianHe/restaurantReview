@@ -7,9 +7,9 @@
 //
 #import <Parse/Parse.h>
 #import "AppDelegate.h"
-
+#import "BMapKit.h"
 @interface AppDelegate ()
-
+@property (nonatomic, strong) BMKMapManager *mapManager;
 @end
 
 @implementation AppDelegate
@@ -27,6 +27,13 @@
     // Initialize Parse.
     [Parse setApplicationId:@"hIgEa7ez5eGE23CjeqjwiA9DS0yi4fUe4RkGwEg7"
                   clientKey:@"MRSVLoGJzcYSTjOVpgqTmRbzxqAKqN5iQ8WeUBch"];
+    _mapManager = [[BMKMapManager alloc]init];
+    // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
+    BOOL ret = [_mapManager start:@"qq0DfxAG1s1GD1ZuWh9Lo7UW"  generalDelegate:nil];
+    if (!ret) {
+        NSLog(@"manager start failed!");
+    }
+
     return YES;
 }
 
