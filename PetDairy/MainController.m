@@ -177,6 +177,7 @@
 -(void)titleClick{
     
     if (self.currentUser) {
+
         return;
     }else{
         

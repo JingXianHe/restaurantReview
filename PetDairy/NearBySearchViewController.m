@@ -9,6 +9,7 @@
 #import "NearBySearchViewController.h"
 #import "UIView+Alert.h"
 #import "BMapKit.h"
+#import "PoiViewController.h"
 
 @interface NearBySearchViewController ()<BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
 - (IBAction)uploadMyloc;
@@ -18,6 +19,14 @@
 @property(assign, nonatomic)CLLocationCoordinate2D currentLocation;
 @property(strong, nonatomic)BMKGeoCodeSearch *geocodesearch;
 - (IBAction)willSearch;
+@property (weak, nonatomic) IBOutlet UITextField *cityText;
+@property (weak, nonatomic) IBOutlet UITextField *addressText;
+@property (weak, nonatomic) IBOutlet UILabel *rangeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *quantityLabel;
+@property(strong, nonatomic)PoiViewController *poiViewController;
+@property(assign, nonatomic)BOOL delegateIsOn;
+@property (weak, nonatomic) IBOutlet UITextField *keyText;
+
 
 @end
 
@@ -34,6 +43,9 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"iphone4sCity"]];
     self.locService = [[BMKLocationService alloc]init];
     self.geocodesearch = [[BMKGeoCodeSearch alloc]init];
+    self.delegateIsOn = false;
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,6 +68,7 @@
     _geocodesearch.delegate = self;
     _locService.delegate = self;
 }
+
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -84,12 +97,11 @@
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation{
     //self.currentLocation = userLocation.location.coordinate;
 
-    self.currentLocation = CLLocationCoordinate2DMake(39.915101, 116.403981);
+    self.currentLocation = CLLocationCoordinate2DMake(23.16667,113.23333);
     [self.locService stopUserLocationService];
 }
 -(void)onClickReverseGeocode:(CLLocationCoordinate2D)point
 {
-    
     
     BMKReverseGeoCodeOption *reverseGeocodeSearchOption = [[BMKReverseGeoCodeOption alloc]init];
     reverseGeocodeSearchOption.reverseGeoPoint = point;
@@ -109,14 +121,39 @@
 
     if (error == 0) {
         
-            self.city = [NSString stringWithFormat:@"%@",result.addressDetail.city];
-            self.street = [NSString stringWithFormat:@"%@%@%@%@",result.addressDetail.city,result.addressDetail.district,result.addressDetail.streetName,result.addressDetail.streetNumber];
-        
-        
+        self.city = [NSString stringWithFormat:@"%@",result.addressDetail.city];
+        self.street = [NSString stringWithFormat:@"%@%@%@",result.addressDetail.city,result.addressDetail.district,result.addressDetail.streetName];
+        self.cityText.text = self.city;
+        self.addressText.text = [NSString stringWithFormat:@"%@%@%@",result.addressDetail.district,result.addressDetail.streetName,result.addressDetail.streetNumber];
     }
 }
 - (IBAction)willSearch {
+    self.delegateIsOn = true;
+    //prepare navigation bar
+    [self.navigationItem.leftBarButtonItem setEnabled:NO];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(btnClick)];
+    [item setTintColor:[UIColor brownColor]];
+    self.navigationItem.rightBarButtonItem = item;
     
+    //prepare data for piosearch
+    PoiViewController *poi = [[PoiViewController alloc]init];
+    poi.city = self.city;
+    poi.street = self.street;
+    poi.keyWord = self.keyText.text;
+    poi.pageCapacity = [self.quantityLabel.text intValue];
+    poi.radius = [self.rangeLabel.text intValue];
+    self.poiViewController = poi;
+    poi.currentLocation = self.currentLocation;
+    poi.navHeight = self.navigationController.navigationBar.frame.size.height;
+
+    [self.view addSubview:poi.view];
     
+}
+-(void)btnClick{
+    [self.poiViewController.view removeFromSuperview];
+    self.poiViewController = nil;
+    [self.navigationItem.leftBarButtonItem setEnabled:YES];
+    self.navigationItem.rightBarButtonItem = nil;
+    self.delegateIsOn = false;
 }
 @end

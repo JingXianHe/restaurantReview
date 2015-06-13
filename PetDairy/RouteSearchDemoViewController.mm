@@ -56,12 +56,12 @@
     }
 	_routesearch = [[BMKRouteSearch alloc]init];
 
-    UIBarButtonItem* btnWayPoint = [[UIBarButtonItem alloc]init];
-    btnWayPoint.target = self;
-    btnWayPoint.action = @selector(wayPointDemo);
-    btnWayPoint.title = @"途经点";
-    btnWayPoint.enabled=TRUE;
-    self.navigationController.topViewController.navigationItem.rightBarButtonItem = btnWayPoint;
+//    UIBarButtonItem* btnWayPoint = [[UIBarButtonItem alloc]init];
+//    btnWayPoint.target = self;
+//    btnWayPoint.action = @selector(wayPointDemo);
+//    btnWayPoint.title = @"途经点";
+//    btnWayPoint.enabled=TRUE;
+//    self.navigationController.topViewController.navigationItem.rightBarButtonItem = btnWayPoint;
     
 }
 
@@ -273,7 +273,9 @@
 		BMKPolyline* polyLine = [BMKPolyline polylineWithPoints:temppoints count:planPointCounts];
 		[_mapView addOverlay:polyLine]; // 添加路线overlay
 		delete []temppoints;
-	}
+    }else{
+        [UIView alertWith:@"错误" message:@"无法提供服务"];
+    }
     
 }
 - (void)onGetDrivingRouteResult:(BMKRouteSearch*)searcher result:(BMKDrivingRouteResult*)result errorCode:(BMKSearchErrorCode)error
@@ -324,6 +326,8 @@
                 item.title = tempNode.name;
                 [_mapView addAnnotation:item];
             }
+        }else{
+            [UIView alertWith:@"错误" message:@"无法提供服务"];
         }
         //轨迹点
         BMKMapPoint * temppoints = new BMKMapPoint[planPointCounts];
@@ -404,8 +408,8 @@
 		delete []temppoints;
         
 		
-    }else if (error == BMK_SEARCH_RESULT_NOT_FOUND){
-        
+    }else if (error == BMK_SEARCH_AMBIGUOUS_ROURE_ADDR){
+        [UIView alertWith:@"错误" message:@"无法提供服务"];
     }
     
 }
@@ -417,10 +421,13 @@
         return;
     }
     BMKPlanNode* start = [[BMKPlanNode alloc]init];
-	start.name = [self startPoint].text;
-    
-	BMKPlanNode* end = [[BMKPlanNode alloc]init];
-	end.name = [self endPoint].text;
+    start.name = nil;//[self startPoint].text;
+    //start.cityName = [self startCity].text;
+    start.pt = self.original;
+    BMKPlanNode* end = [[BMKPlanNode alloc]init];
+    end.name = nil;//[self endPoint].text;
+    //end.cityName = [self endCity].text;
+    end.pt = self.targetPt;
     
     
     BMKTransitRoutePlanOption *transitRouteSearchOption = [[BMKTransitRoutePlanOption alloc]init];
@@ -433,7 +440,7 @@
     {
         
         [_mapView setCenterCoordinate:self.original];
-        [_mapView setZoomLevel:16.0];
+        [_mapView setZoomLevel:14.0];
     }
     else
     {
@@ -448,16 +455,18 @@
 -(IBAction)onClickDriveSearch
 {
 	BMKPlanNode* start = [[BMKPlanNode alloc]init];
-	start.name = [self startPoint].text;
-    start.cityName = [self startCity].text;
+    start.name = nil;//[self startPoint].text;
+    //start.cityName = [self startCity].text;
+    start.pt = self.original;
 	BMKPlanNode* end = [[BMKPlanNode alloc]init];
-    end.name = [self endPoint].text;
-    end.cityName = [self endCity].text;
-    
+    end.name = nil;//[self endPoint].text;
+    //end.cityName = [self endCity].text;
+    end.pt = self.targetPt;
     BMKDrivingRoutePlanOption *drivingRouteSearchOption = [[BMKDrivingRoutePlanOption alloc]init];
     drivingRouteSearchOption.from = start;
     drivingRouteSearchOption.to = end;
     BOOL flag = [_routesearch drivingSearch:drivingRouteSearchOption];
+    
     if(flag)
     {
         [_mapView setCenterCoordinate:self.original];
@@ -474,13 +483,14 @@
 {    
 	
     BMKPlanNode* start = [[BMKPlanNode alloc]init];
-    start.name = [self startPoint].text;
-    start.cityName = [self startCity].text;
+    start.name = nil;//[self startPoint].text;
+    //start.cityName = [self startCity].text;
+    start.pt = self.original;
     BMKPlanNode* end = [[BMKPlanNode alloc]init];
-    end.name = [self endPoint].text;
-    end.cityName = [self endCity].text;
+    end.name = nil;//[self endPoint].text;
+    //end.cityName = [self endCity].text;
+    end.pt = self.targetPt;
 
-    
     BMKWalkingRoutePlanOption *walkingRouteSearchOption = [[BMKWalkingRoutePlanOption alloc]init];
     walkingRouteSearchOption.from = start;
     walkingRouteSearchOption.to = end;
@@ -496,5 +506,7 @@
     }
 
 }
-
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
 @end

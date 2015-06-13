@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *endCity;
 @property (weak, nonatomic) IBOutlet UITextField *endPoint;
 @property(assign, nonatomic)CLLocationCoordinate2D original;
+@property(assign, nonatomic)CLLocationCoordinate2D targetPt;
 -(IBAction)onClickBusSearch;
 -(IBAction)onClickDriveSearch;
 -(IBAction)onClickWalkSearch;
