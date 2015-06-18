@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "UIViewController+TitleBtn.h"
 @interface RegisterVC : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *profileImg;
 - (IBAction)uploadImg;

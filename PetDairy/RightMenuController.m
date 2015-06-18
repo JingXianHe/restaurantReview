@@ -14,7 +14,7 @@
 #import "commentView.h"
 #import "UIView+AutoLayout.h"
 #import <Parse/Parse.h>
-
+#import "UIViewController+TitleBtn.h"
 
 
 @interface RightMenuController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, ScrollViewInnerBtnDelegate, CLLocationManagerDelegate>
@@ -105,13 +105,16 @@
     [cmtTasteView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
     cmtTasteView.TitleLabel.text = @"味道：";
     //set up blur background image
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"homeBlur"]];
-    [self didShow];
-    self.titleTinkBtn.layer.cornerRadius = 15;
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgColor"]];
     
+    self.titleTinkBtn.layer.cornerRadius = 15;
 
+    self.iconView.layer.cornerRadius = self.iconView.frame.size.height /2 ;
+    
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [self didShow];
+}
 
 -(PostViewController *)postViewController{
     if (!_postViewController) {
@@ -139,11 +142,20 @@
 {
     
     [UIView transitionWithView:self.iconView duration:1.0 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
-        self.iconView.image = [UIImage imageNamed:@"user_defaultgift"];
+        self.iconView.image = [UIImage imageNamed:@"logo"];
     } completion:^(BOOL finished) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [UIView transitionWithView:self.iconView duration:1.0 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
-                self.iconView.image = [UIImage imageNamed:@"default_avatar"];
+                PFUser *user = [PFUser currentUser];
+                PFFile *imgData = user[@"profileImg"];
+                NSData *Data = [imgData getData];
+                if (Data) {
+                    UIImage *img = [[UIImage alloc]initWithData:Data];
+                    self.iconView.image = img;
+                }else{
+                    self.iconView.image = [UIImage imageNamed:@"default_avatar"];
+                }
+                
             } completion:nil];
         });
     }];
@@ -224,8 +236,23 @@
         [switch1 setOn:YES animated:YES];
         
     }
+    if([self checkInternetConnection] == false){
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"警告" message:@"不能连接到互联网" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        UISwitch *switch1 = (UISwitch *)sender;
+        [switch1 setOn:YES animated:YES];
+    }
 }
 
+-(BOOL)checkInternetConnection{
+    
+    NSURL *scriptUrl = [NSURL URLWithString:@"http://www.baidu.com"];
+    NSData *data = [NSData dataWithContentsOfURL:scriptUrl];
+    if (data)
+        return true;
+    else
+        return false;
+}
 //geolocation upload
 - (IBAction)uploadGeo {
 
@@ -283,6 +310,12 @@
         [self.deleteBtn setTitle:@"删除图片" forState:UIControlStateNormal];
         self.deleteBtn.enabled = NO;
     }
+    
+}
+#pragma UIViewControllver + alert implement method
+-(void)refreshView{
+    
+    [self didShow];
     
 }
 
@@ -354,13 +387,17 @@
             //save data to parse
             if (![self.publicSwitch isOn]) {
                 PFObject *post = [[PFObject alloc]initWithClassName:@"posts"];
-                post[@"name"] = [[PFUser currentUser] username];
+                post[@"username"] = [[PFUser currentUser] username];
                 post[@"title"] = titleText;
                 post[@"content"] = contentText;
                 post[@"service"]= @(serviceP);
                 post[@"taste"]= @(tasteP);
                 post[@"comfortable"]= @(satisfyP);
-                post[@"location"] = [PFGeoPoint geoPointWithLatitude:self.latitude longitude:self.longitude];
+                post[@"comments"] = [NSNumber numberWithInt:0];
+                if (self.latitude && self.longitude) {
+                    post[@"location"] = [PFGeoPoint geoPointWithLatitude:self.latitude longitude:self.longitude];
+                }
+                
                 post[@"postDate"] = dateT;
                 post[@"isImage"] = [NSString stringWithFormat:@"%d",index];
                 //PFObject *imgModal = [[PFObject alloc]initWithClassName:@"imgsForPost"];
@@ -380,6 +417,21 @@
                 
                 [post saveEventually:^(BOOL succeeded, NSError *error) {
                     if (succeeded) {
+                        
+                        PFQuery *obj = [[PFQuery alloc]initWithClassName:@"User"];
+                        [obj whereKey:@"username" containsString:[PFUser currentUser].username];
+                        [obj findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                            for (PFUser *obj in objects) {
+                                NSNumber *num = obj[@"postCount"];
+                                if (num == nil) {
+                                    num = @(0);
+                                }
+                                int numNew = num.intValue +1;
+                                obj[@"postCount"] = [NSNumber numberWithInt:numNew];
+                                [obj saveInBackground];
+
+                            }
+                        }];
                         for (int i =0; i<weakSelf.pfiles.count; i++) {
                             PFObject *img = [[PFObject alloc]initWithClassName:@"imgsForPost"];
                             img[@"postObId"] = post.objectId;
@@ -451,6 +503,7 @@
                                 [self.innerViews removeAllObjects];
                                 [self.photoes removeAllObjects];
 
+                                
                                 [self.deleteBtn setTitle:@"删除图片" forState:UIControlStateNormal];
                                 self.deleteBtn.enabled = NO;
 

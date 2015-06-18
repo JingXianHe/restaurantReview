@@ -13,6 +13,7 @@
 #import "Followers.h"
 #import "addOrDelBtn.h"
 #import "AppDelegate.h"
+#import "UITableViewController+TItleBtn.h"
 
 @interface NavIntestedPeoTVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(strong, nonatomic)NSMutableArray *users;
@@ -40,7 +41,7 @@
     
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"soupBlur"]];
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"friendSceneBG"]];
     
 }
 
@@ -60,6 +61,10 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
         if (!error) {
+            
+            if (weakSelf.users.count > 0) {
+                [weakSelf.users removeAllObjects];
+            }
             
             for (PFObject *pfuser in objects) {
                 usersData *user = [[usersData alloc]init];
@@ -87,10 +92,14 @@
             dispatch_queue_t q = dispatch_get_main_queue();
             dispatch_async(q, ^{
                 AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+
                 if (delegate.parseUserArray.count > 0) {
+
                     [delegate.parseUserArray removeAllObjects];
+
                 }
                 [delegate.parseUserArray addObjectsFromArray:weakSelf.users];
+                
                 [spinner stopAnimating];
                 [self.tableView reloadData];
                 [[UIApplication sharedApplication]endIgnoringInteractionEvents];

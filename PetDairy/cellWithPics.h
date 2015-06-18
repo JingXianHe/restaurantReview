@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HTableViewController.h"
+#import "DelBtn.h"
 
 @interface cellWithPics : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *indicator;
@@ -17,6 +19,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *satisfyS;
 @property (weak, nonatomic) IBOutlet UIImageView *mapIndicator;
 
+@property (weak, nonatomic) IBOutlet DelBtn *delBtn;
 @property (weak, nonatomic) IBOutlet UITextView *content;
+@property(weak, nonatomic)HTableViewController *delDelegate;
+- (IBAction)delCell:(id)sender;
+
 
 @end

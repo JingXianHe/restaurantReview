@@ -13,14 +13,26 @@
 #import "DetailViewController.h"
 #import "DeTailImgView.h"
 #import "UIView+Extension.h"
+#import "DelBtn.h"
+#import "dataForDelImgs.h"
+#import "UIView+Alert.h"
 
 @interface HTableViewController ()<UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 @property (strong, nonatomic)NSMutableArray *dataItems;
 @property(strong, nonatomic)DetailViewController *popUpController;
 @property(weak, nonatomic)DeTailImgView *selectedImg;
+@property(strong, nonatomic)NSMutableArray *forDelImgs;
+@property(strong, nonatomic)NSFileManager *mgr;
 @end
 
 @implementation HTableViewController
+-(NSMutableArray *)forDelImgs{
+    if (_forDelImgs == Nil) {
+        _forDelImgs = [[NSMutableArray alloc]init];
+    }
+    return _forDelImgs;
+}
+
 -(NSMutableArray *)dataItems{
     if (_dataItems == Nil) {
         _dataItems = [[NSMutableArray alloc]init];
@@ -32,6 +44,8 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"sidebar_bg@2x.jpg"]];
+    self.mgr = [NSFileManager defaultManager];
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -44,6 +58,9 @@
 
 
 -(void)refreshData{
+    if (self.forDelImgs.count > 0) {
+        [self.forDelImgs removeAllObjects];
+    }
     [self.dataItems removeAllObjects];
     sqlite3 *lib;
     NSString *doc = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
@@ -95,6 +112,10 @@
                            NSString *imgdata = [[NSString alloc]initWithUTF8String:sqlite3_column_blob(stmt1, 0)];
                             NSString *getFile = [doc stringByAppendingPathComponent:imgdata];
 
+                            dataForDelImgs *data = [[dataForDelImgs alloc]init];
+                            data.commentId = item.idComent;
+                            data.filePath = getFile;
+                            [self.forDelImgs addObject:data];
                             UIImage *img = [UIImage imageWithContentsOfFile:getFile];
                             if (img) {
                                 [item.imgCollections addObject:img];
@@ -145,44 +166,65 @@
     
     
         
-        cellWithPics *cell = [tableView dequeueReusableCellWithIdentifier:@"cellWithPics"];
-        if (cell == nil) {
-            // 从xib中加载cell
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"cellWithPics" owner:nil options:nil] lastObject];
-        }
-        cell.timeTint.text = [NSString stringWithFormat:@"%@", item.datevalue];
-        cell.TitleTint.text = [[item.title stringByReplacingOccurrencesOfString:@"@" withString:@"'"] uppercaseString];
-        cell.serviceS.text = [self convertCommentP:item.servicecmt title:@"服务："];
-        cell.tasteS.text = [self convertCommentP:item.tastecmt title:@"味道："];
-        cell.satisfyS.text = [self convertCommentP:item.satisfycmt title:@"环境："];
-        cell.indicator.image = [UIImage imageNamed:@"default_indicator"];
+    cellWithPics *cell = [tableView dequeueReusableCellWithIdentifier:@"cellWithPics"];
+    if (cell == nil) {
+        // 从xib中加载cell
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"cellWithPics" owner:nil options:nil] lastObject];
+    }
+    cell.timeTint.text = [NSString stringWithFormat:@"%@", item.datevalue];
+    cell.TitleTint.text = [[item.title stringByReplacingOccurrencesOfString:@"@" withString:@"'"] uppercaseString];
+    cell.serviceS.text = [self convertCommentP:item.servicecmt title:@"服务："];
+    cell.tasteS.text = [self convertCommentP:item.tastecmt title:@"味道："];
+    cell.satisfyS.text = [self convertCommentP:item.satisfycmt title:@"环境："];
+    cell.indicator.image = [UIImage imageNamed:@"default_indicator"];
         
-        cell.content.text = item.content;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
-        
+    cell.content.text = item.content;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-        
-//        HTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellNormal"];
-//        if (cell == nil) {
-//            // 从xib中加载cell
-//            cell = [[[NSBundle mainBundle] loadNibNamed:@"cellNormal" owner:nil options:nil] lastObject];
-//        }
-//        cell.timeTint.text = [NSString stringWithFormat:@"%@", item.datevalue];
-//        cell.TitleTint.text = [[item.title stringByReplacingOccurrencesOfString:@"@" withString:@"'"] uppercaseString];
-//        cell.serviceS.text = [self convertCommentP:item.servicecmt title:@"服务："];
-//        cell.tasteS.text = [self convertCommentP:item.tastecmt title:@"味道："];
-//        cell.satisfyS.text = [self convertCommentP:item.satisfycmt title:@"环境："];
-//        cell.indicator.image = [UIImage imageNamed:@"default_indicator"];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        return cell;
-
-        
-   
+    cell.delDelegate = self;
+    cell.delBtn.indexPath = indexPath;
+    cell.delBtn.commentId = item.idComent;
+    return cell;
+    
 
 }
 
+-(void)deleteCell:(DelBtn *)sender{
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+    //set up sqlite
+    sqlite3 *lib;
+    NSString *doc = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *fileName = [doc stringByAppendingPathComponent:@"privateForcomments.sqlite"];
+    
+    const char *cFile = fileName.UTF8String;
+    int result = sqlite3_open(cFile, &lib);
+    if (result == SQLITE_OK) {
 
+        NSString *insert = [NSString stringWithFormat:@"DELETE FROM comments_test9 WHERE pid = %d",sender.commentId];
+
+        char *error = Nil;
+        result = sqlite3_exec(lib, insert.UTF8String, Nil, Nil, &error);
+        if (result == SQLITE_OK) {
+            
+            
+            [self.dataItems removeObjectAtIndex:sender.indexPath.row];
+            [self.tableView reloadData];
+            
+        }
+    }else{
+        [UIView alertWith:@"错误" message:@"不能打开数据库"];
+    }
+
+    
+    for (dataForDelImgs *item in self.forDelImgs) {
+        if (sender.commentId == item.commentId) {
+            if ([self.mgr fileExistsAtPath:item.filePath]) {
+                [self.mgr removeItemAtPath:item.filePath error:nil];
+            }
+        }
+    }
+    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+}
 
 
 
@@ -316,6 +358,8 @@
     }];
     
 }
+
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -19,6 +19,9 @@
 #import "NavShareComTVC.h"
 #import "RegisterVC.h"
 #import "NearBySearchViewController.h"
+#import "LogInViewController.h"
+#import "UIViewController+TitleBtn.h"
+#import "UIView+Alert.h"
 
 #define HMNavShowAnimDuration 0.25
 #define HMCoverTag 100
@@ -29,7 +32,7 @@
 
 
 
-@interface MainController ()<LeftMenuDelegate, UIAlertViewDelegate>
+@interface MainController ()<LeftMenuDelegate>
 /**
  *  正在显示的导航控制器
  */
@@ -43,8 +46,7 @@
 @property (nonatomic, weak) LeftMenu *leftMenu;
 @property(nonatomic, strong)NSMutableArray *rightControllers;
 @property(nonatomic, strong)PFUser *currentUser;
-//title btn
-@property(strong, nonatomic)TitleButton *titleBtn;
+
 @end
 
 @implementation MainController
@@ -55,16 +57,6 @@
     return _rightControllers;
 }
 
--(TitleButton *)titleBtn{
-    
-    TitleButton *titleView = [[TitleButton alloc] init];
-    _titleBtn = titleView;
-    if (self.currentUser) {
-        titleView.title = self.currentUser.username;
-    }
-    [titleView addTarget:self action:@selector(titleClick) forControlEvents:UIControlEventTouchUpInside];
-    return _titleBtn;
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    UIVisualEffect *blurEffect;
@@ -76,6 +68,8 @@
 //    
 //    visualEffectView.frame = self.imageView.bounds;
 //    [self.imageView addSubview:visualEffectView];
+    
+    
     if (FourInch) {
         self.LeftMenuW = 150;
         self.LeftMenuH = 400;
@@ -89,7 +83,7 @@
     }
     // Do any additional setup after loading the view.
     // 0. check if the users login
-    [self checkUserStatus];
+    //[self checkUserStatus];
     
     // 1.创建子控制器
     [self setupAllChildVcs];
@@ -101,21 +95,10 @@
     // 3.添加右菜单
     [self setupRightMenu];
     
-    //test
-//    PFObject *imgModal = [[PFObject alloc]initWithClassName:@"imgsForPost"];
-//    UIImage *img = [UIImage imageNamed:@"bush-food-brown-lrg.jpg"];
-//    NSData *imgData = UIImageJPEGRepresentation(img, 0.4);
-//    NSString *name = @"aa.jpg";
-//    PFFile *file = [PFFile fileWithName:name data:imgData];
-//    imgModal[@"postObId"] = @"test";
-//    imgModal[@"image"] = file;
-//    
-//    [imgModal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//        if (succeeded) {
-//            NSLog(@"aa");
-//        }
-//    }];
+
 }
+
+
 
 -(void)setupAllChildVcs{
     // 1.新闻控制器
@@ -132,13 +115,16 @@
     //3. register VC
     RegisterVC *registerVC = [[RegisterVC alloc]init];
     [self setupVc:registerVC withRightNavOption:NO];
+    
     NavShareComTVC *rigFriVc1 = [[NavShareComTVC alloc]init];
     [self storeRightController:rigFriVc1];
     //4. baidu map kit
     NearBySearchViewController *nearByVc = [[NearBySearchViewController alloc]init];
     [self setupVc:nearByVc withRightNavOption:NO];
-    UIViewController *rigFriVc2 = [[UIViewController alloc]init];
-    [self storeRightController:rigFriVc2];
+
+    //5. sign up panel
+    LogInViewController *login = [[LogInViewController alloc]init];
+    [self setupVc:login withRightNavOption:NO];
 }
 
 /**
@@ -153,13 +139,12 @@
     //vc.view.backgroundColor = [UIColor whiteColor];
     
     // 2.设置标题
-
-    vc.navigationItem.titleView = self.titleBtn;
+    //vc.navigationItem.titleView = self.titleBtn;
     
     // 3.设置左右按钮
-    vc.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"copypaste3" target:self action:@selector(leftMenuClick)];
+    vc.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithImageName:@"copypaste" target:self action:@selector(leftMenuClick)];
     if (wanted) {
-        vc.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"tools" target:self action:@selector(rightMenuClick)];
+        vc.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithImageName:@"tools-1" target:self action:@selector(rightMenuClick)];
     }
     
     // 4.包装一个导航控制器
@@ -173,50 +158,8 @@
     
     [self.rightControllers addObject:rightPanel];
 }
-#pragma mark - title button click event
--(void)titleClick{
-    
-    if (self.currentUser) {
 
-        return;
-    }else{
-        
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"登录" message:@"请输入用户名字和密码，如果新用户请点击注册按钮" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",@"注册", nil];
-        alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
-        [alert show];
-    }
-    
-}
 
-#pragma uialertViewDelegat
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1) {
-        NSString *userName = [alertView textFieldAtIndex:0].text;
-        NSString *password = [alertView textFieldAtIndex:1].text;
-        [PFUser logInWithUsernameInBackground:userName password:password block:^(PFUser *user, NSError *error) {
-            if (!error) {
-                [self checkUserStatus];
-                
-            }else{
-                NSString *errorMsg = error.userInfo[@"error"];
-                UIAlertView *view = [[UIAlertView alloc]initWithTitle:@"警告" message:errorMsg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [view show];
-                
-            }
-        }];
-    }
-}
-
-#pragma check users status
--(void)checkUserStatus{
-
-    PFUser *currentUser =  [PFUser currentUser];
-    if (currentUser) {
-        self.currentUser = currentUser;
-        self.titleBtn.title = currentUser.username;
-    }
-    
-}
 
 #pragma mark - 监听导航栏按钮点击
 - (void)leftMenuClick
@@ -331,8 +274,22 @@
 }
 
 #pragma mark - HMLeftMenuDelegate
-- (void)leftMenu:(LeftMenu *)menu didSelectedButtonFromIndex:(int)fromIndex toIndex:(int)toIndex
+- (BOOL)leftMenu:(LeftMenu *)menu didSelectedButtonFromIndex:(int)fromIndex toIndex:(int)toIndex
 {
+    if (toIndex != 0) {
+        if ([self checkInternetConnection]== false) {
+            [UIView alertWith:@"错误" message:@"网络连接丢失，不能使用该功能"];
+            return false;
+        }
+    }
+    
+    if (toIndex == 1) {
+        if ([PFUser currentUser]==nil) {
+            [UIView alertWith:@"错误" message:@"请先登录才能使用关注功能"];
+            return false;
+        }
+    }
+    
     
     // 0.移除旧控制器的view
     UINavigationController *oldNav = self.childViewControllers[fromIndex];
@@ -342,8 +299,11 @@
     UINavigationController *newNav = self.childViewControllers[toIndex];
     [self.view addSubview:newNav.view];
     //1.1 set up right tableView controller
-    self.rightMenuVc = self.rightControllers[toIndex];
-    [self setupRightMenu];
+    if (toIndex < 3) {
+        self.rightMenuVc = self.rightControllers[toIndex];
+        [self setupRightMenu];
+    }
+    
     
     
     // 2.设置新控制的transform跟旧控制器一样
@@ -362,6 +322,17 @@
     [self coverClick:[newNav.view viewWithTag:HMCoverTag]];
     
 
+    return true;
+}
+
+-(BOOL)checkInternetConnection{
+    
+    NSURL *scriptUrl = [NSURL URLWithString:@"http://www.baidu.com"];
+    NSData *data = [NSData dataWithContentsOfURL:scriptUrl];
+    if (data)
+        return true;
+    else
+        return false;
 }
 
 -(BOOL)prefersStatusBarHidden{

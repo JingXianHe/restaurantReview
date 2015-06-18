@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <sqlite3.h>
+#import "UIViewController+TitleBtn.h"
 
 @interface RightMenuController : UIViewController
 @property (weak, nonatomic) IBOutlet UIButton *postContentBtn;

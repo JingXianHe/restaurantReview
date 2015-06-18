@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "UITableViewController+TItleBtn.h"
 @interface NavIntestedPeoTVC : UITableViewController
 
 @end

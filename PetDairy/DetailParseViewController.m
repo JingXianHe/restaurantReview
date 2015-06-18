@@ -12,11 +12,14 @@
 #import "cellForComment.h"
 #import "usersData.h"
 #import "AppDelegate.h"
+#import "NavShareComTVC.h"
+#import "MapViewController.h"
 
 @interface DetailParseViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(strong, nonatomic)NSMutableArray *userData;
 @property(strong, nonatomic)NSMutableArray *comments;
 @property (weak, nonatomic) IBOutlet UITextField *commentTF;
+@property(strong, nonatomic)MapViewController *mapViewController;
 
 @end
 
@@ -87,14 +90,14 @@
 }
 
 - (IBAction)leftNav {
-    NSLog(@"aa");
+    self.mapViewController = nil;
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
     
     UIView *view = [[UIView alloc]init];
     
-    
     [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:view];
+    [view removeFromSuperview];
     
     __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:0.75 animations:^{
@@ -102,6 +105,10 @@
     } completion:^(BOOL finished) {
         [view removeFromSuperview];
         [weakSelf.view removeFromSuperview];
+        if (self.commentCount) {
+            self.delegate.commentCount =self.commentCount;
+        }
+        
     }];
     
 }
@@ -109,29 +116,29 @@
 
 - (IBAction)rightNav {
     
-//    MapViewController *map = [[MapViewController alloc]init];
-//    self.mapViewController = map;
-//    
-//    map.title = self.TitleBar.title;
-//    map.latitude =self.latitude;
-//    map.longitude = self.longitude;
-//    
-//    CGFloat width = [UIScreen mainScreen].bounds.size.width;
-//    CGFloat height = [UIScreen mainScreen].bounds.size.height;
-//    map.view.frame = CGRectMake(width, 0, width, height);
-//    UIView *view = [[UIView alloc]init];
-//    view.frame = CGRectMake(0, 0, width, height);
-//    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:map.view];
-//    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:view];
-//    
-//    __weak UIView *bgView = view;
-//    __weak MapViewController *bMap = map;
-//    [UIView animateWithDuration:0.75 animations:^{
-//        map.view.frame = CGRectMake(0, 0, width, height);
-//    } completion:^(BOOL finished) {
-//        [bgView removeFromSuperview];
-//        [bMap setGeolocation];
-//    }];
+    MapViewController *map = [[MapViewController alloc]init];
+    self.mapViewController = map;
+    
+    map.title = self.TitleBar.title;
+    map.latitude =self.latitude;
+    map.longitude = self.longitude;
+    
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    map.view.frame = CGRectMake(width, 0, width, height);
+    UIView *view = [[UIView alloc]init];
+    view.frame = CGRectMake(0, 0, width, height);
+    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:map.view];
+    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:view];
+    
+    __weak UIView *bgView = view;
+    __weak MapViewController *bMap = map;
+    [UIView animateWithDuration:0.75 animations:^{
+        map.view.frame = CGRectMake(0, 0, width, height);
+    } completion:^(BOOL finished) {
+        [bgView removeFromSuperview];
+        [bMap setGeolocation];
+    }];
     
     
     
@@ -221,7 +228,7 @@
     [query whereKey:@"postObId" containsString:self.postId];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error == nil) {
-            
+            [self.comments removeAllObjects];
             for (PFObject *obj in objects) {
                 cmtData *data = [[cmtData alloc]init];
                 data.content = obj[@"content"];
@@ -268,6 +275,7 @@
             for (PFObject *obj in objects) {
                 NSNumber *num = obj[@"comments"];
                 int numNew = num.intValue +1;
+                self.commentCount = numNew;
                 obj[@"comments"] = [NSNumber numberWithInt:numNew];
                 dispatch_queue_t q = dispatch_get_main_queue();
                 dispatch_async(q, ^{

@@ -10,6 +10,8 @@
 		B101CBBC1B074B7E00549F58 /* HCmtDataModal.m in Sources */ = {isa = PBXBuildFile; fileRef = B101CBBB1B074B7E00549F58 /* HCmtDataModal.m */; };
 		B10679491B0DBCC70039AC33 /* HPopOverBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = B10679481B0DBCC70039AC33 /* HPopOverBtn.m */; };
 		B106794B1B0DEABB0039AC33 /* suShi.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B106794A1B0DEABB0039AC33 /* suShi.jpg */; };
+		B10BCE0D1B313DE100A1B8B8 /* DelBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = B10BCE0C1B313DE100A1B8B8 /* DelBtn.m */; };
+		B10BCE101B31488300A1B8B8 /* dataForDelImgs.m in Sources */ = {isa = PBXBuildFile; fileRef = B10BCE0F1B31488300A1B8B8 /* dataForDelImgs.m */; };
 		B11470841B2AA2F300E7F4E1 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B11470831B2AA2F300E7F4E1 /* mapapi.bundle */; };
 		B11470C61B2AA40000E7F4E1 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B11470C51B2AA40000E7F4E1 /* OpenGLES.framework */; };
 		B11470CC1B2AB99D00E7F4E1 /* LocationDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B11470CA1B2AB99D00E7F4E1 /* LocationDemoViewController.m */; };
@@ -82,6 +84,8 @@
 		B181345B1AFB031900635DFC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B181345A1AFB031900635DFC /* libz.dylib */; };
 		B181345D1AFB033E00635DFC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B181345C1AFB033E00635DFC /* libsqlite3.dylib */; };
 		B18134681AFBA91200635DFC /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B18134661AFBA91200635DFC /* PostViewController.xib */; };
+		B185F2781B2E7B1D007E9834 /* UIViewController+TitleBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = B185F2771B2E7B1D007E9834 /* UIViewController+TitleBtn.m */; };
+		B185F27B1B2EC567007E9834 /* UITableViewController+TItleBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = B185F27A1B2EC567007E9834 /* UITableViewController+TItleBtn.m */; };
 		B189CE221B2B172F00F0D634 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B189CE211B2B172F00F0D634 /* libbaidumapapi.a */; };
 		B18DF9B11AF891F900D3071F /* LeftMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B18DF9B01AF891F900D3071F /* LeftMenu.m */; };
 		B19807B91B079D6400C73AC6 /* cellNormal.xib in Resources */ = {isa = PBXBuildFile; fileRef = B19807B81B079D6400C73AC6 /* cellNormal.xib */; };
@@ -98,6 +102,8 @@
 		B19FB06E1AF653C9004B0E34 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B19FB0691AF653C9004B0E34 /* UIBarButtonItem+Extension.m */; };
 		B19FB06F1AF653C9004B0E34 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B19FB06B1AF653C9004B0E34 /* UIImage+Extension.m */; };
 		B19FB0701AF653C9004B0E34 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B19FB06D1AF653C9004B0E34 /* UIView+Extension.m */; };
+		B1C15B091B2D4EDB006930F1 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C15B071B2D4EDB006930F1 /* LogInViewController.m */; };
+		B1C15B0A1B2D4EDB006930F1 /* LogInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1C15B081B2D4EDB006930F1 /* LogInViewController.xib */; };
 		B1CFE1291B14B96F002DB2B0 /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CFE1271B14B96F002DB2B0 /* RegisterVC.m */; };
 		B1CFE12A1B14B96F002DB2B0 /* RegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1CFE1281B14B96F002DB2B0 /* RegisterVC.xib */; };
 		B1D8C5C11B04546B002DF360 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D8C5C01B04546B002DF360 /* UIView+AutoLayout.m */; };
@@ -119,6 +125,10 @@
 		B10679471B0DBCC70039AC33 /* HPopOverBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPopOverBtn.h; sourceTree = "<group>"; };
 		B10679481B0DBCC70039AC33 /* HPopOverBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPopOverBtn.m; sourceTree = "<group>"; };
 		B106794A1B0DEABB0039AC33 /* suShi.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = suShi.jpg; sourceTree = "<group>"; };
+		B10BCE0B1B313DE100A1B8B8 /* DelBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelBtn.h; sourceTree = "<group>"; };
+		B10BCE0C1B313DE100A1B8B8 /* DelBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelBtn.m; sourceTree = "<group>"; };
+		B10BCE0E1B31488300A1B8B8 /* dataForDelImgs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dataForDelImgs.h; sourceTree = "<group>"; };
+		B10BCE0F1B31488300A1B8B8 /* dataForDelImgs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dataForDelImgs.m; sourceTree = "<group>"; };
 		B11470831B2AA2F300E7F4E1 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		B11470861B2AA2FF00E7F4E1 /* BMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMapKit.h; sourceTree = "<group>"; };
 		B11470871B2AA2FF00E7F4E1 /* BMKActionPaopaoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKActionPaopaoView.h; sourceTree = "<group>"; };
@@ -288,6 +298,10 @@
 		B181345A1AFB031900635DFC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		B181345C1AFB033E00635DFC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		B18134661AFBA91200635DFC /* PostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostViewController.xib; sourceTree = "<group>"; };
+		B185F2761B2E7B1D007E9834 /* UIViewController+TitleBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+TitleBtn.h"; sourceTree = "<group>"; };
+		B185F2771B2E7B1D007E9834 /* UIViewController+TitleBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+TitleBtn.m"; sourceTree = "<group>"; };
+		B185F2791B2EC567007E9834 /* UITableViewController+TItleBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewController+TItleBtn.h"; sourceTree = "<group>"; };
+		B185F27A1B2EC567007E9834 /* UITableViewController+TItleBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewController+TItleBtn.m"; sourceTree = "<group>"; };
 		B189CE211B2B172F00F0D634 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		B18DF9AF1AF891F900D3071F /* LeftMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenu.h; sourceTree = "<group>"; };
 		B18DF9B01AF891F900D3071F /* LeftMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenu.m; sourceTree = "<group>"; };
@@ -317,6 +331,9 @@
 		B19FB06C1AF653C9004B0E34 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		B19FB06D1AF653C9004B0E34 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		B19FB0711AF65561004B0E34 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		B1C15B061B2D4EDB006930F1 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
+		B1C15B071B2D4EDB006930F1 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
+		B1C15B081B2D4EDB006930F1 /* LogInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogInViewController.xib; sourceTree = "<group>"; };
 		B1CFE1261B14B96F002DB2B0 /* RegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterVC.h; sourceTree = "<group>"; };
 		B1CFE1271B14B96F002DB2B0 /* RegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterVC.m; sourceTree = "<group>"; };
 		B1CFE1281B14B96F002DB2B0 /* RegisterVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterVC.xib; sourceTree = "<group>"; };
@@ -371,6 +388,8 @@
 			children = (
 				B101CBBA1B074B7E00549F58 /* HCmtDataModal.h */,
 				B101CBBB1B074B7E00549F58 /* HCmtDataModal.m */,
+				B10BCE0E1B31488300A1B8B8 /* dataForDelImgs.h */,
+				B10BCE0F1B31488300A1B8B8 /* dataForDelImgs.m */,
 			);
 			name = Modal;
 			sourceTree = "<group>";
@@ -378,6 +397,7 @@
 		B101CBBF1B074BAE00549F58 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B10BCE0A1B313D9E00A1B8B8 /* DeleteBtn */,
 				B164CA031B086A2400D9282A /* cellPics */,
 				B164CA021B086A1A00D9282A /* cellNormal */,
 			);
@@ -391,6 +411,15 @@
 				B10679481B0DBCC70039AC33 /* HPopOverBtn.m */,
 			);
 			name = popOverBtn;
+			sourceTree = "<group>";
+		};
+		B10BCE0A1B313D9E00A1B8B8 /* DeleteBtn */ = {
+			isa = PBXGroup;
+			children = (
+				B10BCE0B1B313DE100A1B8B8 /* DelBtn.h */,
+				B10BCE0C1B313DE100A1B8B8 /* DelBtn.m */,
+			);
+			name = DeleteBtn;
 			sourceTree = "<group>";
 		};
 		B11470821B2AA21B00E7F4E1 /* BaiduMapKit */ = {
@@ -978,8 +1007,9 @@
 				B17AC26B1B103B9E0070A381 /* FriendsPanel */,
 				B1CFE1251B14B8B1002DB2B0 /* RegisterPanel */,
 				B177C6181B29C2B300B7E9E9 /* BaiduMapPane */,
-				B19FB02E1AF61A97004B0E34 /* AppDelegate.m */,
+				B1C15B051B2D463C006930F1 /* signInOrOutPane */,
 				B19FB02D1AF61A97004B0E34 /* AppDelegate.h */,
+				B19FB02E1AF61A97004B0E34 /* AppDelegate.m */,
 			);
 			name = Class;
 			sourceTree = "<group>";
@@ -1039,6 +1069,16 @@
 			name = lib;
 			sourceTree = "<group>";
 		};
+		B1C15B051B2D463C006930F1 /* signInOrOutPane */ = {
+			isa = PBXGroup;
+			children = (
+				B1C15B061B2D4EDB006930F1 /* LogInViewController.h */,
+				B1C15B071B2D4EDB006930F1 /* LogInViewController.m */,
+				B1C15B081B2D4EDB006930F1 /* LogInViewController.xib */,
+			);
+			name = signInOrOutPane;
+			sourceTree = "<group>";
+		};
 		B1CFE1251B14B8B1002DB2B0 /* RegisterPanel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1056,6 +1096,10 @@
 				B168FF871B0C65A800D2BC9A /* UIImage+OIInCache.m */,
 				B1D8C5BF1B04546B002DF360 /* UIView+AutoLayout.h */,
 				B1D8C5C01B04546B002DF360 /* UIView+AutoLayout.m */,
+				B185F2761B2E7B1D007E9834 /* UIViewController+TitleBtn.h */,
+				B185F2771B2E7B1D007E9834 /* UIViewController+TitleBtn.m */,
+				B185F2791B2EC567007E9834 /* UITableViewController+TItleBtn.h */,
+				B185F27A1B2EC567007E9834 /* UITableViewController+TItleBtn.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -1160,6 +1204,7 @@
 				B161A8301B247C7F009DBED3 /* cellForComment.xib in Resources */,
 				B16EF2701B00347400D4F05E /* pickc540c.jpg in Resources */,
 				B11470D71B2AB9BE00E7F4E1 /* RouteSearchDemoViewController.xib in Resources */,
+				B1C15B0A1B2D4EDB006930F1 /* LogInViewController.xib in Resources */,
 				B19FB03D1AF61A97004B0E34 /* LaunchScreen.xib in Resources */,
 				B164C9F51B0815AC00D9282A /* Images.xcassets in Resources */,
 				B11470CD1B2AB99D00E7F4E1 /* LocationDemoViewController.xib in Resources */,
@@ -1192,6 +1237,9 @@
 				B11470DE1B2AB9EA00E7F4E1 /* UIView+Alert.m in Sources */,
 				B164CA071B086A6B00D9282A /* cellWithPics.m in Sources */,
 				B16189821AFC5FB400FE6CF4 /* PostViewController.m in Sources */,
+				B10BCE0D1B313DE100A1B8B8 /* DelBtn.m in Sources */,
+				B185F27B1B2EC567007E9834 /* UITableViewController+TItleBtn.m in Sources */,
+				B1C15B091B2D4EDB006930F1 /* LogInViewController.m in Sources */,
 				B19FB0651AF6519C004B0E34 /* TitleButton.m in Sources */,
 				B16B86CA1B189E4900E28C2A /* usersData.m in Sources */,
 				B16876851B1B117A001A7413 /* cellForPost.m in Sources */,
@@ -1207,10 +1255,12 @@
 				B11470E21B2AB9F600E7F4E1 /* WayPointRouteSearchDemoViewController.mm in Sources */,
 				B16963331B10B75D008F75E2 /* NavShareComTVC.m in Sources */,
 				B18DF9B11AF891F900D3071F /* LeftMenu.m in Sources */,
+				B185F2781B2E7B1D007E9834 /* UIViewController+TitleBtn.m in Sources */,
 				B16127951B1F032500A64001 /* DetailParseViewController.m in Sources */,
 				B19FB06F1AF653C9004B0E34 /* UIImage+Extension.m in Sources */,
 				B10679491B0DBCC70039AC33 /* HPopOverBtn.m in Sources */,
 				B16876681B1A88B5001A7413 /* Followers.m in Sources */,
+				B10BCE101B31488300A1B8B8 /* dataForDelImgs.m in Sources */,
 				B11470D41B2AB9BE00E7F4E1 /* PoiSearchDemoViewController.mm in Sources */,
 				B19FB0611AF64F50004B0E34 /* HTableViewController.m in Sources */,
 				B177C61C1B29C33A00B7E9E9 /* NearBySearchViewController.m in Sources */,

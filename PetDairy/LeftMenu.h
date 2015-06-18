@@ -11,8 +11,9 @@
 
 @protocol LeftMenuDelegate <NSObject>
 @optional
-- (void)leftMenu:(LeftMenu *)menu didSelectedButtonFromIndex:(int)fromIndex toIndex:(int)toIndex;
+- (BOOL)leftMenu:(LeftMenu *)menu didSelectedButtonFromIndex:(int)fromIndex toIndex:(int)toIndex;
 @end
 @interface LeftMenu : UIView
 @property (nonatomic, weak) id<LeftMenuDelegate> delegate;
+
 @end

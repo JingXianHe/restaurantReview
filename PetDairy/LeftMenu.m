@@ -26,7 +26,7 @@
         [self setupBtnWithIcon:@"sidebar_nav_reading" title:@"关注" bgColor:HMColorRGBA(190, 111, 69, alpha)];
         [self setupBtnWithIcon:@"sidebar_nav_photo" title:@"注册" bgColor:HMColorRGBA(76, 132, 190, alpha)];
         [self setupBtnWithIcon:@"sidebar_nav_video" title:@"视频" bgColor:HMColorRGBA(101, 170, 78, alpha)];
-        [self setupBtnWithIcon:@"sidebar_nav_comment" title:@"跟帖" bgColor:HMColorRGBA(170, 172, 73, alpha)];
+        [self setupBtnWithIcon:@"sidebar_nav_comment" title:@"登录/注销" bgColor:HMColorRGBA(170, 172, 73, alpha)];
         [self setupBtnWithIcon:@"sidebar_nav_radio" title:@"电台" bgColor:HMColorRGBA(190, 62, 119, alpha)];
     }
     return self;
@@ -95,14 +95,18 @@
  */
 - (void)buttonClick:(UIButton *)button
 {
+    BOOL isTrue = true;
     // 0.通知代理
     if ([self.delegate respondsToSelector:@selector(leftMenu:didSelectedButtonFromIndex:toIndex:)]) {
-        [self.delegate leftMenu:self didSelectedButtonFromIndex:self.selectedButton.tag toIndex:button.tag];
+        isTrue = [self.delegate leftMenu:self didSelectedButtonFromIndex:self.selectedButton.tag toIndex:button.tag];
+    }
+    if (isTrue) {
+        // 1.控制按钮的状态
+        self.selectedButton.selected = NO;
+        button.selected = YES;
+        self.selectedButton = button;
     }
     
-    // 1.控制按钮的状态
-    self.selectedButton.selected = NO;
-    button.selected = YES;
-    self.selectedButton = button;
 }
+
 @end

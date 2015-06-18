@@ -10,4 +10,5 @@
 
 @interface NavShareComTVC : UITableViewController
 -(void)refreshData;
+@property(assign, nonatomic)int commentCount;
 @end

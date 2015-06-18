@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NavShareComTVC.h"
 
 @interface DetailParseViewController : UIViewController
 - (IBAction)leftNav;
@@ -30,4 +31,6 @@
 @property(nonatomic, assign)CGFloat longitude;
 - (IBAction)send;
 @property(nonatomic,copy)NSString *postId;
+@property(weak, nonatomic)NavShareComTVC *delegate;
+@property(assign, nonatomic)int commentCount;
 @end

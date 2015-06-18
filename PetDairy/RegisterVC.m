@@ -8,6 +8,8 @@
 
 #import "RegisterVC.h"
 #import <Parse/Parse.h>
+#import "UIView+Extension.h"
+#import "UIViewController+TitleBtn.h"
 
 @interface RegisterVC ()<UIGestureRecognizerDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 - (IBAction)camera;
@@ -21,8 +23,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.upperView.backgroundColor = [UIColor colorWithRed:133/255.0 green:210/255.0 blue:197/255.0 alpha:1.0];
-    self.downView.backgroundColor = [UIColor colorWithRed:106/255.0 green:168/255.0 blue:158/255.0 alpha:1.0];
+//    self.upperView.backgroundColor = [UIColor colorWithRed:133/255.0 green:210/255.0 blue:197/255.0 alpha:1.0];
+//    self.downView.backgroundColor = [UIColor colorWithRed:106/255.0 green:168/255.0 blue:158/255.0 alpha:1.0];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"iphone4sCity"]];
     self.profileImg.layer.cornerRadius = self.profileImg.frame.size.height / 2;
     self.profileImg.clipsToBounds = YES;
      //create and configure the tap gesture
@@ -33,6 +36,7 @@
     self.password.secureTextEntry = YES;
     
 }
+
 
 #pragma tap event
 -(void)tabEvent{

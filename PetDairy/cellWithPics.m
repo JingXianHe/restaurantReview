@@ -23,4 +23,10 @@
     // Configure the view for the selected state
 }
 
+
+- (IBAction)delCell:(id)sender {
+    
+    [self.delDelegate deleteCell:sender];
+    
+}
 @end

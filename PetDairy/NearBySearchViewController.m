@@ -10,7 +10,7 @@
 #import "UIView+Alert.h"
 #import "BMapKit.h"
 #import "PoiViewController.h"
-
+#import "UIViewController+TitleBtn.h"
 @interface NearBySearchViewController ()<BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
 - (IBAction)uploadMyloc;
 @property(strong, nonatomic)BMKLocationService* locService;
@@ -21,8 +21,7 @@
 - (IBAction)willSearch;
 @property (weak, nonatomic) IBOutlet UITextField *cityText;
 @property (weak, nonatomic) IBOutlet UITextField *addressText;
-@property (weak, nonatomic) IBOutlet UILabel *rangeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *quantityLabel;
+
 @property(strong, nonatomic)PoiViewController *poiViewController;
 @property(assign, nonatomic)BOOL delegateIsOn;
 @property (weak, nonatomic) IBOutlet UITextField *keyText;
@@ -76,11 +75,6 @@
 
     _locService.delegate = nil;
     
-}
-- (IBAction)rangeValue:(id)sender {
-    UISlider *slide = (UISlider *)sender;
-    
-    self.rangeDisplay.text = [NSString stringWithFormat:@"%d",(int)slide.value];
 }
 
 - (IBAction)quantityChange:(id)sender {
@@ -140,8 +134,7 @@
     poi.city = self.city;
     poi.street = self.street;
     poi.keyWord = self.keyText.text;
-    poi.pageCapacity = [self.quantityLabel.text intValue];
-    poi.radius = [self.rangeLabel.text intValue];
+    poi.pageCapacity = self.quantityDisplay.text.intValue;
     self.poiViewController = poi;
     poi.currentLocation = self.currentLocation;
     poi.navHeight = self.navigationController.navigationBar.frame.size.height;

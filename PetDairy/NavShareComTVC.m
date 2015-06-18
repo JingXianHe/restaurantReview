@@ -22,6 +22,7 @@
 @property(strong, nonatomic)NSMutableArray *usersData;
 @property(strong, nonatomic)DetailParseViewController *detailVC;
 @property(weak, nonatomic)DeTailImgView *selectedImg;
+@property(strong, nonatomic)NSIndexPath* index;
 @end
 
 @implementation NavShareComTVC
@@ -47,6 +48,17 @@
     }
     return _usersData;
 }
+
+-(void)setCommentCount:(int)commentCount{
+    
+    _commentCount = commentCount;
+    self.detailVC = nil;
+    postData *data = self.postData[self.index.row];
+    data.comments = commentCount;
+    [self.tableView reloadData];
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -247,10 +259,14 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    self.index = indexPath;
+
     postData *postDta = self.postData[indexPath.row];
     
     DetailParseViewController *detailCon = [[DetailParseViewController alloc]init];
     self.detailVC = detailCon;
+    //for comment counts
+    detailCon.delegate = self;
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
     detailCon.view.frame = CGRectMake(0, height, width, height);
@@ -350,6 +366,7 @@
         self.selectedImg = nil;
     }];
 }
+
 
 /*
 // Override to support conditional editing of the table view.

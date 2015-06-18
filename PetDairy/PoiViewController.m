@@ -68,7 +68,7 @@
             {
                 //将第一个点的坐标移到屏幕中央
                 _mapView.centerCoordinate = poi.pt;
-                [self.mapView setZoomLevel:14.0];
+                [self.mapView setZoomLevel:12.0];
                 
             }
         }

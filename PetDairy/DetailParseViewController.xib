@@ -60,10 +60,10 @@
                                     <state key="normal" image="icon_map_highlighted">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="rightNav" destination="-1" eventType="touchUpInside" id="lm7-fk-rpR"/>
+                                    </connections>
                                 </button>
-                                <connections>
-                                    <action selector="rightNav" destination="-1" id="wiB-XH-DSH"/>
-                                </connections>
                             </barButtonItem>
                         </navigationItem>
                     </items>

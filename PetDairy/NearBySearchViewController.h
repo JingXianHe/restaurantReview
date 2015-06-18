@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "UIViewController+TitleBtn.h"
 @interface NearBySearchViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIView *searchRange;
 @property (weak, nonatomic) IBOutlet UISlider *searchQuantity;
-- (IBAction)rangeValue:(id)sender;
+
 - (IBAction)quantityChange:(id)sender;
-@property (weak, nonatomic) IBOutlet UILabel *rangeDisplay;
+
 @property (weak, nonatomic) IBOutlet UILabel *quantityDisplay;
 
 @end
