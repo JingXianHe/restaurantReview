@@ -86,6 +86,11 @@
     spinner.center = self.tableView.center;
     spinner.hidesWhenStopped = YES;
     
+    UIView *cover =[[UIView alloc]init];
+    cover.backgroundColor = [UIColor lightGrayColor];
+    cover.frame = self.view.bounds;
+    [self.view addSubview:cover];
+    
     [self.view addSubview:spinner];
     [spinner startAnimating];
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
@@ -142,7 +147,7 @@
                     dispatch_async(q, ^{
                         [weakSelf.tableView reloadData];
                         [weakSelf styleVisibleCells];
-                       
+                        [cover removeFromSuperview];
                         [spinner stopAnimating];
                         [[UIApplication sharedApplication]endIgnoringInteractionEvents];
                     });
@@ -154,6 +159,7 @@
 
             
         }else{
+            [cover removeFromSuperview];
             [spinner stopAnimating];
             [[UIApplication sharedApplication]endIgnoringInteractionEvents];
         }

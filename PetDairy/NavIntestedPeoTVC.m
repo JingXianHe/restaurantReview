@@ -50,6 +50,10 @@
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]init];
     spinner.center = self.tableView.center;
     spinner.hidesWhenStopped = YES;
+    UIView *cover =[[UIView alloc]init];
+    cover.backgroundColor = [UIColor lightGrayColor];
+    cover.frame = self.view.bounds;
+    [self.view addSubview:cover];
     
     [self.view addSubview:spinner];
     [spinner startAnimating];
@@ -99,14 +103,14 @@
 
                 }
                 [delegate.parseUserArray addObjectsFromArray:weakSelf.users];
-                
+                [cover removeFromSuperview];
                 [spinner stopAnimating];
                 [self.tableView reloadData];
                 [[UIApplication sharedApplication]endIgnoringInteractionEvents];
             });
             
         }else{
-            
+            [cover removeFromSuperview];
             [spinner stopAnimating];
             [[UIApplication sharedApplication]endIgnoringInteractionEvents];
             UIAlertView *view = [[UIAlertView alloc]initWithTitle:@"错误" message:error.userInfo[@"error"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];

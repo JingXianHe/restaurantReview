@@ -26,6 +26,7 @@
 		B11470E31B2AB9F600E7F4E1 /* WayPointRouteSearchDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B11470E11B2AB9F600E7F4E1 /* WayPointRouteSearchDemoViewController.xib */; };
 		B11694A91B01C44800CF8381 /* commentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B11694A81B01C44800CF8381 /* commentView.m */; };
 		B11694AF1B01D48E00CF8381 /* newCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B11694AE1B01D48E00CF8381 /* newCommentView.xib */; };
+		B155DE021B32755800BE7A3C /* NewfeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B155DE011B32755800BE7A3C /* NewfeatureViewController.m */; };
 		B16127951B1F032500A64001 /* DetailParseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B16127931B1F032500A64001 /* DetailParseViewController.m */; };
 		B16127961B1F032500A64001 /* DetailParseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B16127941B1F032500A64001 /* DetailParseViewController.xib */; };
 		B16189821AFC5FB400FE6CF4 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B16189811AFC5FB400FE6CF4 /* PostViewController.m */; };
@@ -46,6 +47,8 @@
 		B164D1681B007DF000CF7A5E /* scrollViewInnerButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = B164D1671B007DF000CF7A5E /* scrollViewInnerButton.xib */; };
 		B164D16F1B007F5200CF7A5E /* ProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = B164D16E1B007F5200CF7A5E /* ProfileController.m */; };
 		B164D1721B00813D00CF7A5E /* ScrollViewInnerBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = B164D1711B00813D00CF7A5E /* ScrollViewInnerBtn.m */; };
+		B164FE3D1B346F0500FEDDEF /* GestureLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B164FE3B1B346F0500FEDDEF /* GestureLockViewController.m */; };
+		B164FE3E1B346F0500FEDDEF /* GestureLockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B164FE3C1B346F0500FEDDEF /* GestureLockViewController.xib */; };
 		B167FF4F1B1DB28500211BF4 /* addOrDelBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = B167FF4E1B1DB28500211BF4 /* addOrDelBtn.m */; };
 		B16876681B1A88B5001A7413 /* Followers.m in Sources */ = {isa = PBXBuildFile; fileRef = B16876671B1A88B5001A7413 /* Followers.m */; };
 		B16876851B1B117A001A7413 /* cellForPost.m in Sources */ = {isa = PBXBuildFile; fileRef = B16876831B1B117A001A7413 /* cellForPost.m */; };
@@ -211,6 +214,8 @@
 		B11694A71B01C44800CF8381 /* commentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commentView.h; sourceTree = "<group>"; };
 		B11694A81B01C44800CF8381 /* commentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = commentView.m; sourceTree = "<group>"; };
 		B11694AE1B01D48E00CF8381 /* newCommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = newCommentView.xib; sourceTree = "<group>"; };
+		B155DE001B32755800BE7A3C /* NewfeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewfeatureViewController.h; sourceTree = "<group>"; };
+		B155DE011B32755800BE7A3C /* NewfeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewfeatureViewController.m; sourceTree = "<group>"; };
 		B16127921B1F032500A64001 /* DetailParseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailParseViewController.h; sourceTree = "<group>"; };
 		B16127931B1F032500A64001 /* DetailParseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailParseViewController.m; sourceTree = "<group>"; };
 		B16127941B1F032500A64001 /* DetailParseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailParseViewController.xib; sourceTree = "<group>"; };
@@ -244,6 +249,9 @@
 		B164D16E1B007F5200CF7A5E /* ProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileController.m; sourceTree = "<group>"; };
 		B164D1701B00813D00CF7A5E /* ScrollViewInnerBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewInnerBtn.h; sourceTree = "<group>"; };
 		B164D1711B00813D00CF7A5E /* ScrollViewInnerBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewInnerBtn.m; sourceTree = "<group>"; };
+		B164FE3A1B346F0500FEDDEF /* GestureLockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureLockViewController.h; sourceTree = "<group>"; };
+		B164FE3B1B346F0500FEDDEF /* GestureLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureLockViewController.m; sourceTree = "<group>"; };
+		B164FE3C1B346F0500FEDDEF /* GestureLockViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GestureLockViewController.xib; sourceTree = "<group>"; };
 		B167FF4D1B1DB28500211BF4 /* addOrDelBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addOrDelBtn.h; sourceTree = "<group>"; };
 		B167FF4E1B1DB28500211BF4 /* addOrDelBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addOrDelBtn.m; sourceTree = "<group>"; };
 		B16876661B1A88B5001A7413 /* Followers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Followers.h; sourceTree = "<group>"; };
@@ -552,6 +560,15 @@
 			name = commentView;
 			sourceTree = "<group>";
 		};
+		B155DDFF1B3274EF00BE7A3C /* Initialize Scene */ = {
+			isa = PBXGroup;
+			children = (
+				B155DE001B32755800BE7A3C /* NewfeatureViewController.h */,
+				B155DE011B32755800BE7A3C /* NewfeatureViewController.m */,
+			);
+			name = "Initialize Scene";
+			sourceTree = "<group>";
+		};
 		B16189831AFCFFD100FE6CF4 /* ScrollView */ = {
 			isa = PBXGroup;
 			children = (
@@ -697,6 +714,32 @@
 				B164D1711B00813D00CF7A5E /* ScrollViewInnerBtn.m */,
 			);
 			name = ScrollviewInnerButton;
+			sourceTree = "<group>";
+		};
+		B164FE391B346ECF00FEDDEF /* gestureLock */ = {
+			isa = PBXGroup;
+			children = (
+				B164FE401B346F5600FEDDEF /* View */,
+				B164FE3F1B346F4D00FEDDEF /* Controller */,
+			);
+			name = gestureLock;
+			sourceTree = "<group>";
+		};
+		B164FE3F1B346F4D00FEDDEF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B164FE3A1B346F0500FEDDEF /* GestureLockViewController.h */,
+				B164FE3B1B346F0500FEDDEF /* GestureLockViewController.m */,
+				B164FE3C1B346F0500FEDDEF /* GestureLockViewController.xib */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		B164FE401B346F5600FEDDEF /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		B167FF4C1B1DB25500211BF4 /* addOrDelBtn */ = {
@@ -999,6 +1042,8 @@
 		B19FB0531AF61AA9004B0E34 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				B164FE391B346ECF00FEDDEF /* gestureLock */,
+				B155DDFF1B3274EF00BE7A3C /* Initialize Scene */,
 				B1D8C5BE1B04545B002DF360 /* Category */,
 				B181345E1AFB9D4600635DFC /* global */,
 				B18134431AFB017E00635DFC /* frameWork */,
@@ -1204,6 +1249,7 @@
 				B161A8301B247C7F009DBED3 /* cellForComment.xib in Resources */,
 				B16EF2701B00347400D4F05E /* pickc540c.jpg in Resources */,
 				B11470D71B2AB9BE00E7F4E1 /* RouteSearchDemoViewController.xib in Resources */,
+				B164FE3E1B346F0500FEDDEF /* GestureLockViewController.xib in Resources */,
 				B1C15B0A1B2D4EDB006930F1 /* LogInViewController.xib in Resources */,
 				B19FB03D1AF61A97004B0E34 /* LaunchScreen.xib in Resources */,
 				B164C9F51B0815AC00D9282A /* Images.xcassets in Resources */,
@@ -1252,6 +1298,7 @@
 				B19FB0321AF61A97004B0E34 /* PetDairy.xcdatamodeld in Sources */,
 				B168FF881B0C65A800D2BC9A /* UIImage+OIInCache.m in Sources */,
 				B1649BF91AF8DDA100B5EC0C /* RightMenuController.m in Sources */,
+				B164FE3D1B346F0500FEDDEF /* GestureLockViewController.m in Sources */,
 				B11470E21B2AB9F600E7F4E1 /* WayPointRouteSearchDemoViewController.mm in Sources */,
 				B16963331B10B75D008F75E2 /* NavShareComTVC.m in Sources */,
 				B18DF9B11AF891F900D3071F /* LeftMenu.m in Sources */,
@@ -1271,6 +1318,7 @@
 				B164D1721B00813D00CF7A5E /* ScrollViewInnerBtn.m in Sources */,
 				B167FF4F1B1DB28500211BF4 /* addOrDelBtn.m in Sources */,
 				B17212CB1B2B369F0086C1E4 /* customButton.m in Sources */,
+				B155DE021B32755800BE7A3C /* NewfeatureViewController.m in Sources */,
 				B11470CC1B2AB99D00E7F4E1 /* LocationDemoViewController.m in Sources */,
 				B17212C71B2B36290086C1E4 /* PoiViewController.m in Sources */,
 				B16963281B10A5E2008F75E2 /* UIViewController+RefreshData.m in Sources */,

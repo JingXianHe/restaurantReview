@@ -8,6 +8,7 @@
 #import <Parse/Parse.h>
 #import "AppDelegate.h"
 #import "BMapKit.h"
+#import "NewfeatureViewController.h"
 @interface AppDelegate ()
 @property (nonatomic, strong) BMKMapManager *mapManager;
 @end
@@ -33,6 +34,24 @@
     if (!ret) {
         NSLog(@"manager start failed!");
     }
+    
+    NSString *versionKey = @"CFBundleVersion";
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *lastVersion = [defaults objectForKey:versionKey];
+    
+    NSString *currentVersion = [NSBundle mainBundle].infoDictionary[versionKey];
+    if (![currentVersion isEqualToString:lastVersion]) {
+        // 1.创建窗口
+        self.window = [[UIWindow alloc] init];
+        self.window.frame = [UIScreen mainScreen].bounds;
+        
+        // 2.显示窗口(成为主窗口)
+        [self.window makeKeyAndVisible];
+        self.window.rootViewController = [[NewfeatureViewController alloc]init];
+        [defaults setObject:currentVersion forKey:versionKey];
+        [defaults synchronize];
+    }
+    
 
     return YES;
 }
