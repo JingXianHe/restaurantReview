@@ -14,6 +14,7 @@
 #import "addOrDelBtn.h"
 #import "AppDelegate.h"
 #import "UITableViewController+TItleBtn.h"
+#import "UIView+Alert.h"
 
 @interface NavIntestedPeoTVC ()<UITableViewDataSource,UITableViewDelegate>
 @property(strong, nonatomic)NSMutableArray *users;
@@ -61,6 +62,8 @@
 
     PFQuery *query = [PFUser query];
     
+    
+    
     __weak typeof(self) weakSelf = self;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
@@ -73,6 +76,9 @@
             for (PFObject *pfuser in objects) {
                 usersData *user = [[usersData alloc]init];
                 user.username = pfuser[@"username"];
+                if ([user.username isEqualToString:[PFUser currentUser].username]) {
+                    continue;
+                }
                 
                 user.email = pfuser[@"email"];
                 NSString *gender = (NSString *)pfuser[@"gender"];
@@ -119,27 +125,33 @@
         }
         
     }];
-    PFQuery *queryF = [[PFQuery alloc]initWithClassName:@"followers"];
     
-    [queryF findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            for (PFObject *follower in objects) {
-                Followers *followerData = [[Followers alloc]init];
-                followerData.follower = follower[@"follower"];
-                followerData.following = follower[@"following"];
-                [weakSelf.followers addObject:followerData];
+    if (self.followers.count == 0) {
+        PFQuery *queryF = [[PFQuery alloc]initWithClassName:@"followers"];
+        
+        [queryF findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                for (PFObject *follower in objects) {
+                    Followers *followerData = [[Followers alloc]init];
+                    followerData.follower = follower[@"follower"];
+                    followerData.following = follower[@"following"];
+                    [weakSelf.followers addObject:followerData];
+                }
+                
+                dispatch_queue_t q = dispatch_get_main_queue();
+                dispatch_async(q, ^{
+                    [self.tableView reloadData];
+                });
+                
+            }else{
+                
+                [UIView alertWith:@"错误" message:error.userInfo[@"error"]];
+                
             }
-            
-            dispatch_queue_t q = dispatch_get_main_queue();
-            dispatch_async(q, ^{
-                [self.tableView reloadData];
-            });
-            
-        }else{
-            NSLog(@"%@", error.userInfo[@"error"]);
-
-        }
-    }];
+        }];
+    }
+    
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -277,7 +289,7 @@
 -(int)checkFollowings:(NSString *)name{
     int count = 0;
     for (Followers *follower in self.followers) {
-        if ([follower.following isEqualToString:name]) {
+        if ([follower.follower isEqualToString:name]) {
             count ++;
         }
     }

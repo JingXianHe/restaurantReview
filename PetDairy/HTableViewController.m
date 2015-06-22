@@ -177,7 +177,13 @@
     cell.tasteS.text = [self convertCommentP:item.tastecmt title:@"味道："];
     cell.satisfyS.text = [self convertCommentP:item.satisfycmt title:@"环境："];
     cell.indicator.image = [UIImage imageNamed:@"default_indicator"];
-        
+    
+    if (item.latitude ==0) {
+        cell.mapIndicator.hidden = YES;
+    }else{
+        cell.mapIndicator.hidden = NO;
+    }
+    
     cell.content.text = item.content;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -244,7 +250,7 @@
 -(void)styleVisibleCells{
     NSArray *indexes = [self.tableView visibleCells];
     for (int i =0; i < indexes.count; i++) {
-        if (i == 2) {
+        if (i == 0) {
             HTableViewCell *indexC = indexes[i];
             indexC.indicator.image = [UIImage imageNamed:@"promoboard_icon_mall"];
             indexC.indicator.backgroundColor = [UIColor whiteColor];
@@ -285,9 +291,10 @@
     detailCon.RCommentLabel.text = [self convertCommentP:item.satisfycmt title:@"环境："];
     detailCon.ContentTextView.text = item.content;
     //check geolocation available
-    if (item.latitude && item.longitude) {
+    if (item.latitude == 0) {
         detailCon.geoIndicator.enabled = NO;
     }else{
+        detailCon.geoIndicator.enabled = YES;
         detailCon.latitude = item.latitude;
         detailCon.longitude = item.longitude;
     }

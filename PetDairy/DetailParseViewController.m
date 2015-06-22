@@ -14,8 +14,9 @@
 #import "AppDelegate.h"
 #import "NavShareComTVC.h"
 #import "MapViewController.h"
+#import "UIView+Alert.h"
 
-@interface DetailParseViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface DetailParseViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 @property(strong, nonatomic)NSMutableArray *userData;
 @property(strong, nonatomic)NSMutableArray *comments;
 @property (weak, nonatomic) IBOutlet UITextField *commentTF;
@@ -50,6 +51,7 @@
     self.commentTableView.delegate = self;
     self.commentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.commentTableView.backgroundColor = [UIColor clearColor];
+    self.commentTF.delegate = self;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     // 键盘即将隐藏, 就会发出UIKeyboardWillHideNotification
@@ -115,7 +117,10 @@
 
 
 - (IBAction)rightNav {
-    
+    if ([self checkInternetConnection]==false) {
+        [UIView alertWith:@"错误" message:@"互联网不可用，不能使用地图功能！"];
+        return;
+    }
     MapViewController *map = [[MapViewController alloc]init];
     self.mapViewController = map;
     
@@ -143,7 +148,15 @@
     
     
 }
-
+-(BOOL)checkInternetConnection{
+    
+    NSURL *scriptUrl = [NSURL URLWithString:@"http://www.baidu.com"];
+    NSData *data = [NSData dataWithContentsOfURL:scriptUrl];
+    if (data)
+        return true;
+    else
+        return false;
+}
 #pragma tableView datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
@@ -194,6 +207,10 @@
         self.ImageViewHeight.constant = 0;
         
     }];
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self.commentTF resignFirstResponder];
+    return NO;
 }
 /**
  *  键盘即将隐藏

@@ -49,13 +49,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="294" height="82"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bf-JO-Uk5">
-                                        <rect key="frame" x="0.0" y="0.0" width="76" height="82"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="92" height="82"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wue-ul-8JV">
-                                        <rect key="frame" x="76" y="0.0" width="153" height="82"/>
+                                        <rect key="frame" x="92" y="0.0" width="137" height="82"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -100,7 +100,7 @@
                                     <constraint firstItem="8bf-JO-Uk5" firstAttribute="leading" secondItem="wxg-Jj-BiS" secondAttribute="leading" id="dTl-FF-fZC"/>
                                     <constraint firstItem="yvy-FY-dYC" firstAttribute="leading" secondItem="wue-ul-8JV" secondAttribute="trailing" id="gFG-e2-N3a"/>
                                     <constraint firstItem="yvy-FY-dYC" firstAttribute="top" secondItem="wxg-Jj-BiS" secondAttribute="top" id="jvv-c9-CXg"/>
-                                    <constraint firstItem="wue-ul-8JV" firstAttribute="width" secondItem="8bf-JO-Uk5" secondAttribute="width" multiplier="2" id="kWh-xl-vhC"/>
+                                    <constraint firstItem="wue-ul-8JV" firstAttribute="width" secondItem="8bf-JO-Uk5" secondAttribute="width" multiplier="1.5" id="kWh-xl-vhC"/>
                                     <constraint firstItem="8bf-JO-Uk5" firstAttribute="top" secondItem="wxg-Jj-BiS" secondAttribute="top" id="vuL-sh-vZ5"/>
                                 </constraints>
                                 <variation key="default">

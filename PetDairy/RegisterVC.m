@@ -11,7 +11,7 @@
 #import "UIView+Extension.h"
 #import "UIViewController+TitleBtn.h"
 
-@interface RegisterVC ()<UIGestureRecognizerDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface RegisterVC ()<UIGestureRecognizerDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextFieldDelegate>
 - (IBAction)camera;
 
 
@@ -33,11 +33,19 @@
     tapRecognizer.delegate =self;
     [self.view addGestureRecognizer:tapRecognizer];
     
+    
     self.password.secureTextEntry = YES;
+    //set up delegate
+    self.username.delegate = self;
+    self.password.delegate = self;
+    self.email.delegate = self;
     
 }
 
-
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
+}
 #pragma tap event
 -(void)tabEvent{
     [self.email resignFirstResponder];

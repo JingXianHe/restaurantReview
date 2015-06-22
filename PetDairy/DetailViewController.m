@@ -8,7 +8,7 @@
 
 #import "DetailViewController.h"
 #import "MapViewController.h"
-
+#import "UIView+Alert.h"
 
 @interface DetailViewController ()
 @property(strong, nonatomic)MapViewController *mapViewController;
@@ -58,7 +58,10 @@
 }
 
 - (IBAction)rightNav {
-    
+    if ([self checkInternetConnection]==false) {
+        [UIView alertWith:@"错误" message:@"互联网不可用，不能使用地图功能！"];
+        return;
+    }
     MapViewController *map = [[MapViewController alloc]init];
     self.mapViewController = map;
     
@@ -84,6 +87,15 @@
     }];
 
     
-    
 }
+-(BOOL)checkInternetConnection{
+
+    NSURL *scriptUrl = [NSURL URLWithString:@"http://www.baidu.com"];
+    NSData *data = [NSData dataWithContentsOfURL:scriptUrl];
+    if (data)
+        return true;
+    else
+        return false;
+}
+
 @end

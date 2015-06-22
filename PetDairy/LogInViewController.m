@@ -11,7 +11,7 @@
 #import "TitleButton.h"
 #import "LeftMenu.h"
 #import "UIViewController+TitleBtn.h"
-@interface LogInViewController ()<UIAlertViewDelegate, UITextFieldDelegate>
+@interface LogInViewController ()<UIAlertViewDelegate, UITextFieldDelegate,UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *username;
 @property (weak, nonatomic) IBOutlet UITextField *password;
 @property (weak, nonatomic) IBOutlet UIView *indicatorContainer;
@@ -29,9 +29,17 @@
     [super viewDidLoad];
     self.username.delegate = self;
     self.password.delegate = self;
+    //create and configure the tap gesture
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tabEvent)];
+    tapRecognizer.delegate =self;
+    [self.view addGestureRecognizer:tapRecognizer];
 
 }
-
+#pragma tap event
+-(void)tabEvent{
+    [self.username resignFirstResponder];
+    [self.password resignFirstResponder];
+}
 -(void)viewWillAppear:(BOOL)animated{
     if ([PFUser currentUser]) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"注销账号" message:@"是否需要注销账号" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];

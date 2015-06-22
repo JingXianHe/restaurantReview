@@ -22,6 +22,8 @@
 #import "LogInViewController.h"
 #import "UIViewController+TitleBtn.h"
 #import "UIView+Alert.h"
+#import "GestureLockViewController.h"
+#import "popupLockVC.h"
 
 #define HMNavShowAnimDuration 0.25
 #define HMCoverTag 100
@@ -70,6 +72,7 @@
 //    [self.imageView addSubview:visualEffectView];
     
     
+    
     if (FourInch) {
         self.LeftMenuW = 150;
         self.LeftMenuH = 400;
@@ -85,6 +88,8 @@
     // 0. check if the users login
     //[self checkUserStatus];
     
+    
+    
     // 1.创建子控制器
     [self setupAllChildVcs];
     
@@ -95,6 +100,7 @@
     // 3.添加右菜单
     [self setupRightMenu];
     
+
 
 }
 
@@ -125,6 +131,10 @@
     //5. sign up panel
     LogInViewController *login = [[LogInViewController alloc]init];
     [self setupVc:login withRightNavOption:NO];
+    
+    //6. gesture lock panel
+    GestureLockViewController *gest = [[GestureLockViewController alloc]init];
+    [self setupVc:gest withRightNavOption:NO];
 }
 
 /**
@@ -276,11 +286,14 @@
 #pragma mark - HMLeftMenuDelegate
 - (BOOL)leftMenu:(LeftMenu *)menu didSelectedButtonFromIndex:(int)fromIndex toIndex:(int)toIndex
 {
-    if (toIndex != 0) {
-        if ([self checkInternetConnection]== false) {
-            [UIView alertWith:@"错误" message:@"网络连接丢失，不能使用该功能"];
-            return false;
+    if (toIndex != 0)  {
+        if (toIndex !=5) {
+            if ([self checkInternetConnection]== false) {
+                [UIView alertWith:@"错误" message:@"网络连接丢失，不能使用该功能"];
+                return false;
+            }
         }
+        
     }
     
     if (toIndex == 1) {

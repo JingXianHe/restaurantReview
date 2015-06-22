@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "BMapKit.h"
 #import "NewfeatureViewController.h"
+#import "popupLockVC.h"
 @interface AppDelegate ()
 @property (nonatomic, strong) BMKMapManager *mapManager;
 @end
@@ -50,6 +51,22 @@
         self.window.rootViewController = [[NewfeatureViewController alloc]init];
         [defaults setObject:currentVersion forKey:versionKey];
         [defaults synchronize];
+    }else{
+        
+        NSString *versionKey = @"GesturePassword";
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *lastVersion = [defaults objectForKey:versionKey];
+        if (lastVersion != nil) {
+            // 1.创建窗口
+            self.window = [[UIWindow alloc] init];
+            self.window.frame = [UIScreen mainScreen].bounds;
+            
+            // 2.显示窗口(成为主窗口)
+            [self.window makeKeyAndVisible];
+            self.window.rootViewController = [[popupLockVC alloc]init];
+
+        }
+        
     }
     
 

@@ -11,7 +11,7 @@
 #import "BMapKit.h"
 #import "PoiViewController.h"
 #import "UIViewController+TitleBtn.h"
-@interface NearBySearchViewController ()<BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
+@interface NearBySearchViewController ()<BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,UIGestureRecognizerDelegate,UITextFieldDelegate>
 - (IBAction)uploadMyloc;
 @property(strong, nonatomic)BMKLocationService* locService;
 @property(copy, nonatomic)NSString *city;
@@ -25,6 +25,7 @@
 @property(strong, nonatomic)PoiViewController *poiViewController;
 @property(assign, nonatomic)BOOL delegateIsOn;
 @property (weak, nonatomic) IBOutlet UITextField *keyText;
+@property (weak, nonatomic) IBOutlet UIButton *searchBtn;
 
 
 @end
@@ -43,15 +44,27 @@
     self.locService = [[BMKLocationService alloc]init];
     self.geocodesearch = [[BMKGeoCodeSearch alloc]init];
     self.delegateIsOn = false;
-    
+    //create and configure the tap gesture
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tabEvent)];
+    tapRecognizer.delegate =self;
+    [self.view addGestureRecognizer:tapRecognizer];
+    self.keyText.delegate = self;
     
 }
 
+#pragma tap event
+-(void)tabEvent{
+    [self.keyText resignFirstResponder];
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
+}
 /*
 #pragma mark - Navigation
 
@@ -89,9 +102,9 @@
     
 }
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation{
-    //self.currentLocation = userLocation.location.coordinate;
+    self.currentLocation = userLocation.location.coordinate;
 
-    self.currentLocation = CLLocationCoordinate2DMake(23.16667,113.23333);
+    //self.currentLocation = CLLocationCoordinate2DMake(23.16667,113.23333);
     [self.locService stopUserLocationService];
 }
 -(void)onClickReverseGeocode:(CLLocationCoordinate2D)point
@@ -102,11 +115,11 @@
     BOOL flag = [_geocodesearch reverseGeoCode:reverseGeocodeSearchOption];
     if(flag)
     {
-        NSLog(@"反geo检索发送成功");
+        
     }
     else
     {
-        NSLog(@"反geo检索发送失败");
+        [UIView alertWith:@"错误" message:@"无法识别当前位置，不能使用搜索热点功能"];
     }
     
 }
@@ -119,6 +132,9 @@
         self.street = [NSString stringWithFormat:@"%@%@%@",result.addressDetail.city,result.addressDetail.district,result.addressDetail.streetName];
         self.cityText.text = self.city;
         self.addressText.text = [NSString stringWithFormat:@"%@%@%@",result.addressDetail.district,result.addressDetail.streetName,result.addressDetail.streetNumber];
+        self.searchBtn.enabled = YES;
+    }else{
+        [UIView alertWith:@"错误" message:@"无法识别当前位置，不能使用搜索热点功能"];
     }
 }
 - (IBAction)willSearch {

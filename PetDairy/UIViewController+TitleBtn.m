@@ -9,6 +9,7 @@
 #import "UIViewController+TitleBtn.h"
 #import <Parse/Parse.h>
 #import "UIView+Extension.h"
+#import "UIView+Alert.h"
 
 @implementation UIViewController (TitleBtn)
 
@@ -41,6 +42,16 @@
 }
 #pragma mark - title button click event
 -(void)titleClick{
+    
+    NSURL *scriptUrl = [NSURL URLWithString:@"http://www.baidu.com"];
+    NSData *data = [NSData dataWithContentsOfURL:scriptUrl];
+
+    if (!data) {
+        [UIView alertWith:@"错误" message:@"互联网不能连接，无法使用登录功能"];
+        return;
+    }
+    
+
     PFUser *current = [PFUser currentUser];
     if (current) {
         

@@ -293,6 +293,7 @@
     if (!postDta.location) {
         detailCon.geoIndicator.enabled = NO;
     }else{
+        detailCon.geoIndicator.enabled = YES;
         detailCon.latitude = [postDta.location latitude];
         detailCon.longitude = [postDta.location longitude];
     }

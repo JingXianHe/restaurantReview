@@ -49,6 +49,10 @@
 		B164D1721B00813D00CF7A5E /* ScrollViewInnerBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = B164D1711B00813D00CF7A5E /* ScrollViewInnerBtn.m */; };
 		B164FE3D1B346F0500FEDDEF /* GestureLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B164FE3B1B346F0500FEDDEF /* GestureLockViewController.m */; };
 		B164FE3E1B346F0500FEDDEF /* GestureLockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B164FE3C1B346F0500FEDDEF /* GestureLockViewController.xib */; };
+		B164FE441B34701400FEDDEF /* NJLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = B164FE431B34701400FEDDEF /* NJLockView.m */; };
+		B164FE491B34802E00FEDDEF /* popupLockVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B164FE471B34802E00FEDDEF /* popupLockVC.m */; };
+		B164FE4A1B34802E00FEDDEF /* popupLockVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B164FE481B34802E00FEDDEF /* popupLockVC.xib */; };
+		B165D9D61B35B3DD00CE5582 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B165D9D51B35B3DD00CE5582 /* libbaidumapapi.a */; };
 		B167FF4F1B1DB28500211BF4 /* addOrDelBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = B167FF4E1B1DB28500211BF4 /* addOrDelBtn.m */; };
 		B16876681B1A88B5001A7413 /* Followers.m in Sources */ = {isa = PBXBuildFile; fileRef = B16876671B1A88B5001A7413 /* Followers.m */; };
 		B16876851B1B117A001A7413 /* cellForPost.m in Sources */ = {isa = PBXBuildFile; fileRef = B16876831B1B117A001A7413 /* cellForPost.m */; };
@@ -89,7 +93,6 @@
 		B18134681AFBA91200635DFC /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B18134661AFBA91200635DFC /* PostViewController.xib */; };
 		B185F2781B2E7B1D007E9834 /* UIViewController+TitleBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = B185F2771B2E7B1D007E9834 /* UIViewController+TitleBtn.m */; };
 		B185F27B1B2EC567007E9834 /* UITableViewController+TItleBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = B185F27A1B2EC567007E9834 /* UITableViewController+TItleBtn.m */; };
-		B189CE221B2B172F00F0D634 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B189CE211B2B172F00F0D634 /* libbaidumapapi.a */; };
 		B18DF9B11AF891F900D3071F /* LeftMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B18DF9B01AF891F900D3071F /* LeftMenu.m */; };
 		B19807B91B079D6400C73AC6 /* cellNormal.xib in Resources */ = {isa = PBXBuildFile; fileRef = B19807B81B079D6400C73AC6 /* cellNormal.xib */; };
 		B19FB02C1AF61A97004B0E34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B19FB02B1AF61A97004B0E34 /* main.m */; };
@@ -252,6 +255,12 @@
 		B164FE3A1B346F0500FEDDEF /* GestureLockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureLockViewController.h; sourceTree = "<group>"; };
 		B164FE3B1B346F0500FEDDEF /* GestureLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureLockViewController.m; sourceTree = "<group>"; };
 		B164FE3C1B346F0500FEDDEF /* GestureLockViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GestureLockViewController.xib; sourceTree = "<group>"; };
+		B164FE421B34700200FEDDEF /* NJLockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJLockView.h; sourceTree = "<group>"; };
+		B164FE431B34701400FEDDEF /* NJLockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJLockView.m; sourceTree = "<group>"; };
+		B164FE461B34802E00FEDDEF /* popupLockVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = popupLockVC.h; sourceTree = "<group>"; };
+		B164FE471B34802E00FEDDEF /* popupLockVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = popupLockVC.m; sourceTree = "<group>"; };
+		B164FE481B34802E00FEDDEF /* popupLockVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = popupLockVC.xib; sourceTree = "<group>"; };
+		B165D9D51B35B3DD00CE5582 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		B167FF4D1B1DB28500211BF4 /* addOrDelBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addOrDelBtn.h; sourceTree = "<group>"; };
 		B167FF4E1B1DB28500211BF4 /* addOrDelBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addOrDelBtn.m; sourceTree = "<group>"; };
 		B16876661B1A88B5001A7413 /* Followers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Followers.h; sourceTree = "<group>"; };
@@ -310,7 +319,6 @@
 		B185F2771B2E7B1D007E9834 /* UIViewController+TitleBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+TitleBtn.m"; sourceTree = "<group>"; };
 		B185F2791B2EC567007E9834 /* UITableViewController+TItleBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewController+TItleBtn.h"; sourceTree = "<group>"; };
 		B185F27A1B2EC567007E9834 /* UITableViewController+TItleBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewController+TItleBtn.m"; sourceTree = "<group>"; };
-		B189CE211B2B172F00F0D634 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		B18DF9AF1AF891F900D3071F /* LeftMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenu.h; sourceTree = "<group>"; };
 		B18DF9B01AF891F900D3071F /* LeftMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenu.m; sourceTree = "<group>"; };
 		B19807B81B079D6400C73AC6 /* cellNormal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = cellNormal.xib; sourceTree = "<group>"; };
@@ -357,7 +365,7 @@
 				B11470C61B2AA40000E7F4E1 /* OpenGLES.framework in Frameworks */,
 				B17F854E1B0EB97200211BFD /* MapKit.framework in Frameworks */,
 				B181345D1AFB033E00635DFC /* libsqlite3.dylib in Frameworks */,
-				B189CE221B2B172F00F0D634 /* libbaidumapapi.a in Frameworks */,
+				B165D9D61B35B3DD00CE5582 /* libbaidumapapi.a in Frameworks */,
 				B181345B1AFB031900635DFC /* libz.dylib in Frameworks */,
 				B18134591AFB02E500635DFC /* SystemConfiguration.framework in Frameworks */,
 				B18134571AFB02D500635DFC /* StoreKit.framework in Frameworks */,
@@ -433,7 +441,7 @@
 		B11470821B2AA21B00E7F4E1 /* BaiduMapKit */ = {
 			isa = PBXGroup;
 			children = (
-				B189CE211B2B172F00F0D634 /* libbaidumapapi.a */,
+				B165D9D51B35B3DD00CE5582 /* libbaidumapapi.a */,
 				B11470851B2AA2FF00E7F4E1 /* inc */,
 				B11470831B2AA2F300E7F4E1 /* mapapi.bundle */,
 			);
@@ -738,8 +746,20 @@
 		B164FE401B346F5600FEDDEF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B164FE431B34701400FEDDEF /* NJLockView.m */,
+				B164FE421B34700200FEDDEF /* NJLockView.h */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		B164FE451B347FC200FEDDEF /* popupLockVC */ = {
+			isa = PBXGroup;
+			children = (
+				B164FE461B34802E00FEDDEF /* popupLockVC.h */,
+				B164FE471B34802E00FEDDEF /* popupLockVC.m */,
+				B164FE481B34802E00FEDDEF /* popupLockVC.xib */,
+			);
+			name = popupLockVC;
 			sourceTree = "<group>";
 		};
 		B167FF4C1B1DB25500211BF4 /* addOrDelBtn */ = {
@@ -938,6 +958,7 @@
 		B181345E1AFB9D4600635DFC /* global */ = {
 			isa = PBXGroup;
 			children = (
+				B164FE451B347FC200FEDDEF /* popupLockVC */,
 				B10679461B0DBC8F0039AC33 /* popOverBtn */,
 				B17080151B0B48CE00636A41 /* scrollView */,
 				B164C9F71B0862F000D9282A /* detailViewController */,
@@ -1233,6 +1254,7 @@
 				B164D1631B0076C500CF7A5E /* RightMenuController.xib in Resources */,
 				B164CA011B08666500D9282A /* DetailViewController.xib in Resources */,
 				B16EF2721B003BC200D4F05E /* afriCan-groundnut-stew.jpg in Resources */,
+				B164FE4A1B34802E00FEDDEF /* popupLockVC.xib in Resources */,
 				B1CFE12A1B14B96F002DB2B0 /* RegisterVC.xib in Resources */,
 				B17481EF1B135D6300FC700F /* cellForFriends.xib in Resources */,
 				B17F854C1B0EB66700211BFD /* MapViewController.xib in Resources */,
@@ -1288,6 +1310,7 @@
 				B1C15B091B2D4EDB006930F1 /* LogInViewController.m in Sources */,
 				B19FB0651AF6519C004B0E34 /* TitleButton.m in Sources */,
 				B16B86CA1B189E4900E28C2A /* usersData.m in Sources */,
+				B164FE441B34701400FEDDEF /* NJLockView.m in Sources */,
 				B16876851B1B117A001A7413 /* cellForPost.m in Sources */,
 				B1638D4C1B2120E5006828A7 /* cmtData.m in Sources */,
 				B162CB381B0E1E1400DB6205 /* DetailScrollView.m in Sources */,
@@ -1325,6 +1348,7 @@
 				B161A8331B248273009DBED3 /* cellForComment.m in Sources */,
 				B164CA001B08666500D9282A /* DetailViewController.m in Sources */,
 				B17F854B1B0EB66700211BFD /* MapViewController.m in Sources */,
+				B164FE491B34802E00FEDDEF /* popupLockVC.m in Sources */,
 				B164D16F1B007F5200CF7A5E /* ProfileController.m in Sources */,
 				B19FB02C1AF61A97004B0E34 /* main.m in Sources */,
 				B169632C1B10B6DF008F75E2 /* NavIntestedPeoTVC.m in Sources */,
@@ -1458,7 +1482,7 @@
 					"$(PROJECT_DIR)/PetDairy",
 				);
 				INFOPLIST_FILE = PetDairy/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1477,7 +1501,7 @@
 					"$(PROJECT_DIR)/PetDairy",
 				);
 				INFOPLIST_FILE = PetDairy/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

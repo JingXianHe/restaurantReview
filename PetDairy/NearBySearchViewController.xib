@@ -10,6 +10,7 @@
                 <outlet property="cityText" destination="uh2-W1-Uzg" id="dKl-mc-ggW"/>
                 <outlet property="keyText" destination="ABH-TW-UAs" id="NC3-dD-KPh"/>
                 <outlet property="quantityDisplay" destination="hj0-Ui-3KY" id="kvl-og-Zpn"/>
+                <outlet property="searchBtn" destination="MGg-vt-dk6" id="Bai-aZ-Kvf"/>
                 <outlet property="searchQuantity" destination="Lce-Gw-aRt" id="Z72-GE-2Mo"/>
                 <outlet property="searchRange" destination="i5M-Pr-FkT" id="ue4-f2-wBz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -152,7 +153,7 @@
                 <view alpha="0.74999999999999978" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YcS-12-ZWq" userLabel="6View">
                     <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGg-vt-dk6">
+                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGg-vt-dk6">
                             <rect key="frame" x="80" y="10" width="160" height="30"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>

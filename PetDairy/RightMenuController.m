@@ -15,9 +15,11 @@
 #import "UIView+AutoLayout.h"
 #import <Parse/Parse.h>
 #import "UIViewController+TitleBtn.h"
+#import "BMapKit.h"
+#import "UIView+Alert.h"
 
 
-@interface RightMenuController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, ScrollViewInnerBtnDelegate, CLLocationManagerDelegate>
+@interface RightMenuController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, ScrollViewInnerBtnDelegate, BMKLocationServiceDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
 @property (weak, nonatomic) IBOutlet UIButton *deleteBtn;
@@ -36,8 +38,8 @@
 //decide public or private
 @property (weak, nonatomic) IBOutlet UISwitch *publicSwitch;
 
-//cllocation manager
-@property (strong, nonatomic)CLLocationManager *mgr;
+//baidu map kit manager
+@property(strong, nonatomic)BMKLocationService* locService;
 //for delete photoes
 @property(strong, nonatomic)NSMutableArray *innerViews;
 @property (weak, nonatomic) IBOutlet UIButton *titleTinkBtn;
@@ -110,11 +112,11 @@
     self.titleTinkBtn.layer.cornerRadius = 15;
 
     self.iconView.layer.cornerRadius = self.iconView.frame.size.height /2 ;
+    //baidu map kit delegate set up
+    self.locService = [[BMKLocationService alloc]init];
     
 }
--(void)viewWillAppear:(BOOL)animated{
-    [self didShow];
-}
+
 
 -(PostViewController *)postViewController{
     if (!_postViewController) {
@@ -254,32 +256,32 @@
         return false;
 }
 //geolocation upload
+#pragma mark - baidu mapKit delegate
 - (IBAction)uploadGeo {
 
-    self.mgr = [[CLLocationManager alloc]init];
-    self.mgr.delegate = self;
-    self.mgr.activityType = CLActivityTypeFitness;
-    self.mgr.distanceFilter = 10;
-    if ([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0) {
-        [self.mgr requestAlwaysAuthorization];
-    }else{
-        [self.mgr startUpdatingLocation];
-    }
+    [self.locService startUserLocationService];
     
 }
-#pragma mark - cllocationmanager delegate
--(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
-    if (status == kCLAuthorizationStatusAuthorizedAlways || status == kCLAuthorizationStatusAuthorizedWhenInUse) {
-        [self.mgr startUpdatingLocation];
-    }
-}
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
+- (void)viewWillAppear:(BOOL)animated
+{
     
-    CLLocation *newLocation = [locations lastObject];
-    self.longitude = newLocation.coordinate.longitude;
-    self.latitude = newLocation.coordinate.latitude;
-    [self.mgr stopUpdatingLocation];
+    _locService.delegate = self;
+    [self didShow];
 }
+
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    
+    _locService.delegate = nil;
+    
+}
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation{
+    self.longitude = userLocation.location.coordinate.longitude;
+    self.latitude = userLocation.location.coordinate.latitude;
+    [self.locService stopUserLocationService];
+}
+
 
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -322,8 +324,10 @@
 - (IBAction)sendMsg {
     
     if (self.titleTextView.text == nil) {
+        [UIView alertWith:@"错误" message:@"餐厅名字不能为空"];
         return;
     }
+
     //retrieve comment value
     commentView *tmpS = (commentView *)[self.commentServiceView.subviews lastObject];
     int serviceP = tmpS.scores.intValue;
@@ -331,6 +335,12 @@
     int tasteP = tasteS.scores.intValue;
     commentView *satisfyS = (commentView *)[self.commentTrafficView.subviews lastObject];
     int satisfyP = satisfyS.scores.intValue;
+    
+    int resultForPoint = serviceP * tasteP * satisfyP;
+    if (resultForPoint == 0 ) {
+        [UIView alertWith:@"错误" message:@"餐厅评价不能为空"];
+        return;
+    }
     NSMutableArray *picsCollection = [[NSMutableArray alloc]init];
     if (self.innerViews.count > 0) {
         //vacuum self.pfiles every time before use because it hard to know whenever the images finish uploading
