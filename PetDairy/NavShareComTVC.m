@@ -270,6 +270,7 @@
     postData *postDta = self.postData[indexPath.row];
     
     DetailParseViewController *detailCon = [[DetailParseViewController alloc]init];
+    detailCon.postId = postDta.objectId;
     self.detailVC = detailCon;
     //for comment counts
     detailCon.delegate = self;
@@ -288,7 +289,8 @@
     detailCon.RCommentLabel.text = [self convertCommentP:postDta.satisfycmt title:@"环境："];
     detailCon.ContentTextView.text = postDta.content;
 
-    detailCon.postId = postDta.objectId;
+    
+    
     //check geolocation available
     if (!postDta.location) {
         detailCon.geoIndicator.enabled = NO;

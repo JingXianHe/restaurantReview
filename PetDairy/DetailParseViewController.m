@@ -45,6 +45,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    if (self.comments.count > 0) {
+        [self.comments removeAllObjects];
+    }
     self.bgView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"sushiBlur"]];
     self.ContentTextView.editable = NO;
     self.commentTableView.dataSource = self;
@@ -58,6 +61,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 
     PFQuery *query = [[PFQuery alloc]initWithClassName:@"commentsForPost"];
+    
     [query whereKey:@"postObId" containsString:self.postId];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error == nil) {
@@ -187,6 +191,10 @@
     return cell;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 90.0;
+}
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.commentTF resignFirstResponder];
 }
@@ -276,12 +284,15 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 - (IBAction)send {
-    
+    cmtData *data = [[cmtData alloc]init];
     PFObject *obj = [[PFObject alloc]initWithClassName:@"commentsForPost"];
     if (self.commentTF.text) {
         obj[@"content"] = self.commentTF.text;
+        data.content = self.commentTF.text;
         obj[@"username"]= [PFUser currentUser].username;
+        data.username = [PFUser currentUser].username;
         obj[@"postObId"]= self.postId;
+        data.date = [NSDate date];
     }
     [self.commentTF resignFirstResponder];
     NSError *error = nil;
@@ -305,8 +316,10 @@
         
         UIAlertView *view = [[UIAlertView alloc]initWithTitle:@"成功" message:@"成功发布评论" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [view show];
+
+        [self.comments addObject:data];
         self.commentTF.text = nil;
-        [self getDataFromParse];
+        [self.commentTableView reloadData];
     }else{
         UIAlertView *view = [[UIAlertView alloc]initWithTitle:@"错误" message:error.userInfo[@"error"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [view show];

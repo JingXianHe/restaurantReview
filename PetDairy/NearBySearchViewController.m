@@ -165,4 +165,8 @@
     self.navigationItem.rightBarButtonItem = nil;
     self.delegateIsOn = false;
 }
+#pragma UIViewControllver + alert implement method
+-(void)refreshView{
+    
+}
 @end

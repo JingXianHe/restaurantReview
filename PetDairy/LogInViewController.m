@@ -11,13 +11,10 @@
 #import "TitleButton.h"
 #import "LeftMenu.h"
 #import "UIViewController+TitleBtn.h"
-@interface LogInViewController ()<UIAlertViewDelegate, UITextFieldDelegate,UIGestureRecognizerDelegate>
-@property (weak, nonatomic) IBOutlet UITextField *username;
-@property (weak, nonatomic) IBOutlet UITextField *password;
-@property (weak, nonatomic) IBOutlet UIView *indicatorContainer;
-@property (weak, nonatomic) IBOutlet UIButton *signInBtn;
-
-- (IBAction)signIn:(id)sender;
+#import "UIView+Alert.h"
+@interface LogInViewController ()<UIAlertViewDelegate>
+- (IBAction)signIn;
+- (IBAction)logout;
 
 @end
 
@@ -27,26 +24,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.username.delegate = self;
-    self.password.delegate = self;
-    //create and configure the tap gesture
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tabEvent)];
-    tapRecognizer.delegate =self;
-    [self.view addGestureRecognizer:tapRecognizer];
 
 }
-#pragma tap event
--(void)tabEvent{
-    [self.username resignFirstResponder];
-    [self.password resignFirstResponder];
-}
--(void)viewWillAppear:(BOOL)animated{
-    if ([PFUser currentUser]) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"注销账号" message:@"是否需要注销账号" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-        alert.alertViewStyle = UIAlertActionStyleDefault;
-        [alert show];
-    }
-}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -63,54 +43,75 @@
 }
 */
 
-- (IBAction)signIn:(id)sender {
-    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]init];
-    spinner.center = self.indicatorContainer.center;
-    spinner.hidesWhenStopped = YES;
+- (IBAction)signIn {
+    if ([PFUser currentUser]) {
+        [UIView alertWith:@"错误" message:@"不能重复登录，请先注销用户再登录"];
+        return;
+    }else{
+        UIButton *btn = self.navigationController.titleBtn;
+        [self titleClick];
+    }
     
-    [self.view addSubview:spinner];
-    [spinner startAnimating];
-    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-    NSString *userName = self.username.text;
-    NSString *password = self.password.text;
-    [PFUser logInWithUsernameInBackground:userName password:password block:^(PFUser *user, NSError *error) {
-        [spinner stopAnimating];
-        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
-        if (!error) {
-            
-            self.username.text= nil;
-            self.password.text = nil;
-            UIButton *btn = (UIButton *)sender;
-            //self.navigationController.topViewController.title = [PFUser currentUser].username;
-            btn.enabled = NO;
-            
-        }else{
-            NSString *errorMsg = error.userInfo[@"error"];
-            UIAlertView *view = [[UIAlertView alloc]initWithTitle:@"警告" message:errorMsg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [view show];
-            
-        }
-    }];
-
 }
 
+#pragma mark - title button click event
+-(void)titleClick{
+    
+    NSURL *scriptUrl = [NSURL URLWithString:@"http://www.baidu.com"];
+    NSData *data = [NSData dataWithContentsOfURL:scriptUrl];
+    
+    if (!data) {
+        [UIView alertWith:@"错误" message:@"互联网不能连接，无法使用登录功能"];
+        return;
+    }
+    
+    
+    PFUser *current = [PFUser currentUser];
+    if (current) {
+        
+        return;
+    }else{
+        
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"登录" message:@"请输入用户名字和密码" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+        [alert show];
+    }
+    
+}
 #pragma uialertViewDelegat
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1) {
-        
-        [PFUser logOut];
-        
-        self.navigationController.topViewController.navigationItem.titleView = self.titleBtn;
-
-    }else{
-    
-
-        self.signInBtn.enabled = false;
+        NSString *userName = [alertView textFieldAtIndex:0].text;
+        NSString *password = [alertView textFieldAtIndex:1].text;
+        [PFUser logInWithUsernameInBackground:userName password:password block:^(PFUser *user, NSError *error) {
+            if (!error) {
+                
+                self.navigationController.topViewController.navigationItem.titleView = self.titleBtn;
+                [UIView alertWith:@"消息" message:@"成功登录"];
+                [self.view setNeedsDisplay];
+                self.navigationController.topViewController.navigationItem.titleView = self.titleBtn;
+                
+            }else{
+                NSString *errorMsg = error.userInfo[@"error"];
+                UIAlertView *view = [[UIAlertView alloc]initWithTitle:@"警告" message:errorMsg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [view show];
+                
+            }
+        }];
     }
 }
-#pragma textfield delegate
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
-    return true;
+
+
+- (IBAction)logout {
+    
+    if ([PFUser currentUser]) {
+        [PFUser logOut];
+        self.navigationController.topViewController.navigationItem.titleView = self.titleBtn;
+    }
 }
+#pragma UIViewControllver + alert implement method
+-(void)refreshView{
+    
+}
+
 @end

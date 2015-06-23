@@ -24,7 +24,7 @@
         
         [self setupBtnWithIcon:@"sidebar_nav_news" title:@"评论" bgColor:HMColorRGBA(202, 68, 73, alpha)];
         [self setupBtnWithIcon:@"friend" title:@"关注" bgColor:HMColorRGBA(190, 111, 69, alpha)];
-        [self setupBtnWithIcon:@"register" title:@"注册" bgColor:HMColorRGBA(76, 132, 190, alpha)];
+        [self setupBtnWithIcon:@"register" title:@"注册/更新" bgColor:HMColorRGBA(76, 132, 190, alpha)];
         [self setupBtnWithIcon:@"sidebar_nav_photo" title:@"附近餐厅" bgColor:HMColorRGBA(101, 170, 78, alpha)];
         [self setupBtnWithIcon:@"sidebar_nav_comment" title:@"登录/注销" bgColor:HMColorRGBA(170, 172, 73, alpha)];
         [self setupBtnWithIcon:@"gestureLock" title:@"手势锁" bgColor:HMColorRGBA(190, 62, 119, alpha)];

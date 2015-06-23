@@ -323,7 +323,7 @@
 
 - (IBAction)sendMsg {
     
-    if (self.titleTextView.text == nil) {
+    if (self.titleTextView.text.length == 0) {
         [UIView alertWith:@"错误" message:@"餐厅名字不能为空"];
         return;
     }

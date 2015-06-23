@@ -73,8 +73,10 @@
             if (!error) {
                 
                 self.navigationController.topViewController.navigationItem.titleView = self.titleBtn;
+                [UIView alertWith:@"消息" message:@"成功登录"];
                 [self.view setNeedsDisplay];
                 [self refreshView];
+                
             }else{
                 NSString *errorMsg = error.userInfo[@"error"];
                 UIAlertView *view = [[UIAlertView alloc]initWithTitle:@"警告" message:errorMsg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];

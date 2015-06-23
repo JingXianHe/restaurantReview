@@ -52,7 +52,6 @@
 		B164FE441B34701400FEDDEF /* NJLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = B164FE431B34701400FEDDEF /* NJLockView.m */; };
 		B164FE491B34802E00FEDDEF /* popupLockVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B164FE471B34802E00FEDDEF /* popupLockVC.m */; };
 		B164FE4A1B34802E00FEDDEF /* popupLockVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B164FE481B34802E00FEDDEF /* popupLockVC.xib */; };
-		B165D9D61B35B3DD00CE5582 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B165D9D51B35B3DD00CE5582 /* libbaidumapapi.a */; };
 		B167FF4F1B1DB28500211BF4 /* addOrDelBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = B167FF4E1B1DB28500211BF4 /* addOrDelBtn.m */; };
 		B16876681B1A88B5001A7413 /* Followers.m in Sources */ = {isa = PBXBuildFile; fileRef = B16876671B1A88B5001A7413 /* Followers.m */; };
 		B16876851B1B117A001A7413 /* cellForPost.m in Sources */ = {isa = PBXBuildFile; fileRef = B16876831B1B117A001A7413 /* cellForPost.m */; };
@@ -67,6 +66,7 @@
 		B16EF2721B003BC200D4F05E /* afriCan-groundnut-stew.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B16EF2711B003BC100D4F05E /* afriCan-groundnut-stew.jpg */; };
 		B16EF2741B005EA200D4F05E /* bush-food-brown-lrg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B16EF2731B005EA200D4F05E /* bush-food-brown-lrg.jpg */; };
 		B17080181B0B490700636A41 /* HScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B17080171B0B490700636A41 /* HScrollView.m */; };
+		B17102AE1B383D4C00C7EE2C /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B17102AD1B383D4C00C7EE2C /* libbaidumapapi.a */; };
 		B17212C71B2B36290086C1E4 /* PoiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B17212C61B2B36290086C1E4 /* PoiViewController.m */; };
 		B17212CB1B2B369F0086C1E4 /* customButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B17212CA1B2B369F0086C1E4 /* customButton.m */; };
 		B17481EE1B135D6300FC700F /* cellForFriends.m in Sources */ = {isa = PBXBuildFile; fileRef = B17481EC1B135D6300FC700F /* cellForFriends.m */; };
@@ -260,7 +260,6 @@
 		B164FE461B34802E00FEDDEF /* popupLockVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = popupLockVC.h; sourceTree = "<group>"; };
 		B164FE471B34802E00FEDDEF /* popupLockVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = popupLockVC.m; sourceTree = "<group>"; };
 		B164FE481B34802E00FEDDEF /* popupLockVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = popupLockVC.xib; sourceTree = "<group>"; };
-		B165D9D51B35B3DD00CE5582 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		B167FF4D1B1DB28500211BF4 /* addOrDelBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addOrDelBtn.h; sourceTree = "<group>"; };
 		B167FF4E1B1DB28500211BF4 /* addOrDelBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addOrDelBtn.m; sourceTree = "<group>"; };
 		B16876661B1A88B5001A7413 /* Followers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Followers.h; sourceTree = "<group>"; };
@@ -285,6 +284,7 @@
 		B16EF2731B005EA200D4F05E /* bush-food-brown-lrg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bush-food-brown-lrg.jpg"; sourceTree = "<group>"; };
 		B17080161B0B490700636A41 /* HScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HScrollView.h; sourceTree = "<group>"; };
 		B17080171B0B490700636A41 /* HScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HScrollView.m; sourceTree = "<group>"; };
+		B17102AD1B383D4C00C7EE2C /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		B17212C51B2B36290086C1E4 /* PoiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoiViewController.h; sourceTree = "<group>"; };
 		B17212C61B2B36290086C1E4 /* PoiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoiViewController.m; sourceTree = "<group>"; };
 		B17212C91B2B369F0086C1E4 /* customButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customButton.h; sourceTree = "<group>"; };
@@ -365,7 +365,7 @@
 				B11470C61B2AA40000E7F4E1 /* OpenGLES.framework in Frameworks */,
 				B17F854E1B0EB97200211BFD /* MapKit.framework in Frameworks */,
 				B181345D1AFB033E00635DFC /* libsqlite3.dylib in Frameworks */,
-				B165D9D61B35B3DD00CE5582 /* libbaidumapapi.a in Frameworks */,
+				B17102AE1B383D4C00C7EE2C /* libbaidumapapi.a in Frameworks */,
 				B181345B1AFB031900635DFC /* libz.dylib in Frameworks */,
 				B18134591AFB02E500635DFC /* SystemConfiguration.framework in Frameworks */,
 				B18134571AFB02D500635DFC /* StoreKit.framework in Frameworks */,
@@ -441,7 +441,7 @@
 		B11470821B2AA21B00E7F4E1 /* BaiduMapKit */ = {
 			isa = PBXGroup;
 			children = (
-				B165D9D51B35B3DD00CE5582 /* libbaidumapapi.a */,
+				B17102AD1B383D4C00C7EE2C /* libbaidumapapi.a */,
 				B11470851B2AA2FF00E7F4E1 /* inc */,
 				B11470831B2AA2F300E7F4E1 /* mapapi.bundle */,
 			);
@@ -1482,7 +1482,7 @@
 					"$(PROJECT_DIR)/PetDairy",
 				);
 				INFOPLIST_FILE = PetDairy/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1501,7 +1501,7 @@
 					"$(PROJECT_DIR)/PetDairy",
 				);
 				INFOPLIST_FILE = PetDairy/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

@@ -14,7 +14,6 @@
                 <outlet property="geoIndicator" destination="YW1-Ac-AU4" id="4XF-us-rhR"/>
                 <outlet property="leftCommentLabel" destination="4iU-gi-pgK" id="6A4-Xr-0iF"/>
                 <outlet property="picsScrollView" destination="71r-PI-LYi" id="kym-Ck-tNy"/>
-                <outlet property="profileImg" destination="fD5-5v-rVq" id="XA2-0K-Dk7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -67,18 +66,9 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="suShi.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="rC7-RL-w3H">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="145"/>
                         </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="fD5-5v-rVq">
-                            <rect key="frame" x="135" y="48" width="50" height="50"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="50" id="ifm-ww-isl"/>
-                                <constraint firstAttribute="height" constant="50" id="uB2-WJ-qBX"/>
-                            </constraints>
-                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="centerY" secondItem="fD5-5v-rVq" secondAttribute="centerY" id="4qv-Zz-g9l"/>
-                        <constraint firstAttribute="centerX" secondItem="fD5-5v-rVq" secondAttribute="centerX" id="E1A-sA-TQ9"/>
                         <constraint firstAttribute="trailing" secondItem="rC7-RL-w3H" secondAttribute="trailing" id="GVX-Kk-J1Y"/>
                         <constraint firstItem="rC7-RL-w3H" firstAttribute="top" secondItem="iiv-eE-VaK" secondAttribute="top" id="Jd2-rr-XyO"/>
                         <constraint firstAttribute="bottom" secondItem="rC7-RL-w3H" secondAttribute="bottom" id="Vhs-pM-pfl"/>
@@ -192,7 +182,6 @@
         </view>
     </objects>
     <resources>
-        <image name="default_avatar" width="70" height="70"/>
         <image name="icon_map_highlighted" width="30" height="30"/>
         <image name="suShi.jpg" width="500" height="334"/>
     </resources>

@@ -76,9 +76,7 @@
             for (PFObject *pfuser in objects) {
                 usersData *user = [[usersData alloc]init];
                 user.username = pfuser[@"username"];
-                if ([user.username isEqualToString:[PFUser currentUser].username]) {
-                    continue;
-                }
+
                 
                 user.email = pfuser[@"email"];
                 NSString *gender = (NSString *)pfuser[@"gender"];
@@ -181,7 +179,6 @@
 }
 
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     usersData *data = self.users[indexPath.row];
@@ -218,6 +215,9 @@
     
     [cell.followingBtn addTarget:self action:@selector(setFollowValue:) forControlEvents:UIControlEventTouchUpInside];
     cell.followingBtn.username = data.username;
+    if ([data.username isEqualToString:[PFUser currentUser].username]) {
+        cell.hidden = YES;
+    }
     
     return cell;
     
@@ -283,6 +283,10 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    usersData *data = self.users[indexPath.row];
+    if ([data.username isEqualToString:[PFUser currentUser].username]) {
+        return 0;
+    }
     return 95;
 }
 

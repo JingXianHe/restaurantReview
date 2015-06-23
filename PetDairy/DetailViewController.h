@@ -13,7 +13,7 @@
 - (IBAction)leftNav;
 - (IBAction)rightNav;
 
-@property (weak, nonatomic) IBOutlet UIImageView *profileImg;
+
 @property (weak, nonatomic) IBOutlet UILabel *leftCommentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *MCommentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *RCommentLabel;

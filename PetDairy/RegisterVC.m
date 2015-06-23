@@ -10,10 +10,15 @@
 #import <Parse/Parse.h>
 #import "UIView+Extension.h"
 #import "UIViewController+TitleBtn.h"
+#import "UIView+Alert.h"
 
 @interface RegisterVC ()<UIGestureRecognizerDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextFieldDelegate>
 - (IBAction)camera;
+@property (weak, nonatomic) IBOutlet UIButton *updateBtn;
 
+@property (weak, nonatomic) IBOutlet UIButton *registerBtn;
+@property(strong, nonatomic)PFUser *current;
+- (IBAction)update:(id)sender;
 
 @end
 
@@ -42,6 +47,36 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    // check if user want to update their profile
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser) {
+        self.current = currentUser;
+        self.username.text = currentUser.username;
+        self.username.userInteractionEnabled = NO;
+        self.email.text = currentUser.email;
+        NSNumber *gender = currentUser[@"gender"];
+        if (gender.intValue == 0) {
+            [self.genderSwitch setOn:NO];
+        }else{
+            [self.genderSwitch setOn:YES];
+        }
+        PFFile *date = currentUser[@"profileImg"];
+        NSData *Data = [date getData];
+        if (Data) {
+            UIImage *img = [[UIImage alloc]initWithData:Data];
+            self.profileImg.image = img;
+        }
+        self.registerBtn.enabled = NO;
+        self.updateBtn.enabled = YES;
+        
+    }else{
+        self.username.userInteractionEnabled = YES;
+        self.registerBtn.enabled = YES;
+        self.updateBtn.enabled = NO;
+    }
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return NO;
@@ -52,7 +87,11 @@
     [self.username resignFirstResponder];
     [self.password resignFirstResponder];
 }
-
+#pragma UIViewControllver + alert implement method
+-(void)refreshView{
+    
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -160,27 +199,6 @@
                     }
                     
                 });
-                
- 
-//                [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//                    [blockSpin stopAnimating];
-//                    [view removeFromSuperview];
-//                    if(error == nil){
-//                        
-//                        self.username.text = nil;
-//                        self.password.text = nil;
-//                        self.email.text = nil;
-//                        self.profileImg.image = [UIImage imageNamed:@"default_avatar"];
-//                        UIAlertView *view = [[UIAlertView alloc]initWithTitle:@"成功" message:@"注册成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//                        [view show];
-//                        
-//                    }else{
-//                        UIAlertView *alertVIew = [[UIAlertView alloc]initWithTitle:@"错误" message:error.userInfo[@"error"] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//                        [alertVIew show];
-//                    }
-//
-//                }];
-                
 
             }
 
@@ -203,5 +221,26 @@
     ipc.sourceType = UIImagePickerControllerCameraDeviceFront;
     ipc.delegate = self;
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:ipc animated:YES completion:nil];
+}
+- (IBAction)update:(id)sender {
+    
+    
+    self.current.username = self.username.text;
+    self.current.password = self.password.text;
+    self.current.email = self.email.text;
+    NSData *data = UIImageJPEGRepresentation(self.profileImg.image, 0.4);
+    NSString *name = @"profile.jpg";
+    self.current[@"profileImg"] = [ PFFile fileWithName:name data:data];
+    if([self.genderSwitch isOn]){
+        self.current[@"gender"]= [NSNumber numberWithInt:1];
+        
+    }else{
+        self.current[@"gender"] = [NSNumber numberWithInt:0];
+    }
+    NSError *error = nil;
+    if ([self.current save:&error]){
+        [UIView alertWith:@"成功" message:@"成功更新用户资料"];
+    }
+
 }
 @end
